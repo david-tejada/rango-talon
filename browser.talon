@@ -1,0 +1,1 @@
+click <user.text>: user.browser_click_text(text)
