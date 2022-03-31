@@ -49,7 +49,7 @@ def execute_command(msg: Any):
 
   with clip.revert():
     clip.set_text(json_message)
-    actions.key("ctrl-alt-p")
+    actions.key("alt-shift-p")
     response = read_json_response_with_timeout()
 
 @mod.action_class
