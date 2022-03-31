@@ -1,9 +1,7 @@
-from talon import Module, Context, actions
-from pathlib import Path
-import os
-from tempfile import gettempdir
-from typing import Any, List
+from talon import Module, Context, actions, clip
 import json
+import time
+from typing import Any
 
 mod = Module()
 ctx = Context()
@@ -11,36 +9,48 @@ ctx.matches = r"""
 tag: browser
 """
 
-def get_communication_dir_path():
-    """Returns directory that is used by command-server for communication
+RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
+MINIMUM_SLEEP_TIME_SECONDS = 0.0005
+
+def read_json_response_with_timeout() -> Any:
+    """Repeatedly tries to read a json object from the clipboard, waiting
+    until the message type is "response"
+
+    Raises:
+        Exception: If we timeout waiting for a response
 
     Returns:
-        Path: The path to the communication dir
+        Any: The json-decoded contents of the file
     """
-    suffix = ""
+    timeout_time = time.perf_counter() + RANGO_COMMAND_TIMEOUT_SECONDS
+    sleep_time = MINIMUM_SLEEP_TIME_SECONDS
+    while True:
+        raw_text = clip.text()
+        message = json.loads(raw_text)
+        
+        if message["type"] == "response":
+            break
 
-    # NB: We don't suffix on Windows, because the temp dir is user-specific
-    # anyways
-    if hasattr(os, "getuid"):
-        suffix = f"-{os.getuid()}"
+        actions.sleep(sleep_time)
 
-    return Path(gettempdir()) / f"browser-command-server{suffix}"
+        time_left = timeout_time - time.perf_counter()
 
-communication_dir_path = get_communication_dir_path()
-if not communication_dir_path.exists():
-  communication_dir_path.mkdir(parents=True, exist_ok=True)
-request_path = communication_dir_path / "request.json"
-response_path = communication_dir_path / "response.json"
+        if time_left < 0:
+            raise Exception("Timed out waiting for response")
 
-def write_json_exclusive(path: Path, body: Any):
-    """Writes jsonified object to file, failing if the file already exists
+        # NB: We use minimum sleep time here to ensure that we don't spin with
+        # small sleeps due to clock slip
+        sleep_time = max(min(sleep_time * 2, time_left), MINIMUM_SLEEP_TIME_SECONDS)
 
-    Args:
-        path (Path): The path of the file to write
-        body (Any): The object to convert to json and write
-    """
-    with path.open("x") as out_file:
-        out_file.write(json.dumps(body))
+    return json.loads(raw_text)
+
+def execute_command(msg: Any):
+  json_message = json.dumps(msg)
+
+  with clip.revert():
+    clip.set_text(json_message)
+    actions.key("ctrl-alt-p")
+    response = read_json_response_with_timeout()
 
 @mod.action_class
 class Actions:
@@ -50,10 +60,12 @@ class Actions:
 @ctx.action_class('user')
 class UserActions:
   def browser_click_text(text: str):
-    actions.key("ctrl-alt-p")
-    action = {
-      "action": "click",
-      "type": "text",
-      "target": text
+    command = {
+      "type": "request",
+      "action": {
+        "type": "click",
+        "target": text
+      }
     }
-    write_json_exclusive(response_path, action)
+    execute_command(command)
+
