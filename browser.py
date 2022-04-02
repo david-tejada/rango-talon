@@ -49,13 +49,15 @@ def execute_command(msg: Any):
 
   with clip.revert():
     clip.set_text(json_message)
-    actions.key("alt-shift-p")
+    actions.key("alt-shift-a")
     response = read_json_response_with_timeout()
 
 @mod.action_class
 class Actions:
   def browser_click_text(text: str):
     """Clicks on a link with a given text"""
+  def browser_click_hint(option: int):
+    """Clicks on a link with a given hint"""
 
 @ctx.action_class('user')
 class UserActions:
@@ -65,6 +67,16 @@ class UserActions:
       "action": {
         "type": "click",
         "target": text
+      }
+    }
+    execute_command(command)
+
+  def browser_click_hint(option: int):
+    command = {
+      "type": "request",
+      "action": {
+        "type": "click_hint",
+        "target": option,
       }
     }
     execute_command(command)
