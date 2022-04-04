@@ -58,6 +58,8 @@ class Actions:
     """Clicks on a link with a given text"""
   def browser_click_hint(option: int):
     """Clicks on a link with a given hint"""
+  def browser_show_all_hints():
+    """Show all the links"""
 
 @ctx.action_class('user')
 class UserActions:
@@ -77,6 +79,15 @@ class UserActions:
       "action": {
         "type": "clickElementByHint",
         "target": option,
+      }
+    }
+    execute_command(command)
+
+  def browser_show_all_hints():
+    command = {
+      "type": "request",
+      "action": {
+        "type": "showAllHints",
       }
     }
     execute_command(command)
