@@ -65,7 +65,7 @@ class UserActions:
     command = {
       "type": "request",
       "action": {
-        "type": "click",
+        "type": "clickElementByText",
         "target": text
       }
     }
@@ -75,7 +75,7 @@ class UserActions:
     command = {
       "type": "request",
       "action": {
-        "type": "click_hint",
+        "type": "clickElementByHint",
         "target": option,
       }
     }
