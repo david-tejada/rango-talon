@@ -54,25 +54,11 @@ def execute_command(msg: Any):
 
 @mod.action_class
 class Actions:
-  def browser_click_text(text: str):
-    """Clicks on a link with a given text"""
   def browser_click_hint(option: int):
     """Clicks on a link with a given hint"""
-  def browser_show_all_hints():
-    """Show all the links"""
 
 @ctx.action_class('user')
 class UserActions:
-  def browser_click_text(text: str):
-    command = {
-      "type": "request",
-      "action": {
-        "type": "clickElementByText",
-        "target": text
-      }
-    }
-    execute_command(command)
-
   def browser_click_hint(option: int):
     command = {
       "type": "request",
@@ -82,13 +68,3 @@ class UserActions:
       }
     }
     execute_command(command)
-
-  def browser_show_all_hints():
-    command = {
-      "type": "request",
-      "action": {
-        "type": "showAllHints",
-      }
-    }
-    execute_command(command)
-
