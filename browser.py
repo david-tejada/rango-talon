@@ -57,6 +57,9 @@ class Actions:
   def browser_click_hint(option: int):
     """Clicks on a link with a given hint"""
 
+  def browser_toggle_hints():
+    """Toggle hints on and off"""
+
 @ctx.action_class('user')
 class UserActions:
   def browser_click_hint(option: int):
@@ -65,6 +68,15 @@ class UserActions:
       "action": {
         "type": "clickElementByHint",
         "target": option,
+      }
+    }
+    execute_command(command)
+
+  def browser_toggle_hints():
+    command = {
+      "type": "request",
+      "action": {
+        "type": "toggleHints",
       }
     }
     execute_command(command)
