@@ -60,6 +60,9 @@ class Actions:
   def browser_hover_hint(option: int):
     """Hovers on a link with a given hint"""
 
+  def browser_fixed_hover_hint(option: int):
+    """Hovers on a link with a given hint with no automatic unhover"""
+
   def browser_unhover():
     """Unhover all hovered elements"""
 
@@ -85,6 +88,16 @@ class UserActions:
       "type": "request",
       "action": {
         "type": "hoverElementByHint",
+        "target": option,
+      }
+    }
+    execute_command(command)
+
+  def browser_fixed_hover_hint(option: int):
+    command = {
+      "type": "request",
+      "action": {
+        "type": "fixedHoverElementByHint",
         "target": option,
       }
     }
