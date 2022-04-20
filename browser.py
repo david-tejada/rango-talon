@@ -55,10 +55,15 @@ def execute_command(msg: Any):
 @mod.action_class
 class Actions:
   def browser_click_hint(option: int):
-    """Clicks on a link with a given hint"""
+    """Clicks on a link with a given hint""" 
+    
+  def browser_hover_hint(option: int):
+    """Hovers on a link with a given hint"""
 
   def browser_toggle_hints():
     """Toggle hints on and off"""
+
+
 
 @ctx.action_class('user')
 class UserActions:
@@ -67,6 +72,16 @@ class UserActions:
       "type": "request",
       "action": {
         "type": "clickElementByHint",
+        "target": option,
+      }
+    }
+    execute_command(command)
+
+  def browser_hover_hint(option: int):
+    command = {
+      "type": "request",
+      "action": {
+        "type": "hoverElementByHint",
         "target": option,
       }
     }
