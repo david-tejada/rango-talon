@@ -60,6 +60,9 @@ class Actions:
   def browser_hover_hint(option: int):
     """Hovers on a link with a given hint"""
 
+  def browser_unhover():
+    """Unhover all hovered elements"""
+
   def browser_toggle_hints():
     """Toggle hints on and off"""
 
@@ -83,6 +86,15 @@ class UserActions:
       "action": {
         "type": "hoverElementByHint",
         "target": option,
+      }
+    }
+    execute_command(command)
+
+  def browser_unhover():
+    command = {
+      "type": "request",
+      "action": {
+        "type": "unhoverAll",
       }
     }
     execute_command(command)
