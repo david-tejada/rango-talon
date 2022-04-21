@@ -1,7 +1,7 @@
 tag: browser
 -
-click <number>: user.browser_click_hint(number)
-hover <number>: user.browser_hover_hint(number)
-hover fix <number>: user.browser_fixed_hover_hint(number)
+click <user.letters>: user.browser_click_hint(letters)
+hover <user.letters>: user.browser_hover_hint(letters)
+hover fix <user.letters>: user.browser_fixed_hover_hint(letters)
 unhover: user.browser_unhover()
 hints toggle: user.browser_toggle_hints()
