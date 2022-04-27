@@ -62,7 +62,7 @@ def execute_command(msg: Any):
 
 @mod.action_class
 class Actions:
-  def browser_click_hint(hintText: str):
+  def browser_click_hint(hintText: str, newTab: bool):
     """Clicks on a link with a given hint""" 
     
   def browser_hover_hint(hintText: str):
@@ -85,11 +85,15 @@ class Actions:
 
 @ctx.action_class('user')
 class UserActions:
-  def browser_click_hint(hintText: str):
+  def browser_click_hint(hintText: str, newTab: bool):
+    if newTab:
+      commandType = "openInNewTab"
+    else:
+      commandType = "clickElement"
     command = {
       "type": "request",
       "action": {
-        "type": "clickElementByHint",
+        "type": commandType,
         "target": hintText,
       }
     }
@@ -99,7 +103,7 @@ class UserActions:
     command = {
       "type": "request",
       "action": {
-        "type": "hoverElementByHint",
+        "type": "hoverElement",
         "target": hintText,
       }
     }
@@ -109,7 +113,7 @@ class UserActions:
     command = {
       "type": "request",
       "action": {
-        "type": "fixedHoverElementByHint",
+        "type": "fixedHoverElement",
         "target": hintText,
       }
     }
