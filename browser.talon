@@ -14,3 +14,6 @@ allow popup:
   sleep(200ms)
   key(down)
   key(enter)
+
+rango default:  user.browser_disable_direct_clicking()
+rango direct:  user.browser_enable_direct_clicking()

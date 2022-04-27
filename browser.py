@@ -9,6 +9,8 @@ ctx.matches = r"""
 tag: browser
 """
 
+mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
+
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
@@ -69,7 +71,11 @@ class Actions:
   def browser_toggle_hints():
     """Toggle hints on and off"""
 
+  def browser_enable_direct_clicking():
+    """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
 
+  def browser_disable_direct_clicking():
+    """Disables rango direct mode"""
 
 @ctx.action_class('user')
 class UserActions:
@@ -120,3 +126,10 @@ class UserActions:
       }
     }
     execute_command(command)
+
+  def browser_enable_direct_clicking():
+    ctx.tags = ["user.rango_direct_clicking"] 
+  
+  def browser_disable_direct_clicking():
+    ctx.tags = []
+
