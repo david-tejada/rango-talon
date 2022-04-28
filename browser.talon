@@ -2,6 +2,7 @@ tag: browser
 -
 click <user.letters>: user.browser_click_hint(letters, 0)
 blank <user.letters>: user.browser_click_hint(letters, 1)
+copy link <user.letters>: user.browser_copy_link(letters)
 hover <user.letters>: user.browser_hover_hint(letters)
 hover fix <user.letters>: user.browser_fixed_hover_hint(letters)
 dismiss: user.browser_unhover()
