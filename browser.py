@@ -74,6 +74,9 @@ class Actions:
 
   def browser_copy_link(hintText: str):
     """Copies a link with a given hint""" 
+
+  def browser_show_link(hintText: str):
+    """Shows the link address with a given hint""" 
     
   def browser_hover_hint(hintText: str):
     """Hovers on a link with a given hint"""
@@ -114,6 +117,16 @@ class UserActions:
       "type": "request",
       "action": {
         "type": "copyLink",
+        "target": hintText,
+      }
+    }
+    execute_command(command)
+
+  def browser_show_link(hintText: str):
+    command = {
+      "type": "request",
+      "action": {
+        "type": "showLink",
         "target": hintText,
       }
     }
