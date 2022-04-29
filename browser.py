@@ -12,7 +12,7 @@ tag: browser
 mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
 
 # Change this too True if you want to start with direct clicking enabled
-start_with_direct_clicking = False
+start_with_direct_clicking = True
 
 if start_with_direct_clicking:
   ctx.tags = ["user.rango_direct_clicking"] 

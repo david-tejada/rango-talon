@@ -7,5 +7,5 @@ hover fix <user.letters>: user.browser_fixed_hover_hint(letters)
 dismiss: user.browser_unhover()
 hints toggle: user.browser_toggle_hints()
 
-rango default:  user.browser_disable_direct_clicking()
+rango explicit:  user.browser_disable_direct_clicking()
 rango direct:  user.browser_enable_direct_clicking()
