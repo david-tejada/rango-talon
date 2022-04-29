@@ -11,11 +11,15 @@ tag: browser
 
 mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
 
-# Change this too True if you want to start with direct clicking enabled
-start_with_direct_clicking = True
+rango_start_with_direct_clicking = mod.setting(
+    "rango_start_with_direct_clicking",
+    type=bool,
+    default=True,
+    desc="Start rango with direct clicking enabled",
+)
 
-if start_with_direct_clicking:
-  ctx.tags = ["user.rango_direct_clicking"] 
+if rango_start_with_direct_clicking.get():
+  ctx.tags = ["user.rango_direct_clicking"]
 
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
@@ -35,7 +39,7 @@ def read_json_response_with_timeout() -> Any:
     while True:
         raw_text = clip.text()
         message = json.loads(raw_text)
-        
+
         if message["type"] == "response":
             break
 
@@ -63,8 +67,8 @@ def execute_command(msg: Any):
 @mod.action_class
 class Actions:
   def browser_click_hint(hintText: str, newTab: bool):
-    """Clicks on a link with a given hint""" 
-    
+    """Clicks on a link with a given hint"""
+
   def browser_hover_hint(hintText: str):
     """Hovers on a link with a given hint"""
 
@@ -138,8 +142,7 @@ class UserActions:
     execute_command(command)
 
   def browser_enable_direct_clicking():
-    ctx.tags = ["user.rango_direct_clicking"] 
-  
+    ctx.tags = ["user.rango_direct_clicking"]
+
   def browser_disable_direct_clicking():
     ctx.tags = []
-
