@@ -63,12 +63,18 @@ def execute_command(msg: Any):
     clip.set_text(json_message)
     actions.key("alt-shift-a")
     response = read_json_response_with_timeout()
+  
+  if response["action"]["type"] == "copyLink":
+    clip.set_text(response["action"]["target"])
 
 @mod.action_class
 class Actions:
   def browser_click_hint(hintText: str, newTab: bool):
-    """Clicks on a link with a given hint"""
+    """Clicks on a link with a given hint""" 
 
+  def browser_copy_link(hintText: str):
+    """Copies a link with a given hint""" 
+    
   def browser_hover_hint(hintText: str):
     """Hovers on a link with a given hint"""
 
@@ -98,6 +104,16 @@ class UserActions:
       "type": "request",
       "action": {
         "type": commandType,
+        "target": hintText,
+      }
+    }
+    execute_command(command)
+    
+  def browser_copy_link(hintText: str):
+    command = {
+      "type": "request",
+      "action": {
+        "type": "copyLink",
         "target": hintText,
       }
     }
