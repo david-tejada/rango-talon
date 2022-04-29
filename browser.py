@@ -14,7 +14,7 @@ mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the ext
 rango_start_with_direct_clicking = mod.setting(
     "rango_start_with_direct_clicking",
     type=bool,
-    default=False,
+    default=True,
     desc="Start rango with direct clicking enabled",
 )
 
