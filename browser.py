@@ -61,7 +61,7 @@ def execute_command(msg: Any):
 
   with clip.revert():
     clip.set_text(json_message)
-    actions.key("ctrl-shift-f")
+    actions.key("ctrl-shift-insert")
     response = read_json_response_with_timeout()
 
   if response["action"]["type"] == "copyLink":
