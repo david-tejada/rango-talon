@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, clip
+from talon import Module, Context, actions, clip, app
 import json
 import time
 from typing import Any
@@ -63,21 +63,21 @@ def execute_command(msg: Any):
     clip.set_text(json_message)
     actions.key("ctrl-shift-f")
     response = read_json_response_with_timeout()
-  
+
   if response["action"]["type"] == "copyLink":
     clip.set_text(response["action"]["target"])
 
 @mod.action_class
 class Actions:
   def browser_click_hint(hintText: str, newTab: bool):
-    """Clicks on a link with a given hint""" 
+    """Clicks on a link with a given hint"""
 
   def browser_copy_link(hintText: str):
-    """Copies a link with a given hint""" 
+    """Copies a link with a given hint"""
 
   def browser_show_link(hintText: str):
-    """Shows the link address with a given hint""" 
-    
+    """Shows the link address with a given hint"""
+
   def browser_hover_hint(hintText: str):
     """Hovers on a link with a given hint"""
 
@@ -111,7 +111,7 @@ class UserActions:
       }
     }
     execute_command(command)
-    
+
   def browser_copy_link(hintText: str):
     command = {
       "type": "request",
