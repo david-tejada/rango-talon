@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, clip, app
+from talon import Module, Context, actions, clip
 import json
 import time
 from typing import Any
