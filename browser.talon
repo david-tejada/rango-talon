@@ -1,13 +1,13 @@
 tag: browser
 -
-click <user.letters>: user.browser_click_hint(letters, 0)
-blank <user.letters>: user.browser_click_hint(letters, 1)
-copy link <user.letters>: user.browser_copy_link(letters)
-show <user.letters>: user.browser_show_link(letters)
-hover <user.letters>: user.browser_hover_hint(letters)
-hover fix <user.letters>: user.browser_fixed_hover_hint(letters)
-dismiss: user.browser_unhover()
-hints toggle: user.browser_toggle_hints()
+click <user.letters>: user.rango_click_hint(letters, 0)
+blank <user.letters>: user.rango_click_hint(letters, 1)
+copy link <user.letters>: user.rango_copy_link(letters)
+show <user.letters>: user.rango_show_link(letters)
+hover <user.letters>: user.rango_hover_hint(letters)
+hover fix <user.letters>: user.rango_fixed_hover_hint(letters)
+dismiss: user.rango_unhover()
+hints toggle: user.rango_toggle_hints()
 
-rango explicit:  user.browser_disable_direct_clicking()
-rango direct:  user.browser_enable_direct_clicking()
+rango explicit:  user.rango_disable_direct_clicking()
+rango direct:  user.rango_enable_direct_clicking()

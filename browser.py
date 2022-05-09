@@ -69,36 +69,36 @@ def execute_command(msg: Any):
 
 @mod.action_class
 class Actions:
-  def browser_click_hint(hintText: str, newTab: bool):
+  def rango_click_hint(hintText: str, newTab: bool):
     """Clicks on a link with a given hint"""
 
-  def browser_copy_link(hintText: str):
+  def rango_copy_link(hintText: str):
     """Copies a link with a given hint"""
 
-  def browser_show_link(hintText: str):
+  def rango_show_link(hintText: str):
     """Shows the link address with a given hint"""
 
-  def browser_hover_hint(hintText: str):
+  def rango_hover_hint(hintText: str):
     """Hovers on a link with a given hint"""
 
-  def browser_fixed_hover_hint(hintText: str):
+  def rango_fixed_hover_hint(hintText: str):
     """Hovers on a link with a given hint with no automatic unhover"""
 
-  def browser_unhover():
+  def rango_unhover():
     """Unhover all hovered elements"""
 
-  def browser_toggle_hints():
+  def rango_toggle_hints():
     """Toggle hints on and off"""
 
-  def browser_enable_direct_clicking():
+  def rango_enable_direct_clicking():
     """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
 
-  def browser_disable_direct_clicking():
+  def rango_disable_direct_clicking():
     """Disables rango direct mode"""
 
 @ctx.action_class('user')
 class UserActions:
-  def browser_click_hint(hintText: str, newTab: bool):
+  def rango_click_hint(hintText: str, newTab: bool):
     if newTab:
       commandType = "openInNewTab"
     else:
@@ -112,7 +112,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_copy_link(hintText: str):
+  def rango_copy_link(hintText: str):
     command = {
       "type": "request",
       "action": {
@@ -122,7 +122,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_show_link(hintText: str):
+  def rango_show_link(hintText: str):
     command = {
       "type": "request",
       "action": {
@@ -132,7 +132,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_hover_hint(hintText: str):
+  def rango_hover_hint(hintText: str):
     command = {
       "type": "request",
       "action": {
@@ -142,7 +142,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_fixed_hover_hint(hintText: str):
+  def rango_fixed_hover_hint(hintText: str):
     command = {
       "type": "request",
       "action": {
@@ -152,7 +152,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_unhover():
+  def rango_unhover():
     command = {
       "type": "request",
       "action": {
@@ -161,7 +161,7 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_toggle_hints():
+  def rango_toggle_hints():
     command = {
       "type": "request",
       "action": {
@@ -170,8 +170,8 @@ class UserActions:
     }
     execute_command(command)
 
-  def browser_enable_direct_clicking():
+  def rango_enable_direct_clicking():
     ctx.tags = ["user.rango_direct_clicking"]
 
-  def browser_disable_direct_clicking():
+  def rango_disable_direct_clicking():
     ctx.tags = []
