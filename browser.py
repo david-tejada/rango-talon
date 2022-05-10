@@ -90,6 +90,12 @@ class Actions:
   def rango_toggle_hints():
     """Toggle hints on and off"""
 
+  def rango_increase_hint_size():
+    """Increase the size of the hints"""
+
+  def rango_decrease_hint_size():
+    """Decrease the size of the hints"""
+
   def rango_enable_direct_clicking():
     """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
 
@@ -166,6 +172,24 @@ class UserActions:
       "type": "request",
       "action": {
         "type": "toggleHints",
+      }
+    }
+    execute_command(command)
+
+  def rango_increase_hint_size():
+    command = {
+      "type": "request",
+      "action": {
+        "type": "increaseHintSize",
+      }
+    }
+    execute_command(command)
+
+  def rango_decrease_hint_size():
+    command = {
+      "type": "request",
+      "action": {
+        "type": "decreaseHintSize",
       }
     }
     execute_command(command)
