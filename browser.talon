@@ -1,5 +1,8 @@
 tag: browser
 -
+settings():
+  user.rango_start_with_direct_clicking = 1
+
 click <user.letters>: user.rango_click_hint(letters, 0)
 blank <user.letters>: user.rango_click_hint(letters, 1)
 copy link <user.letters>: user.rango_copy_link(letters)

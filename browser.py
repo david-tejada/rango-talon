@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, clip
+from talon import Module, Context, actions, clip, settings
 import json
 import time
 from typing import Any
@@ -18,8 +18,13 @@ rango_start_with_direct_clicking = mod.setting(
     desc="Start rango with direct clicking enabled",
 )
 
-if rango_start_with_direct_clicking.get():
-  ctx.tags = ["user.rango_direct_clicking"]
+def update_clicking_mode(setting_value):
+  if setting_value == 1:
+    ctx.tags = ["user.rango_direct_clicking"]
+  else:
+    ctx.tags = []
+
+settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
 
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
