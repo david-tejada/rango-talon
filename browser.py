@@ -73,8 +73,6 @@ def execute_simple_command(actionType: str, target: str = None):
 
   json_message = json.dumps(message)
   
-  print(json_message)
-
   with clip.revert():
     clip.set_text(json_message)
     actions.key("ctrl-shift-insert")
@@ -85,7 +83,10 @@ def execute_simple_command(actionType: str, target: str = None):
 
 @mod.action_class
 class Actions:
-  def rango_click_hint(hintText: str, newTab: bool):
+  def rango_click_hint(hintText: str):
+    """Clicks on a link with a given hint"""
+
+  def rango_open_in_new_tab(hintText: str):
     """Clicks on a link with a given hint"""
 
   def rango_copy_link(hintText: str):
@@ -120,11 +121,11 @@ class Actions:
 
 @ctx.action_class('user')
 class UserActions:
-  def rango_click_hint(hintText: str, newTab: bool):
-    if newTab:
-      execute_simple_command("openInNewTab", hintText)
-    else:
-      execute_simple_command("clickElement", hintText)
+  def rango_click_hint(hintText: str):
+    execute_simple_command("clickElement", hintText)
+
+  def rango_open_in_new_tab(hintText: str):
+    execute_simple_command("openInNewTab", hintText)
 
   def rango_copy_link(hintText: str):
     execute_simple_command("copyLink", hintText)

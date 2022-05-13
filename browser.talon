@@ -3,8 +3,8 @@ tag: browser
 settings():
   user.rango_start_with_direct_clicking = 1
 
-click <user.letters>: user.rango_click_hint(letters, 0)
-blank <user.letters>: user.rango_click_hint(letters, 1)
+click <user.letters>: user.rango_click_hint(letters)
+blank <user.letters>: user.rango_open_in_new_tab(letters)
 copy link <user.letters>: user.rango_copy_link(letters)
 show <user.letters>: user.rango_show_link(letters)
 hover <user.letters>: user.rango_hover_hint(letters)
