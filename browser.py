@@ -61,8 +61,19 @@ def read_json_response_with_timeout() -> Any:
 
     return json.loads(raw_text)
 
-def execute_command(msg: Any):
-  json_message = json.dumps(msg)
+def execute_simple_command(actionType: str, target: str = None):
+  action = { "type": actionType }
+  if target:
+    action["target"] = target
+    
+  message = {
+    "type": "request",
+    "action": action
+  }
+
+  json_message = json.dumps(message)
+  
+  print(json_message)
 
   with clip.revert():
     clip.set_text(json_message)
@@ -111,93 +122,33 @@ class Actions:
 class UserActions:
   def rango_click_hint(hintText: str, newTab: bool):
     if newTab:
-      commandType = "openInNewTab"
+      execute_simple_command("openInNewTab", hintText)
     else:
-      commandType = "clickElement"
-    command = {
-      "type": "request",
-      "action": {
-        "type": commandType,
-        "target": hintText,
-      }
-    }
-    execute_command(command)
+      execute_simple_command("clickElement", hintText)
 
   def rango_copy_link(hintText: str):
-    command = {
-      "type": "request",
-      "action": {
-        "type": "copyLink",
-        "target": hintText,
-      }
-    }
-    execute_command(command)
+    execute_simple_command("copyLink", hintText)
 
   def rango_show_link(hintText: str):
-    command = {
-      "type": "request",
-      "action": {
-        "type": "showLink",
-        "target": hintText,
-      }
-    }
-    execute_command(command)
+    execute_simple_command("showLink", hintText)
 
   def rango_hover_hint(hintText: str):
-    command = {
-      "type": "request",
-      "action": {
-        "type": "hoverElement",
-        "target": hintText,
-      }
-    }
-    execute_command(command)
+    execute_simple_command("hoverElement", hintText)
 
   def rango_fixed_hover_hint(hintText: str):
-    command = {
-      "type": "request",
-      "action": {
-        "type": "fixedHoverElement",
-        "target": hintText,
-      }
-    }
-    execute_command(command)
+    execute_simple_command("fixedHoverElement", hintText)
 
   def rango_unhover():
-    command = {
-      "type": "request",
-      "action": {
-        "type": "unhoverAll",
-      }
-    }
-    execute_command(command)
+    execute_simple_command("unhoverAll")
 
   def rango_toggle_hints():
-    command = {
-      "type": "request",
-      "action": {
-        "type": "toggleHints",
-      }
-    }
-    execute_command(command)
+    execute_simple_command("toggleHints")
 
   def rango_increase_hint_size():
-    command = {
-      "type": "request",
-      "action": {
-        "type": "increaseHintSize",
-      }
-    }
-    execute_command(command)
+    execute_simple_command("increaseHintSize")
 
   def rango_decrease_hint_size():
-    command = {
-      "type": "request",
-      "action": {
-        "type": "decreaseHintSize",
-      }
-    }
-    execute_command(command)
+    execute_simple_command("decreaseHintSize")
 
   def rango_enable_direct_clicking():
     ctx.tags = ["user.rango_direct_clicking"]
