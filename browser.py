@@ -67,6 +67,7 @@ def execute_simple_command(actionType: str, target: str = None):
     action["target"] = target
     
   message = {
+    "version": 1,
     "type": "request",
     "action": action
   }
@@ -78,8 +79,8 @@ def execute_simple_command(actionType: str, target: str = None):
     actions.key("ctrl-shift-insert")
     response = read_json_response_with_timeout()
 
-  if response["action"]["type"] == "copyLink":
-    clip.set_text(response["action"]["target"])
+  if response["action"]["type"] == "copyToClipboard":
+    clip.set_text(response["action"]["textToCopy"])
 
 @mod.action_class
 class Actions:
