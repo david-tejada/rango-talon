@@ -16,3 +16,12 @@ hints toggle: user.rango_toggle_hints()
 
 rango explicit:  user.rango_disable_direct_clicking()
 rango direct:  user.rango_enable_direct_clicking()
+
+keyboard enable:
+    "test"
+    user.rango_enable_keyboard()
+    print('keyboard enabled')
+    
+keyboard disable: 
+    user.rango_disable_keyboard()
+    print('keyboard disabled')

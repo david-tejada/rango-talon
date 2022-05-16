@@ -10,6 +10,8 @@ tag: browser
 """
 
 mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
+mod.tag("rango_keyboard", desc="Control rango with keyboard shortcuts")
+
 
 rango_start_with_direct_clicking = mod.setting(
     "rango_start_with_direct_clicking",
@@ -119,6 +121,12 @@ class Actions:
   def rango_disable_direct_clicking():
     """Disables rango direct mode"""
 
+  def rango_enable_keyboard():
+    """Enables rango keyboard mode"""
+
+  def rango_disable_keyboard():
+    """Disables rango keyboard mode"""
+
 @ctx.action_class('user')
 class UserActions:
   def rango_click_hint(hintText: str):
@@ -156,3 +164,15 @@ class UserActions:
 
   def rango_disable_direct_clicking():
     ctx.tags = []
+  
+  def rango_enable_keyboard():
+    if ctx.tags == ["user.rango_direct_clicking"]:
+      ctx.tags = ["user.rango_direct_clicking", "user.rango_keyboard"]
+    else:
+      ctx.tags = ["user.rango_keyboard"]
+
+  def rango_disable_keyboard():
+    if ctx.tags == ["user.rango_direct_clicking", "user.rango_keyboard"]:
+      ctx.tags = ["user.rango_direct_clicking"]
+    else:
+      ctx.tags = []
