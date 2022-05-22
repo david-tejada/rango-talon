@@ -12,10 +12,10 @@ tag: browser
 mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
 
 rango_start_with_direct_clicking = mod.setting(
-    "rango_start_with_direct_clicking",
+    "rango_direct_clicking",
     type=bool,
     default=True,
-    desc="Start rango with direct clicking enabled",
+    desc="Rango direct clicking mode setting",
 )
 
 def update_clicking_mode(setting_value):
@@ -24,7 +24,7 @@ def update_clicking_mode(setting_value):
   else:
     ctx.tags = []
 
-settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
+settings.register("user.rango_direct_clicking", update_clicking_mode)
 
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
@@ -152,7 +152,7 @@ class UserActions:
     execute_simple_command("decreaseHintSize")
 
   def rango_enable_direct_clicking():
-    ctx.tags = ["user.rango_direct_clicking"]
+    ctx.settings["user.rango_direct_clicking"] = True
 
   def rango_disable_direct_clicking():
-    ctx.tags = []
+    ctx.settings["user.rango_direct_clicking"] = False
