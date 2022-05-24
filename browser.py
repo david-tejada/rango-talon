@@ -73,7 +73,8 @@ def execute_simple_command(actionType: str, target: str = None):
   }
 
   json_message = json.dumps(message)
-  
+  response = None
+
   with clip.revert():
     clip.set_text(json_message)
     actions.key("ctrl-shift-insert")
