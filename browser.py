@@ -10,6 +10,7 @@ tag: browser
 """
 
 mod.tag("rango_direct_clicking", desc="Commands for direct clicking with the extension rango")
+ctx.tags = ["user.rango_direct_clicking"]
 
 rango_start_with_direct_clicking = mod.setting(
     "rango_direct_clicking",
