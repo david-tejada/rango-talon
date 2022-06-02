@@ -62,7 +62,7 @@ def read_json_response_with_timeout() -> Any:
 
     return json.loads(raw_text)
 
-def execute_simple_command(actionType: str, target: str = None):
+def execute_simple_command(actionType: str, target: str = None, directClicked: bool = False):
   action = { "type": actionType }
   if target:
     action["target"] = target
@@ -84,9 +84,12 @@ def execute_simple_command(actionType: str, target: str = None):
   if response["action"]["type"] == "copyToClipboard":
     clip.set_text(response["action"]["textToCopy"])
 
+  if directClicked and response["action"]["type"] == "noHintFound":
+    actions.insert(target)
+
 @mod.action_class
 class Actions:
-  def rango_click_hint(hintText: str):
+  def rango_click_hint(hintText: str, directClicked: bool):
     """Clicks on a link with a given hint"""
 
   def rango_open_in_new_tab(hintText: str):
@@ -124,8 +127,8 @@ class Actions:
 
 @ctx.action_class('user')
 class UserActions:
-  def rango_click_hint(hintText: str):
-    execute_simple_command("clickElement", hintText)
+  def rango_click_hint(hintText: str, directClicked: bool = False):
+    execute_simple_command("clickElement", hintText, directClicked)
 
   def rango_open_in_new_tab(hintText: str):
     execute_simple_command("openInNewTab", hintText)
