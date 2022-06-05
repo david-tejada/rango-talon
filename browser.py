@@ -89,7 +89,7 @@ def execute_simple_command(actionType: str, target: str = None, directClicked: b
 
 @mod.action_class
 class Actions:
-  def rango_click_hint(hintText: str, directClicked: bool):
+  def rango_click_hint(hintText: str, directClicked: bool = False):
     """Clicks on a link with a given hint"""
 
   def rango_open_in_new_tab(hintText: str):
