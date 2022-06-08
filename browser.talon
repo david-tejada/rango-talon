@@ -9,6 +9,8 @@ hover fix <user.letters>: user.rango_fixed_hover_hint(letters)
 dismiss: user.rango_unhover()
 hint bigger: user.rango_increase_hint_size()
 hint smaller: user.rango_decrease_hint_size()
+hint {user.rango_hint_styles}: user.rango_set_hint_style(user.rango_hint_styles)
+hint weight {user.rango_hint_weights}: user.rango_set_hint_weight(user.rango_hint_weights)
 hints toggle: user.rango_toggle_hints()
 
 rango explicit:  user.rango_disable_direct_clicking()

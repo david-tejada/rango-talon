@@ -27,6 +27,19 @@ def update_clicking_mode(setting_value):
 
 settings.register("user.rango_direct_clicking", update_clicking_mode)
 
+mod.list('rango_hint_styles', desc='list of Rango hint styles')
+mod.list('rango_hint_weights', desc='list of Rango hint weights')
+
+ctx.lists['user.rango_hint_styles'] = {
+   "boxed": "boxed",
+   "subtle": "subtle" 
+}
+ctx.lists['user.rango_hint_weights'] = {
+  "bold": "bold",
+   "normal": "normal",
+   "auto": "auto",
+}
+
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
@@ -62,7 +75,7 @@ def read_json_response_with_timeout() -> Any:
 
     return json.loads(raw_text)
 
-    
+
 
 @mod.action_class
 class Actions:
@@ -98,6 +111,12 @@ class Actions:
 
   def rango_decrease_hint_size():
     """Decrease the size of the hints"""
+
+  def rango_set_hint_style(value: str):
+    """Change the style of the hints"""
+
+  def rango_set_hint_weight(value: str):
+    """Change the weight of the hints"""
 
   def rango_enable_direct_clicking():
     """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -161,6 +180,12 @@ class UserActions:
 
   def rango_decrease_hint_size():
     actions.user.rango_execute_command("decreaseHintSize")
+
+  def rango_set_hint_style(value: str):
+    actions.user.rango_execute_command("setHintStyle", value)
+
+  def rango_set_hint_weight(value: str):
+    actions.user.rango_execute_command("setHintWeight", value)
 
   def rango_enable_direct_clicking():
     ctx.settings["user.rango_direct_clicking"] = True
