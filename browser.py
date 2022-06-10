@@ -43,7 +43,7 @@ ctx.lists["user.rango_hint_weights"] = {
 }
 
 
-@mod.capture(rule="<user.letters> (and <user.letters>)+")
+@mod.capture(rule="<user.letters> | <user.letters> (and <user.letters>)+")
 def rango_hints(m) -> str:
     return m.letters_list
 
