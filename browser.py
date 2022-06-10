@@ -1,7 +1,7 @@
 from talon import Module, Context, actions, clip, settings
 import json
 import time
-from typing import Any
+from typing import Any, Union
 
 mod = Module()
 ctx = Context()
@@ -50,8 +50,16 @@ ctx.lists["user.rango_hints_toggle_levels"] = {
 
 
 @mod.capture(rule="<user.letters> | <user.letters> (and <user.letters>)+")
-def rango_hints(m) -> str:
+def rango_hints(m) -> list:
     return m.letters_list
+
+
+@mod.capture(rule="<user.rango_hints>")
+def rango_target(m) -> Union[str, list[str]]:
+    if len(m.rango_hints) == 1:
+        return m.rango_hints[0]
+    else:
+        return m.rango_hints
 
 
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
@@ -91,54 +99,28 @@ def read_json_response_with_timeout() -> Any:
     return json.loads(raw_text)
 
 
+def send_request_and_wait_for_response(action: dict):
+    message = {"version": 1, "type": "request", "action": action}
+    json_message = json.dumps(message)
+    response = None
+    with clip.revert():
+        clip.set_text(json_message)
+        actions.key("ctrl-shift-insert")
+        response = read_json_response_with_timeout()
+
+    if response["action"]["type"] == "copyToClipboard":
+        clip.set_text(response["action"]["textToCopy"])
+
+    if response["action"]["type"] == "noHintFound":
+        actions.insert(action["target"])
+
+
 @mod.action_class
 class Actions:
-    def rango_execute_simple_command(
-        actionType: str, target: str = None, directClicked: bool = False
+    def rango_execute_command(
+        actionType: str, target: Union[str, list[str], None] = None
     ):
-        """Function for executing Rango commands more succinctly"""
-
-    def rango_execute_command(action: dict[str, Any], directClicked: bool = False):
         """Executes a Rango command"""
-
-    def rango_click_hint(hintText: str, directClicked: bool = False):
-        """Clicks on a link with a given hint"""
-
-    def rango_open_in_new_tab(hintText: str):
-        """Clicks on a link with a given hint"""
-
-    def rango_open_in_new_background_tab(hints: list):
-        """Open links in a non focused tab"""
-
-    def rango_copy_link(hintText: str):
-        """Copies a link with a given hint"""
-
-    def rango_show_link(hintText: str):
-        """Shows the link address with a given hint"""
-
-    def rango_hover_hint(hintText: str):
-        """Hovers on a link with a given hint"""
-
-    def rango_fixed_hover_hint(hintText: str):
-        """Hovers on a link with a given hint with no automatic unhover"""
-
-    def rango_unhover():
-        """Unhover all hovered elements"""
-
-    def rango_toggle_hints():
-        """Toggle hints on and off"""
-
-    def rango_increase_hint_size():
-        """Increase the size of the hints"""
-
-    def rango_decrease_hint_size():
-        """Decrease the size of the hints"""
-
-    def rango_set_hint_style(value: str):
-        """Change the style of the hints"""
-
-    def rango_set_hint_weight(value: str):
-        """Change the weight of the hints"""
 
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -149,73 +131,14 @@ class Actions:
 
 @ctx.action_class("user")
 class UserActions:
-    def rango_execute_simple_command(
-        actionType: str, target: str = None, directClicked: bool = False
+    def rango_execute_command(
+        actionType: str, target: Union[str, list[str], None] = None
     ):
-        action = {"type": actionType}
-        if target:
-            action["target"] = target
-        actions.user.rango_execute_command(action, directClicked)
-
-    def rango_execute_command(action: dict[str, Any], directClicked: bool = False):
-        message = {"version": 1, "type": "request", "action": action}
-
-        json_message = json.dumps(message)
-        response = None
-        with clip.revert():
-            clip.set_text(json_message)
-            actions.key("ctrl-shift-insert")
-            response = read_json_response_with_timeout()
-
-        if response["action"]["type"] == "copyToClipboard":
-            clip.set_text(response["action"]["textToCopy"])
-
-        if directClicked and response["action"]["type"] == "noHintFound":
-            actions.insert(action.target)
-
-    def rango_click_hint(hintText: str, directClicked: bool = False):
-        actions.user.rango_execute_simple_command(
-            "clickElement", hintText, directClicked
-        )
-
-    def rango_open_in_new_tab(hintText: str):
-        actions.user.rango_execute_simple_command("openInNewTab", hintText)
-
-    def rango_open_in_new_background_tab(hints: list):
-        print(hints)
-        actions.user.rango_execute_command(
-            {"type": "openInBackgroundTab", "target": hints}
-        )
-
-    def rango_copy_link(hintText: str):
-        actions.user.rango_execute_simple_command("copyLink", hintText)
-
-    def rango_show_link(hintText: str):
-        actions.user.rango_execute_simple_command("showLink", hintText)
-
-    def rango_hover_hint(hintText: str):
-        actions.user.rango_execute_simple_command("hoverElement", hintText)
-
-    def rango_fixed_hover_hint(hintText: str):
-        actions.user.rango_execute_simple_command("fixedHoverElement", hintText)
-
-    def rango_unhover():
-        actions.user.rango_execute_simple_command("unhoverAll")
-
-    def rango_toggle_hints():
-        actions.user.rango_execute_simple_command("toggleHints")
-
-    def rango_increase_hint_size():
-        actions.user.rango_execute_simple_command("increaseHintSize")
-
-    def rango_decrease_hint_size():
-        actions.user.rango_execute_simple_command("decreaseHintSize")
-
-    def rango_set_hint_style(value: str):
-        actions.user.rango_execute_simple_command("setHintStyle", value)
-
-    def rango_set_hint_weight(value: str):
-        actions.user.rango_execute_simple_command("setHintWeight", value)
+        if not target:
+            action = {"type": actionType}
+        else:
+            action = {"type": actionType, "target": target}
+        send_request_and_wait_for_response(action)
 
     def rango_enable_direct_clicking():
         ctx.settings["user.rango_direct_clicking"] = True
