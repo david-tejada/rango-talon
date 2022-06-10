@@ -13,6 +13,10 @@ hint smaller: user.rango_decrease_hint_size()
 hint {user.rango_hint_styles}: user.rango_set_hint_style(user.rango_hint_styles)
 hint weight {user.rango_hint_weights}: user.rango_set_hint_weight(user.rango_hint_weights)
 hints toggle: user.rango_toggle_hints()
+hints on [{user.rango_hints_toggle_levels}]: 
+  user.rango_execute_simple_command("showHints{rango_hints_toggle_levels or ''}")
+hints off [{user.rango_hints_toggle_levels}]: 
+  user.rango_execute_simple_command("hideHints{rango_hints_toggle_levels or ''}")
 
 rango explicit:  user.rango_disable_direct_clicking()
 rango direct:  user.rango_enable_direct_clicking()

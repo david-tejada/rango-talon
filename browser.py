@@ -34,12 +34,18 @@ settings.register("user.rango_direct_clicking", update_clicking_mode)
 
 mod.list("rango_hint_styles", desc="list of Rango hint styles")
 mod.list("rango_hint_weights", desc="list of Rango hint weights")
+mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
 
 ctx.lists["user.rango_hint_styles"] = {"boxed": "boxed", "subtle": "subtle"}
 ctx.lists["user.rango_hint_weights"] = {
     "bold": "bold",
     "normal": "normal",
     "auto": "auto",
+}
+ctx.lists["user.rango_hints_toggle_levels"] = {
+    "tab": "Tab",
+    "host": "Host",
+    "path": "Path",
 }
 
 
