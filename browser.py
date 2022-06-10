@@ -178,7 +178,7 @@ class UserActions:
     def rango_open_in_new_background_tab(hints: list):
         print(hints)
         actions.user.rango_execute_command(
-            {"type": "openMultipleInNewBackgroundTab", "target": hints}
+            {"type": "openInBackgroundTab", "target": hints}
         )
 
     def rango_copy_link(hintText: str):
