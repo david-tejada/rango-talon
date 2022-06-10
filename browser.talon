@@ -2,6 +2,7 @@ tag: browser
 -
 click <user.letters>: user.rango_click_hint(letters)
 blank <user.letters>: user.rango_open_in_new_tab(letters)
+stash <user.rango_hints>: user.rango_open_in_new_background_tab(rango_hints)
 copy link <user.letters>: user.rango_copy_link(letters)
 show <user.letters>: user.rango_show_link(letters)
 hover <user.letters>: user.rango_hover_hint(letters)
