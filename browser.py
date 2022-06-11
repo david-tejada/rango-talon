@@ -49,6 +49,11 @@ ctx.lists["user.rango_hints_toggle_levels"] = {
 }
 
 
+@mod.capture(rule="<user.letters>")
+def rango_hint(m) -> str:
+    return m.letters
+
+
 @mod.capture(rule="<user.letters> | <user.letters> (and <user.letters>)+")
 def rango_hints(m) -> list:
     return m.letters_list

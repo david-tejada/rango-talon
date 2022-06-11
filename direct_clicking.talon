@@ -1,5 +1,5 @@
 tag: browser
 and tag: user.rango_direct_clicking
 -
-^<user.letter>$: user.rango_execute_command("directClickElement", letter)
-^<user.letter> <user.letter>$: user.rango_execute_command("directClickElement", "{letter_1}{letter_2}")
+
+^<user.rango_hint>$: user.rango_execute_command("directClickElement", rango_hint)

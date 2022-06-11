@@ -1,5 +1,6 @@
 tag: browser
 -
+
 click <user.rango_target>: user.rango_execute_command("clickElement", rango_target)
 blank <user.rango_target>: user.rango_execute_command("openInNewTab", rango_target)
 stash <user.rango_target>: 
