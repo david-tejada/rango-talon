@@ -6,6 +6,7 @@ blank <user.rango_target>: user.rango_execute_command("openInNewTab", rango_targ
 stash <user.rango_target>: 
   user.rango_execute_command("openInBackgroundTab", rango_target)
 copy link <user.rango_target>: user.rango_execute_command("copyLink", rango_target)
+copy text <user.rango_target>: user.rango_execute_command("copyTextContent", rango_target)
 show <user.rango_target>: user.rango_execute_command("showLink", rango_target)
 hover <user.rango_target>: user.rango_execute_command("hoverElement", rango_target)
 dismiss: user.rango_execute_command("unhoverAll")
