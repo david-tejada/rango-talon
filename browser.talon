@@ -8,7 +8,6 @@ stash <user.rango_target>:
 copy link <user.rango_target>: user.rango_execute_command("copyLink", rango_target)
 show <user.rango_target>: user.rango_execute_command("showLink", rango_target)
 hover <user.rango_target>: user.rango_execute_command("hoverElement", rango_target)
-hover fix <user.rango_target>: user.rango_execute_command("fixedHoverElement", rango_target)
 dismiss: user.rango_execute_command("unhoverAll")
 hint bigger: user.rango_execute_command("increaseHintSize")
 hint smaller: user.rango_execute_command("decreaseHintSize")
