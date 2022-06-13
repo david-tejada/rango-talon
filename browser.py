@@ -35,6 +35,10 @@ settings.register("user.rango_direct_clicking", update_clicking_mode)
 mod.list("rango_hint_styles", desc="list of Rango hint styles")
 mod.list("rango_hint_weights", desc="list of Rango hint weights")
 mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
+mod.list(
+    "rango_page_location_property",
+    desc="list of properties to be found in window.location",
+)
 
 ctx.lists["user.rango_hint_styles"] = {"boxed": "boxed", "subtle": "subtle"}
 ctx.lists["user.rango_hint_weights"] = {
@@ -46,6 +50,15 @@ ctx.lists["user.rango_hints_toggle_levels"] = {
     "tab": "Tab",
     "host": "Host",
     "path": "Path",
+}
+ctx.lists["user.rango_page_location_property"] = {
+    "address": "href",
+    "host name": "hostname",
+    "host": "host",
+    "origin": "origin",
+    "path": "pathname",
+    "port": "port",
+    "protocol": "protocol",
 }
 
 

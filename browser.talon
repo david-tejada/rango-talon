@@ -2,15 +2,22 @@ tag: browser
 -
 
 click <user.rango_target>: user.rango_execute_command("clickElement", rango_target)
+
 blank <user.rango_target>: user.rango_execute_command("openInNewTab", rango_target)
 stash <user.rango_target>: 
   user.rango_execute_command("openInBackgroundTab", rango_target)
+
 copy link <user.rango_target>: user.rango_execute_command("copyLink", rango_target)
 copy mark <user.rango_target>: user.rango_execute_command("copyMarkdownLink", rango_target)
 copy text <user.rango_target>: user.rango_execute_command("copyTextContent", rango_target)
+
+copy page {user.rango_page_location_property}: user.rango_execute_command("copyLocationProperty", rango_page_location_property)
+copy mark address: user.rango_execute_command("copyCurrentUrlMarkdown")
+
 show <user.rango_target>: user.rango_execute_command("showLink", rango_target)
 hover <user.rango_target>: user.rango_execute_command("hoverElement", rango_target)
 dismiss: user.rango_execute_command("unhoverAll")
+
 hint bigger: user.rango_execute_command("increaseHintSize")
 hint smaller: user.rango_execute_command("decreaseHintSize")
 hint {user.rango_hint_styles}: user.rango_execute_command("setHintStyle", user.rango_hint_styles)
