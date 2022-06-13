@@ -96,9 +96,16 @@ def read_json_response_with_timeout() -> Any:
     """
     timeout_time = time.perf_counter() + RANGO_COMMAND_TIMEOUT_SECONDS
     sleep_time = MINIMUM_SLEEP_TIME_SECONDS
+    message = None
     while True:
         raw_text = clip.text()
-        message = json.loads(raw_text)
+        try:
+            message = json.loads(raw_text)
+        # We make sure the message is valid JSON. For example, if a click command
+        # results in something being copied to the clipboard and we check the clipboard
+        # before Rango has time to copy the response to the clipboard
+        except ValueError:
+            pass
 
         if message["type"] == "response":
             break
@@ -114,7 +121,7 @@ def read_json_response_with_timeout() -> Any:
         # small sleeps due to clock slip
         sleep_time = max(min(sleep_time * 2, time_left), MINIMUM_SLEEP_TIME_SECONDS)
 
-    return json.loads(raw_text)
+    return message
 
 
 def send_request_and_wait_for_response(action: dict):
@@ -179,7 +186,7 @@ class BrowserActions:
             clip.set_text(json_message)
             actions.key("ctrl-shift-insert")
             try:
-            response = read_json_response_with_timeout()
+                response = read_json_response_with_timeout()
             except Exception:
                 return None
 
