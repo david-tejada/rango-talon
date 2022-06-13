@@ -163,3 +163,25 @@ class UserActions:
 
     def rango_disable_direct_clicking():
         ctx.settings["user.rango_direct_clicking"] = False
+
+
+@ctx.action_class("browser")
+class BrowserActions:
+    def address() -> str:
+        message = {
+            "version": 1,
+            "type": "request",
+            "action": {"type": "getLocationProperty", "target": "href"},
+        }
+        json_message = json.dumps(message)
+        response = None
+        with clip.revert():
+            clip.set_text(json_message)
+            actions.key("ctrl-shift-insert")
+            response = read_json_response_with_timeout()
+
+        if response["action"]["type"] == "noAction":
+            return None
+
+        if response["action"]["type"] == "textRetrieved":
+            return response["action"]["text"]
