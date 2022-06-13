@@ -171,14 +171,17 @@ class BrowserActions:
         message = {
             "version": 1,
             "type": "request",
-            "action": {"type": "getLocationProperty", "target": "href"},
+            "action": {"type": "getActiveTabUrl"},
         }
         json_message = json.dumps(message)
         response = None
         with clip.revert():
             clip.set_text(json_message)
             actions.key("ctrl-shift-insert")
+            try:
             response = read_json_response_with_timeout()
+            except Exception:
+                return None
 
         if response["action"]["type"] == "noAction":
             return None
