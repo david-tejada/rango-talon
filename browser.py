@@ -176,14 +176,11 @@ class UserActions:
     def rango_disable_direct_clicking():
         ctx.settings["user.rango_direct_clicking"] = False
 
-
-@ctx.action_class("browser")
-class BrowserActions:
-    def address() -> str:
+    def browser_address_fallback() -> str:
         message = {
             "version": 1,
             "type": "request",
-            "action": {"type": "getActiveTabUrl"},
+            "action": {"type": "getCurrentTabUrl"},
         }
         json_message = json.dumps(message)
         response = None

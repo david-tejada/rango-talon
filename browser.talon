@@ -9,10 +9,10 @@ stash <user.rango_target>:
 
 copy link <user.rango_target>: user.rango_execute_command("copyLink", rango_target)
 copy mark <user.rango_target>: user.rango_execute_command("copyMarkdownLink", rango_target)
-copy text <user.rango_target>: user.rango_execute_command("copyTextContent", rango_target)
+copy text <user.rango_target>: user.rango_execute_command("copyElementTextContent", rango_target)
 
 copy page {user.rango_page_location_property}: user.rango_execute_command("copyLocationProperty", rango_page_location_property)
-copy mark address: user.rango_execute_command("copyCurrentUrlMarkdown")
+copy mark address: user.rango_execute_command("copyCurrentTabMarkdownUrl")
 
 show <user.rango_target>: user.rango_execute_command("showLink", rango_target)
 hover <user.rango_target>: user.rango_execute_command("hoverElement", rango_target)
