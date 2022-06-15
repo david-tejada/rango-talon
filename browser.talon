@@ -28,6 +28,8 @@ hints on [{user.rango_hints_toggle_levels}]:
   user.rango_execute_command("showHints{rango_hints_toggle_levels or ''}")
 hints off [{user.rango_hints_toggle_levels}]: 
   user.rango_execute_command("hideHints{rango_hints_toggle_levels or ''}")
+address in title on: user.rango_execute_command("enableUrlInTitle")
+address in title off: user.rango_execute_command("disableUrlInTitle")
 
 rango explicit:  user.rango_disable_direct_clicking()
 rango direct:  user.rango_enable_direct_clicking()
