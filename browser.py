@@ -47,9 +47,10 @@ ctx.lists["user.rango_hint_weights"] = {
     "auto": "auto",
 }
 ctx.lists["user.rango_hints_toggle_levels"] = {
-    "tab": "Tab",
-    "host": "Host",
-    "path": "Path",
+    "global": "global",
+    "tab": "tab",
+    "host": "host",
+    "path": "path",
 }
 ctx.lists["user.rango_page_location_property"] = {
     "address": "href",
@@ -147,10 +148,14 @@ def send_request_and_wait_for_response(action: dict):
 
 @mod.action_class
 class Actions:
-    def rango_execute_command(
-        actionType: str, target: Union[str, list[str], None] = None
-    ):
+    def rango_command_with_target(actionType: str, target: Union[str, list[str]]):
         """Executes a Rango command"""
+
+    def rango_command_without_target(actionType: str):
+        """Executes a Rango command without a target"""
+
+    def rango_command_without_target_with_modifier(actionType: str, modifier: str):
+        """Executes a Rango command without a target and with modifier"""
 
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -161,13 +166,17 @@ class Actions:
 
 @ctx.action_class("user")
 class UserActions:
-    def rango_execute_command(
-        actionType: str, target: Union[str, list[str], None] = None
-    ):
-        if not target:
-            action = {"type": actionType}
-        else:
-            action = {"type": actionType, "target": target}
+    def rango_command_with_target(actionType: str, target: Union[str, list[str]]):
+        action = {"type": actionType, "target": target}
+        send_request_and_wait_for_response(action)
+
+    def rango_command_without_target(actionType: str):
+
+        action = {"type": actionType}
+        send_request_and_wait_for_response(action)
+
+    def rango_command_without_target_with_modifier(actionType: str, modifier: str):
+        action = {"type": actionType, "modifier": modifier}
         send_request_and_wait_for_response(action)
 
     def rango_enable_direct_clicking():
