@@ -47,10 +47,10 @@ ctx.lists["user.rango_hint_weights"] = {
     "auto": "auto",
 }
 ctx.lists["user.rango_hints_toggle_levels"] = {
-    "global": "global",
     "tab": "tab",
     "host": "host",
     "path": "path",
+    "now": "navigation",
 }
 ctx.lists["user.rango_page_location_property"] = {
     "address": "href",
