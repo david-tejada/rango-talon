@@ -46,7 +46,7 @@ copy mark address:
 
 # Modify hints appearance
 hint bigger: user.rango_command_without_target("increaseHintSize")
-hint smaller: user.("decreaseHintSize")
+hint smaller: user.rango_command_without_target("decreaseHintSize")
 hint {user.rango_hint_styles}: 
   user.rango_command_without_target_with_arg("setHintStyle", user.rango_hint_styles)
 hint weight {user.rango_hint_weights}:
