@@ -14,7 +14,7 @@ stash <user.rango_target>:
 # Hover
 hover <user.rango_target>:
   user.rango_command_with_target("hoverElement", rango_target)
-dismiss: user.rango_command_with_target("unhoverAll")
+dismiss: user.rango_command_without_target("unhoverAll")
 
 # Show link address
 show <user.rango_target>:
@@ -40,9 +40,9 @@ copy text <user.rango_target>:
 
 # Copy current url information
 copy page {user.rango_page_location_property}:
-  user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
+  user.rango_command_without_target_with_arg("copyLocationProperty", rango_page_location_property)
 copy mark address:
-  user.rango_command_without_target("copyCurrentTabMarkdownUrl")
+  user.rango_command_without_target_with_arg("copyCurrentTabMarkdownUrl")
 
 # Modify hints appearance
 hint bigger: user.rango_command_without_target("increaseHintSize")
