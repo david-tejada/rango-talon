@@ -63,9 +63,9 @@ ctx.lists["user.rango_page_location_property"] = {
 }
 
 
-@mod.capture(rule="<user.letters>")
+@mod.capture(rule="<user.letter> | <user.letter> <user.letter>")
 def rango_hint(m) -> str:
-    return m.letters
+    return "".join(m.letter_list)
 
 
 @mod.capture(rule="<user.letters> | <user.letters> (and <user.letters>)+")
