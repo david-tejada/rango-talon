@@ -48,17 +48,17 @@ copy mark address:
 hint bigger: user.rango_command_without_target("increaseHintSize")
 hint smaller: user.("decreaseHintSize")
 hint {user.rango_hint_styles}: 
-  user.rango_command_without_target_with_modifier("setHintStyle", user.rango_hint_styles)
+  user.rango_command_without_target_with_arg("setHintStyle", user.rango_hint_styles)
 hint weight {user.rango_hint_weights}:
-  user.rango_command_without_target_with_modifier("setHintWeight", user.rango_hint_weights)
+  user.rango_command_without_target_with_arg("setHintWeight", user.rango_hint_weights)
 
 # Show and hide hints
 hints refresh: user.rango_command_without_target("refreshHints")
 hints toggle: user.rango_command_without_target("toggleHints")
 hints on [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target_with_modifier("enableHints", rango_hints_toggle_levels or "global")
+  user.rango_command_without_target_with_arg("enableHints", rango_hints_toggle_levels or "global")
 hints off [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target_with_modifier("disableHints", rango_hints_toggle_levels or "global")
+  user.rango_command_without_target_with_arg("disableHints", rango_hints_toggle_levels or "global")
 
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")

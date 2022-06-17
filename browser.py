@@ -154,8 +154,8 @@ class Actions:
     def rango_command_without_target(actionType: str):
         """Executes a Rango command without a target"""
 
-    def rango_command_without_target_with_modifier(actionType: str, modifier: str):
-        """Executes a Rango command without a target and with modifier"""
+    def rango_command_without_target_with_arg(actionType: str, arg: str):
+        """Executes a Rango command without a target and with arg"""
 
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -175,8 +175,8 @@ class UserActions:
         action = {"type": actionType}
         send_request_and_wait_for_response(action)
 
-    def rango_command_without_target_with_modifier(actionType: str, modifier: str):
-        action = {"type": actionType, "modifier": modifier}
+    def rango_command_without_target_with_arg(actionType: str, arg: str):
+        action = {"type": actionType, "arg": arg}
         send_request_and_wait_for_response(action)
 
     def rango_enable_direct_clicking():
