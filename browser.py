@@ -44,7 +44,7 @@ hint_styles = ["boxed", "subtle"]
 ctx.lists["user.rango_hint_styles"] = {k: k for k in hint_styles}
 hint_weights = ["bold", "normal", "auto"]
 ctx.lists["user.rango_hint_weights"] = {k: k for k in hint_weights}
-toggle_levels = ["all", "tab", "host", "page", "now"]
+toggle_levels = ["everywhere", "tab", "host", "page", "now"]
 ctx.lists["user.rango_hints_toggle_levels"] = {k: k for k in toggle_levels}
 ctx.lists["user.rango_page_location_property"] = {
     "address": "href",
