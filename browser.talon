@@ -59,6 +59,8 @@ hints on [{user.rango_hints_toggle_levels}]:
   user.rango_command_without_target_with_arg("enableHints", rango_hints_toggle_levels or "global")
 hints off [{user.rango_hints_toggle_levels}]: 
   user.rango_command_without_target_with_arg("disableHints", rango_hints_toggle_levels or "global")
+hints reset {user.rango_hints_toggle_levels}: 
+  user.rango_command_without_target_with_arg("resetToggleLevel", rango_hints_toggle_levels)
 
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")
