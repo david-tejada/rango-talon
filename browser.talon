@@ -52,6 +52,10 @@ hint {user.rango_hint_styles}:
 hint weight {user.rango_hint_weights}:
   user.rango_command_without_target_with_arg("setHintWeight", user.rango_hint_weights)
 
+# Exclude or include single letter hints
+hint exclude singles: user.rango_command_without_target("excludeSingleLetterHints")
+hint include singles: user.rango_command_without_target("includeSingleLetterHints")
+
 # Show and hide hints
 hints refresh: user.rango_command_without_target("refreshHints")
 hints toggle: user.rango_command_without_target("toggleHints")
