@@ -130,7 +130,7 @@ def send_request_and_wait_for_response(action: dict):
     response = None
     with clip.revert():
         clip.set_text(json_message)
-        actions.key("ctrl-shift-1")
+        actions.key("ctrl-shift-3")
         response = read_json_response_with_timeout()
 
     if response["action"]["type"] == "copyToClipboard":
