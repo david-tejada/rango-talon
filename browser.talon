@@ -13,6 +13,19 @@ blank <user.rango_target>:
 stash <user.rango_target>:
   user.rango_command_with_target("openInBackgroundTab", rango_target)
 
+# Closed tabs
+tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
+tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
+tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
+tab close first [<number_small>]:
+  user.rango_command_without_target_with_arg("closeTabsLeftEndInWindow", number_small or 1)
+tab close final [<number_small>]:
+  user.rango_command_without_target_with_arg("closeTabsRightEndInWindow", number_small or 1)
+tab close previous [<number_small>]:
+  user.rango_command_without_target_with_arg("closePreviousTabsInWindow", number_small or 1)
+tab close next [<number_small>]:
+  user.rango_command_without_target_with_arg("closeNextTabsInWindow", number_small or 1)
+
 # Hover
 hover <user.rango_target>:
   user.rango_command_with_target("hoverElement", rango_target)
