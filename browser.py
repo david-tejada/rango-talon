@@ -16,7 +16,7 @@ mod.tag(
 ctx.tags = ["user.rango_direct_clicking"]
 
 rango_start_with_direct_clicking = mod.setting(
-    "rango_direct_clicking",
+    "rango_start_with_direct_clicking",
     type=bool,
     default=True,
     desc="Rango direct clicking mode setting",
@@ -30,7 +30,7 @@ def update_clicking_mode(setting_value):
         ctx.tags = []
 
 
-settings.register("user.rango_direct_clicking", update_clicking_mode)
+settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
 
 mod.list("rango_hint_styles", desc="list of Rango hint styles")
 mod.list("rango_hint_weights", desc="list of Rango hint weights")
@@ -174,10 +174,10 @@ class UserActions:
         send_request_and_wait_for_response(action)
 
     def rango_enable_direct_clicking():
-        ctx.settings["user.rango_direct_clicking"] = True
+        ctx.tags = ["user.rango_direct_clicking"]
 
     def rango_disable_direct_clicking():
-        ctx.settings["user.rango_direct_clicking"] = False
+        ctx.tags = []
 
     def browser_address_fallback() -> str:
         message = {
