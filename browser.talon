@@ -26,6 +26,9 @@ tab close previous [<number_small>]:
 tab close next [<number_small>]:
   user.rango_command_without_target_with_arg("closeNextTabsInWindow", number_small or 1)
 
+# Clone tab
+tab clone: user.rango_command_without_target("cloneCurrentTab")
+
 # Hover
 hover <user.rango_target>:
   user.rango_command_with_target("hoverElement", rango_target)
