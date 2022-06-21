@@ -60,7 +60,7 @@ copy text <user.rango_target>:
 copy page {user.rango_page_location_property}:
   user.rango_command_without_target_with_arg("copyLocationProperty", rango_page_location_property)
 copy mark address:
-  user.rango_command_without_target_with_arg("copyCurrentTabMarkdownUrl")
+  user.rango_command_without_target("copyCurrentTabMarkdownUrl")
 
 # Modify hints appearance
 hint bigger: user.rango_command_without_target("increaseHintSize")
