@@ -13,7 +13,7 @@ blank <user.rango_target>:
 stash <user.rango_target>:
   user.rango_command_with_target("openInBackgroundTab", rango_target)
 
-# Closed tabs
+# Close tabs
 tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
 tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
 tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
