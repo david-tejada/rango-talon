@@ -178,22 +178,3 @@ class UserActions:
 
     def rango_disable_direct_clicking():
         ctx.tags = []
-
-    def browser_address_fallback() -> str:
-        message = {
-            "version": 1,
-            "type": "request",
-            "action": {"type": "getCurrentTabUrl"},
-        }
-        json_message = json.dumps(message)
-        response = None
-        with clip.revert():
-            clip.set_text(json_message)
-            actions.key("ctrl-shift-insert")
-            response = read_json_response_with_timeout()
-
-        if response["action"]["type"] == "noAction":
-            return None
-
-        if response["action"]["type"] == "textRetrieved":
-            return response["action"]["text"]
