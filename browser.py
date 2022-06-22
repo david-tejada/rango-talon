@@ -1,4 +1,4 @@
-from talon import Module, Context, actions, clip, settings
+from talon import Module, Context, actions, clip, settings, app
 import json
 import time
 from typing import Any, Union
@@ -130,7 +130,10 @@ def send_request_and_wait_for_response(action: dict):
     response = None
     with clip.revert():
         clip.set_text(json_message)
-        actions.key("ctrl-shift-3")
+        if app.platform == "mac":
+            actions.key("ctrl-shift-3")
+        else:
+            actions.key("ctrl-shift-insert")
         response = read_json_response_with_timeout()
 
     if response["action"]["type"] == "copyToClipboard":
