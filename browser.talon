@@ -18,13 +18,13 @@ tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
 tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
 tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
 tab close first [<number_small>]:
-  user.rango_command_without_target_with_arg("closeTabsLeftEndInWindow", number_small or 1)
+  user.rango_command_without_target("closeTabsLeftEndInWindow", number_small or 1)
 tab close final [<number_small>]:
-  user.rango_command_without_target_with_arg("closeTabsRightEndInWindow", number_small or 1)
+  user.rango_command_without_target("closeTabsRightEndInWindow", number_small or 1)
 tab close previous [<number_small>]:
-  user.rango_command_without_target_with_arg("closePreviousTabsInWindow", number_small or 1)
+  user.rango_command_without_target("closePreviousTabsInWindow", number_small or 1)
 tab close next [<number_small>]:
-  user.rango_command_without_target_with_arg("closeNextTabsInWindow", number_small or 1)
+  user.rango_command_without_target("closeNextTabsInWindow", number_small or 1)
 
 # Clone tab
 tab clone: user.rango_command_without_target("cloneCurrentTab")
@@ -58,7 +58,7 @@ copy text <user.rango_target>:
 
 # Copy current url information
 copy page {user.rango_page_location_property}:
-  user.rango_command_without_target_with_arg("copyLocationProperty", rango_page_location_property)
+  user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
 copy mark address:
   user.rango_command_without_target("copyCurrentTabMarkdownUrl")
 
@@ -66,9 +66,9 @@ copy mark address:
 hint bigger: user.rango_command_without_target("increaseHintSize")
 hint smaller: user.rango_command_without_target("decreaseHintSize")
 hint {user.rango_hint_styles}: 
-  user.rango_command_without_target_with_arg("setHintStyle", user.rango_hint_styles)
+  user.rango_command_without_target("setHintStyle", user.rango_hint_styles)
 hint weight {user.rango_hint_weights}:
-  user.rango_command_without_target_with_arg("setHintWeight", user.rango_hint_weights)
+  user.rango_command_without_target("setHintWeight", user.rango_hint_weights)
 
 # Exclude or include single letter hints
 hint exclude singles: user.rango_command_without_target("excludeSingleLetterHints")
@@ -78,11 +78,11 @@ hint include singles: user.rango_command_without_target("includeSingleLetterHint
 hints refresh: user.rango_command_without_target("refreshHints")
 hints toggle: user.rango_command_without_target("toggleHints")
 hints on [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target_with_arg("enableHints", rango_hints_toggle_levels or "global")
+  user.rango_command_without_target("enableHints", rango_hints_toggle_levels or "global")
 hints off [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target_with_arg("disableHints", rango_hints_toggle_levels or "global")
+  user.rango_command_without_target("disableHints", rango_hints_toggle_levels or "global")
 hints reset {user.rango_hints_toggle_levels}: 
-  user.rango_command_without_target_with_arg("resetToggleLevel", rango_hints_toggle_levels)
+  user.rango_command_without_target("resetToggleLevel", rango_hints_toggle_levels)
 
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")

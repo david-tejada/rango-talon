@@ -145,11 +145,10 @@ class Actions:
     def rango_command_with_target(actionType: str, target: Union[str, list[str]]):
         """Executes a Rango command"""
 
-    def rango_command_without_target(actionType: str):
+    def rango_command_without_target(
+        actionType: str, arg: Union[str, int, None] = None
+    ):
         """Executes a Rango command without a target"""
-
-    def rango_command_without_target_with_arg(actionType: str, arg: Union[str, int]):
-        """Executes a Rango command without a target and with arg"""
 
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -164,13 +163,13 @@ class UserActions:
         action = {"type": actionType, "target": target}
         send_request_and_wait_for_response(action)
 
-    def rango_command_without_target(actionType: str):
+    def rango_command_without_target(
+        actionType: str, arg: Union[str, int, None] = None
+    ):
 
         action = {"type": actionType}
-        send_request_and_wait_for_response(action)
-
-    def rango_command_without_target_with_arg(actionType: str, arg: Union[str, int]):
-        action = {"type": actionType, "arg": arg}
+        if arg:
+            action["arg"] = arg
         send_request_and_wait_for_response(action)
 
     def rango_enable_direct_clicking():
