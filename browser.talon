@@ -47,6 +47,12 @@ downer <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target)
 up again: user.rango_command_without_target("scrollUpAtElement")
 down again: user.rango_command_without_target("scrollDownAtElement")
+crown <user.rango_target>:
+  user.rango_command_with_target("scrollElementToTop", rango_target)
+bottom <user.rango_target>:
+  user.rango_command_with_target("scrollElementToBottom", rango_target)
+center <user.rango_target>:
+  user.rango_command_with_target("scrollElementToCenter", rango_target)
 
 # Copy target information
 copy [link] <user.rango_target>:
