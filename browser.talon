@@ -90,6 +90,9 @@ hints off [{user.rango_hints_toggle_levels}]:
 hints reset {user.rango_hints_toggle_levels}: 
   user.rango_command_without_target("resetToggleLevel", rango_hints_toggle_levels)
 
+# Toggle keyboard clicking
+keyboard toggle: user.rango_command_without_target("toggleKeyboardClicking")
+
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")
 address in title off: user.rango_command_without_target("disableUrlInTitle")
