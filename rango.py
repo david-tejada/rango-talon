@@ -137,7 +137,7 @@ def send_request_and_wait_for_response(action: dict):
         response = read_json_response_with_timeout()
 
     if response["action"]["type"] == "copyToClipboard":
-        clip.set_text(response["action"]["textToCopy"])
+        actions.clip.set_text(response["action"]["textToCopy"])
 
     if response["action"]["type"] == "noHintFound":
         actions.insert(action["target"])
