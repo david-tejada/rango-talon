@@ -62,9 +62,9 @@ def rango_hint(m) -> str:
     return "".join(m.letter_list)
 
 
-@mod.capture(rule="<user.letters> | <user.letters> (and <user.letters>)+")
+@mod.capture(rule="<user.rango_hint> | <user.rango_hint> (and <user.rango_hint>)+")
 def rango_hints(m) -> list:
-    return m.letters_list
+    return m.rango_hint_list
 
 
 @mod.capture(rule="<user.rango_hints>")
