@@ -145,7 +145,11 @@ def send_request_and_wait_for_response(action: dict):
 
 @mod.action_class
 class Actions:
-    def rango_command_with_target(actionType: str, target: Union[str, list[str]]):
+    def rango_command_with_target(
+        actionType: str,
+        target: Union[str, list[str]],
+        arg: Union[str, int, None] = None,
+    ):
         """Executes a Rango command"""
 
     def rango_command_without_target(
@@ -162,8 +166,14 @@ class Actions:
 
 @ctx.action_class("user")
 class UserActions:
-    def rango_command_with_target(actionType: str, target: Union[str, list[str]]):
+    def rango_command_with_target(
+        actionType: str,
+        target: Union[str, list[str]],
+        arg: Union[str, int, None] = None,
+    ):
         action = {"type": actionType, "target": target}
+        if arg:
+            action["arg"] = arg
         send_request_and_wait_for_response(action)
 
     def rango_command_without_target(

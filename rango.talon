@@ -40,11 +40,17 @@ show <user.rango_target>:
 
 # Scroll
 upper: user.rango_command_without_target("scrollUpPage")
+tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
 downer: user.rango_command_without_target("scrollDownPage")
+tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
 upper <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target)
+tiny up <user.rango_target>:
+  user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
 downer <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target)
+tiny down <user.rango_target>:
+  user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
 up again: user.rango_command_without_target("scrollUpAtElement")
 down again: user.rango_command_without_target("scrollDownAtElement")
 crown <user.rango_target>:
