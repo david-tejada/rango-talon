@@ -148,12 +148,12 @@ class Actions:
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
-        arg: Union[str, int, None] = None,
+        arg: Union[str, float, None] = None,
     ):
         """Executes a Rango command"""
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, int, None] = None
+        actionType: str, arg: Union[str, float, None] = None
     ):
         """Executes a Rango command without a target"""
 
@@ -169,7 +169,7 @@ class UserActions:
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
-        arg: Union[str, int, None] = None,
+        arg: Union[str, float, None] = None,
     ):
         action = {"type": actionType, "target": target}
         if arg:
@@ -177,7 +177,7 @@ class UserActions:
         send_request_and_wait_for_response(action)
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, int, None] = None
+        actionType: str, arg: Union[str, float, None] = None
     ):
 
         action = {"type": actionType}
