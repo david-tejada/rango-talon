@@ -13,6 +13,9 @@ blank <user.rango_target>:
 stash <user.rango_target>:
   user.rango_command_with_target("openInBackgroundTab", rango_target)
 
+# Move current tab to a new window
+tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
+
 # Close tabs
 tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
 tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
