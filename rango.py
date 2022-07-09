@@ -68,11 +68,8 @@ def rango_hints(m) -> list:
 
 
 @mod.capture(rule="<user.rango_hints>")
-def rango_target(m) -> Union[str, list[str]]:
-    if len(m.rango_hints) == 1:
-        return m.rango_hints[0]
-    else:
-        return m.rango_hints
+def rango_target(m) -> list[str]:
+    return m.rango_hints
 
 
 RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
@@ -139,8 +136,8 @@ def send_request_and_wait_for_response(action: dict):
     if response["action"]["type"] == "copyToClipboard":
         actions.clip.set_text(response["action"]["textToCopy"])
 
-    if response["action"]["type"] == "noHintFound":
-        actions.insert(action["target"])
+    if response["action"]["type"] == "noHintFound" and len(action["target"]) == 1:
+        actions.insert(action["target"][0])
 
 
 @mod.action_class
