@@ -90,6 +90,20 @@ copy mark <user.rango_target>:
 copy text <user.rango_target>:
   user.rango_command_with_target("copyElementTextContent", rango_target)
 
+# Paste
+paste to <user.rango_target>:
+  user.rango_command_with_target("insertToField", rango_target, clip.text())
+
+# Cursor position
+pre <user.rango_target>:
+  user.rango_command_with_target("setSelectionBefore", rango_target)
+post <user.rango_target>:
+  user.rango_command_with_target("setSelectionAfter", rango_target)
+
+# Clear field
+change <user.rango_target>:
+  user.rango_command_with_target("clearAndSetSelection", rango_target)
+
 # Copy current url information
 copy page {user.rango_page_location_property}:
   user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
