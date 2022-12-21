@@ -109,8 +109,15 @@ hint exclude singles: user.rango_command_without_target("excludeSingleLetterHint
 hint include singles: user.rango_command_without_target("includeSingleLetterHints")
 
 # Extra hints
-hint more: user.rango_command_without_target("displayMoreHints")
+hint extra: user.rango_command_without_target("displayExtraHints")
+hint more: user.rango_command_without_target("displayExcludedHints")
 hint less: user.rango_command_without_target("displayLessHints")
+include <user.rango_target>: user.rango_command_with_target("includeExtraSelectors", rango_target)
+exclude <user.rango_target>: user.rango_command_with_target("excludeExtraSelectors", rango_target)
+some more: user.rango_command_without_target("includeOrExcludeMoreSelectors")
+some less: user.rango_command_without_target("includeOrExcludeLessSelectors")
+custom hints save: user.rango_command_without_target("confirmSelectorsCustomization")
+custom hints reset: user.rango_command_without_target("resetCustomSelectors")
 
 # Show and hide hints
 hints refresh: user.rango_command_without_target("refreshHints")
