@@ -13,6 +13,9 @@ blank <user.rango_target>:
 stash <user.rango_target>:
   user.rango_command_with_target("openInBackgroundTab", rango_target)
 
+# Navigation
+go root: user.rango_command_without_target("navigateToPageRoot")
+
 # Move current tab to a new window
 tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
 
