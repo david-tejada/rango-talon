@@ -139,6 +139,9 @@ def send_request_and_wait_for_response(action: dict):
     if response["action"]["type"] == "noHintFound" and len(action["target"]) == 1:
         actions.insert(action["target"][0])
 
+    if response["action"]["type"] == "pressKeyArrowDown" and len(action["target"]) == 1:
+        actions.key("down")
+
 
 @mod.action_class
 class Actions:
