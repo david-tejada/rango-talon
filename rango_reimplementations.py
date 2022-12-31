@@ -8,6 +8,8 @@ app: brave
 app: vivaldi
 app: microsoft_edge
 app: opera
+app: safari
+app: firefox
 """
 
 @ctx.action_class("browser")
