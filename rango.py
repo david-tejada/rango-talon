@@ -127,10 +127,7 @@ def send_request_and_wait_for_response(action: dict):
     response = None
     with clip.revert():
         clip.set_text(json_message)
-        if app.platform == "mac":
-            actions.key("ctrl-shift-3")
-        else:
-            actions.key("ctrl-shift-insert")
+        actions.user.rango_type_hotkey()
         response = read_json_response_with_timeout()
 
     if response["action"]["type"] == "copyToClipboard":
@@ -145,6 +142,8 @@ def send_request_and_wait_for_response(action: dict):
 
 @mod.action_class
 class Actions:
+    def rango_type_hotkey():
+        """Presses the rango hotkey to read the command from the clipboard"""
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
@@ -166,6 +165,8 @@ class Actions:
 
 @ctx.action_class("user")
 class UserActions:
+    def rango_type_hotkey():
+        actions.key("ctrl-shift-insert")
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
