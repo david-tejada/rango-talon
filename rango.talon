@@ -51,35 +51,64 @@ show <user.rango_target>:
 
 # Scroll
 upper: user.rango_command_without_target("scrollUpPage")
+upper <number>: user.rango_command_without_target("scrollUpPage", number)
+upper all: user.rango_command_without_target("scrollUpPage", 9999)
 tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
+
 downer: user.rango_command_without_target("scrollDownPage")
+downer <number>: user.rango_command_without_target("scrollDownPage", number)
+downer all: user.rango_command_without_target("scrollDownPage", 9999)
 tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
-upper left: user.rango_command_without_target("scrollUpLeftAside")
-downer left: user.rango_command_without_target("scrollDownLeftAside")
-upper right: user.rango_command_without_target("scrollUpRightAside")
-downer right: user.rango_command_without_target("scrollDownRightAside")
+
 scroll left: user.rango_command_without_target("scrollLeftPage")
+scroll left all: user.rango_command_without_target("scrollLeftPage", 9999)
+tiny left: user.rango_command_without_target("scrollLeftPage", 0.2)
+
 scroll right: user.rango_command_without_target("scrollRightPage")
+scroll right all: user.rango_command_without_target("scrollRightPage", 9999)
+tiny right: user.rango_command_without_target("scrollRightPage", 0.2)
+
+# Scroll the left or right asides
+upper left: user.rango_command_without_target("scrollUpLeftAside")
+upper left all: user.rango_command_without_target("scrollUpLeftAside", 9999)
+
+downer left: user.rango_command_without_target("scrollDownLeftAside")
+downer left all: user.rango_command_without_target("scrollDownLeftAside", 9999)
+
+upper right: user.rango_command_without_target("scrollUpRightAside")
+upper right all: user.rango_command_without_target("scrollUpRightAside", 9999)
+
+downer right: user.rango_command_without_target("scrollDownRightAside")
+downer right all: user.rango_command_without_target("scrollDownRightAside", 9999)
+
+# Scroll the scrolling container that contains the target
 upper <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target)
-scroll left <user.rango_target>:
-  user.rango_command_with_target("scrollLeftAtElement", rango_target)
-tiny left <user.rango_target>:
-  user.rango_command_with_target("scrollLeftAtElement", rango_target, 0.1)
-scroll right <user.rango_target>:
-  user.rango_command_with_target("scrollRightAtElement", rango_target)
-tiny right <user.rango_target>:
-  user.rango_command_with_target("scrollRightAtElement", rango_target, 0.1)
 tiny up <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
+
 downer <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target)
 tiny down <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
+
+scroll left <user.rango_target>:
+  user.rango_command_with_target("scrollLeftAtElement", rango_target)
+tiny left <user.rango_target>:
+  user.rango_command_with_target("scrollLeftAtElement", rango_target, 0.1)
+
+scroll right <user.rango_target>:
+  user.rango_command_with_target("scrollRightAtElement", rango_target)
+tiny right <user.rango_target>:
+  user.rango_command_with_target("scrollRightAtElement", rango_target, 0.1)
+
+# Repeat previous scroll
 up again: user.rango_command_without_target("scrollUpAtElement")
 down again: user.rango_command_without_target("scrollDownAtElement")
 left again: user.rango_command_without_target("scrollLeftAtElement")
 right again: user.rango_command_without_target("scrollRightAtElement")
+
+# Snap scroll
 crown <user.rango_target>:
   user.rango_command_with_target("scrollElementToTop", rango_target)
 bottom <user.rango_target>:
