@@ -15,6 +15,8 @@ stash <user.rango_target>:
 
 # Navigation
 go root: user.rango_command_without_target("navigateToPageRoot")
+page next: user.rango_command_without_target("navigateToNextPage")
+page last: user.rango_command_without_target("navigateToPreviousPage")
 
 # Move current tab to a new window
 tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
