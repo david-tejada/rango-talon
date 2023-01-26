@@ -63,13 +63,8 @@ def rango_hint(m) -> str:
 
 
 @mod.capture(rule="<user.rango_hint> (and <user.rango_hint>)*")
-def rango_hints(m) -> list:
-    return m.rango_hint_list
-
-
-@mod.capture(rule="<user.rango_hints>")
 def rango_target(m) -> list[str]:
-    return m.rango_hints
+    return m.rango_hint_list
 
 
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
@@ -144,7 +139,7 @@ class Actions:
         """Presses the rango hotkey to read the command from the clipboard"""
     def rango_command_with_target(
         actionType: str,
-        target: Union[str, list[str]],
+        target: list[str],
         arg: Union[str, float, None] = None,
     ):
         """Executes a Rango command"""
@@ -172,7 +167,7 @@ class UserActions:
         actions.key("ctrl-shift-insert")
     def rango_command_with_target(
         actionType: str,
-        target: Union[str, list[str]],
+        target: list[str],
         arg: Union[str, float, None] = None,
     ):
         action = {"type": actionType, "target": target}
