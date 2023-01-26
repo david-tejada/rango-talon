@@ -72,11 +72,10 @@ def rango_target(m) -> list[str]:
     return m.rango_hints
 
 
-RANGO_COMMAND_TIMEOUT_SECONDS = 3.0
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
 
-def read_json_response_with_timeout() -> Any:
+def read_json_response_with_timeout(timeout_seconds) -> Any:
     """Repeatedly tries to read a json object from the clipboard, waiting
     until the message type is "response"
 
@@ -86,7 +85,7 @@ def read_json_response_with_timeout() -> Any:
     Returns:
         Any: The json-decoded contents of the file
     """
-    timeout_time = time.perf_counter() + RANGO_COMMAND_TIMEOUT_SECONDS
+    timeout_time = time.perf_counter() + timeout_seconds
     sleep_time = MINIMUM_SLEEP_TIME_SECONDS
     message = None
     initial_raw_text = clip.text()
@@ -121,15 +120,15 @@ def read_json_response_with_timeout() -> Any:
     return message
 
 
-def send_request_and_wait_for_response(action: dict):
+def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.0):
     message = {"version": 1, "type": "request", "action": action}
     json_message = json.dumps(message)
     response = None
     with clip.revert():
         clip.set_text(json_message)
         actions.user.rango_type_hotkey()
-        response = read_json_response_with_timeout()
-
+        response = read_json_response_with_timeout(timeout_seconds)
+    
     if response["action"]["type"] == "copyToClipboard":
         actions.clip.set_text(response["action"]["textToCopy"])
 
@@ -138,7 +137,6 @@ def send_request_and_wait_for_response(action: dict):
 
     if response["action"]["type"] == "pressKeyArrowDown" and len(action["target"]) == 1:
         actions.key("down")
-
 
 @mod.action_class
 class Actions:
@@ -155,6 +153,11 @@ class Actions:
         actionType: str, arg: Union[str, float, None] = None
     ):
         """Executes a Rango command without a target"""
+
+    def rango_command_without_target_short_timeout(
+        actionType: str, arg: Union[str, float, None] = None
+    ):
+        """Executes a Rango command without a target with a short timeout"""
 
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
@@ -180,14 +183,18 @@ class UserActions:
     def rango_command_without_target(
         actionType: str, arg: Union[str, float, None] = None
     ):
-
         action = {"type": actionType}
         if arg:
             action["arg"] = arg
         send_request_and_wait_for_response(action)
 
-    def rango_enable_direct_clicking():
-        ctx.tags = ["user.rango_direct_clicking"]
+    def rango_command_without_target_short_timeout(
+        actionType: str, arg: Union[str, float, None] = None
+    ):
+        action = {"type": actionType}
+        if arg:
+            action["arg"] = arg
+        return send_request_and_wait_for_response(action, 0.3)
 
     def rango_disable_direct_clicking():
         ctx.tags = []

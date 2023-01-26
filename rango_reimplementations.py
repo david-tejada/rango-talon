@@ -15,7 +15,13 @@ app: firefox
 @ctx.action_class("browser")
 class BrowserActions:
     def go_back():
-        actions.user.rango_command_without_target("historyGoBack")
+        try:
+            actions.user.rango_command_without_target_short_timeout("historyGoBack")
+        except:
+            actions.next()
 
     def go_forward():
-        actions.user.rango_command_without_target("historyGoForward")
+        try:
+            actions.user.rango_command_without_target_short_timeout("historyGoForward")
+        except:
+            actions.next()
