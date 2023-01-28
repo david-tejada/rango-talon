@@ -191,5 +191,8 @@ class UserActions:
             action["arg"] = arg
         return send_request_and_wait_for_response(action, 0.3)
 
+    def rango_enable_direct_clicking():
+        ctx.tags = ["user.rango_direct_clicking"]
+
     def rango_disable_direct_clicking():
         ctx.tags = []
