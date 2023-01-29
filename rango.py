@@ -123,7 +123,7 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
         clip.set_text(json_message)
         actions.user.rango_type_hotkey()
         response = read_json_response_with_timeout(timeout_seconds)
-    
+
     if response["action"]["type"] == "copyToClipboard":
         actions.clip.set_text(response["action"]["textToCopy"])
 
@@ -132,6 +132,13 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
 
     if response["action"]["type"] == "pressKeyArrowDown" and len(action["target"]) == 1:
         actions.key("down")
+
+    if response["action"]["type"] == "editDelete":
+        actions.edit.delete()
+
+    if response["action"]["type"] == "editDeleteAfterDelay":
+        actions.sleep("150ms")
+        actions.edit.delete()
 
 @mod.action_class
 class Actions:

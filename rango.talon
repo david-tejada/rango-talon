@@ -136,7 +136,7 @@ post <user.rango_target>:
 
 # Clear field
 change <user.rango_target>:
-  user.rango_command_with_target("clearAndSetSelection", rango_target)
+  user.rango_command_with_target("focusAndDeleteContents", rango_target)
 
 # Copy current url information
 copy page {user.rango_page_location_property}:
