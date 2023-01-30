@@ -127,6 +127,8 @@ copy text <user.rango_target>:
 # Paste
 paste to <user.rango_target>:
   user.rango_command_with_target("insertToField", rango_target, clip.text())
+
+# Insert text to field
 insert <user.text> to <user.rango_target>:
   user.rango_command_with_target("clickElement", rango_target)
   sleep(200ms)
