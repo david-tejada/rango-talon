@@ -130,8 +130,8 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
     if response["action"]["type"] == "noHintFound" and len(action["target"]) == 1:
         actions.insert(action["target"][0])
 
-    if response["action"]["type"] == "pressKeyArrowDown" and len(action["target"]) == 1:
-        actions.key("down")
+    if response["action"]["type"] == "key" and len(action["target"]) == 1:
+        actions.key(response["action"]["key"])
 
     if response["action"]["type"] == "editDelete":
         actions.edit.delete()

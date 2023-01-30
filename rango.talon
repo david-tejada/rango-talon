@@ -127,6 +127,20 @@ copy text <user.rango_target>:
 # Paste
 paste to <user.rango_target>:
   user.rango_command_with_target("insertToField", rango_target, clip.text())
+insert <user.text> to <user.rango_target>:
+  user.rango_command_with_target("clickElement", rango_target)
+  sleep(200ms)
+  edit.select_all()
+  edit.delete()
+  insert(text)
+enter <user.text> to <user.rango_target>:
+  user.rango_command_with_target("clickElement", rango_target)
+  sleep(200ms)
+  edit.select_all()
+  edit.delete()
+  insert(text)
+  sleep(200ms)
+  key(enter)
 
 # Cursor position
 pre <user.rango_target>:
