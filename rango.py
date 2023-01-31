@@ -146,7 +146,7 @@ class Actions:
         """Presses the rango hotkey to read the command from the clipboard"""
     def rango_command_with_target(
         actionType: str,
-        target: list[str],
+        target: Union[str, list[str]],
         arg: Union[str, float, None] = None,
     ):
         """Executes a Rango command"""
@@ -174,9 +174,11 @@ class UserActions:
         actions.key("ctrl-shift-insert")
     def rango_command_with_target(
         actionType: str,
-        target: list[str],
+        target: Union[str, list[str]],
         arg: Union[str, float, None] = None,
     ):
+        if isinstance(target, str):
+            target = [target]
         action = {"type": actionType, "target": target}
         if arg:
             action["arg"] = arg
