@@ -144,6 +144,7 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
 class Actions:
     def rango_type_hotkey():
         """Presses the rango hotkey to read the command from the clipboard"""
+
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
@@ -172,6 +173,7 @@ class Actions:
 class UserActions:
     def rango_type_hotkey():
         actions.key("ctrl-shift-insert")
+
     def rango_command_with_target(
         actionType: str,
         target: Union[str, list[str]],
