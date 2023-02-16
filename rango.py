@@ -62,6 +62,11 @@ def rango_hint(m) -> str:
     return "".join(m.letter_list)
 
 
+@mod.capture(rule="<user.letter>")
+def rango_hint_double(m) -> str:
+    return m.letter + m.letter
+
+
 @mod.capture(rule="<user.rango_hint> (and <user.rango_hint>)*")
 def rango_target(m) -> list[str]:
     return m.rango_hint_list
@@ -139,6 +144,7 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
     if response["action"]["type"] == "editDeleteAfterDelay":
         actions.sleep("150ms")
         actions.edit.delete()
+
 
 @mod.action_class
 class Actions:
