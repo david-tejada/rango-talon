@@ -7,6 +7,10 @@ settings():
 click <user.rango_target>:
   user.rango_command_with_target("clickElement", rango_target)
 
+# Focus
+focus <user.rango_target>:
+  user.rango_command_with_target("focusElement", rango_target)
+
 # Open in a new tab
 blank <user.rango_target>:
   user.rango_command_with_target("openInNewTab", rango_target)
