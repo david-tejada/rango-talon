@@ -123,27 +123,46 @@ def read_json_response_with_timeout(timeout_seconds) -> Any:
 def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.0):
     message = {"version": 1, "type": "request", "action": action}
     json_message = json.dumps(message)
-    response = None
     with clip.revert():
         clip.set_text(json_message)
         actions.user.rango_type_hotkey()
         response = read_json_response_with_timeout(timeout_seconds)
 
-    if response["action"]["type"] == "copyToClipboard":
-        actions.clip.set_text(response["action"]["textToCopy"])
+    response_actions = response.get("actions")
 
-    if response["action"]["type"] == "noHintFound" and len(action["target"]) == 1:
-        actions.insert(action["target"][0])
+    if response_actions == None:
+        actions.app.notify(
+            "Rango-talon is ahead of the Rango extension. Restart the browser to update the Rango extension"
+        )
+        return
 
-    if response["action"]["type"] == "key" and len(action["target"]) == 1:
-        actions.key(response["action"]["key"])
+    for response_action in response_actions:
+        name = response_action["name"]
 
-    if response["action"]["type"] == "editDelete":
-        actions.edit.delete()
+        if name == "copyToClipboard":
+            actions.clip.set_text(response_action["textToCopy"])
 
-    if response["action"]["type"] == "editDeleteAfterDelay":
-        actions.sleep("150ms")
-        actions.edit.delete()
+        if name == "typeTargetCharacters":
+            actions.insert(action["target"][0])
+
+        if name == "focusPage":
+            try:
+                actions.browser.focus_page()
+            except NotImplementedError:
+                actions.browser.focus_address()
+                actions.key("esc:3")
+
+        if name == "key":
+            actions.key(response_action["key"])
+
+        if name == "editDelete":
+            actions.edit.delete()
+
+        if name == "sleep":
+            if "ms" in response_action:
+                actions.sleep(f"{response_action['ms']}ms")
+            else:
+                actions.sleep("150ms")
 
 
 @mod.action_class
