@@ -182,11 +182,6 @@ class Actions:
     ):
         """Executes a Rango command without a target"""
 
-    def rango_command_without_target_short_timeout(
-        actionType: str, arg: Union[str, float, None] = None
-    ):
-        """Executes a Rango command without a target with a short timeout"""
-
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
 
@@ -218,14 +213,6 @@ class UserActions:
         if arg:
             action["arg"] = arg
         send_request_and_wait_for_response(action)
-
-    def rango_command_without_target_short_timeout(
-        actionType: str, arg: Union[str, float, None] = None
-    ):
-        action = {"type": actionType}
-        if arg:
-            action["arg"] = arg
-        return send_request_and_wait_for_response(action, 0.3)
 
     def rango_enable_direct_clicking():
         ctx.tags = ["user.rango_direct_clicking"]

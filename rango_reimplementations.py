@@ -12,16 +12,17 @@ app: safari
 app: firefox
 """
 
+
 @ctx.action_class("browser")
 class BrowserActions:
     def go_back():
         try:
-            actions.user.rango_command_without_target_short_timeout("historyGoBack")
+            actions.user.rango_command_without_target("historyGoBack")
         except:
             actions.next()
 
     def go_forward():
         try:
-            actions.user.rango_command_without_target_short_timeout("historyGoForward")
+            actions.user.rango_command_without_target("historyGoForward")
         except:
             actions.next()
