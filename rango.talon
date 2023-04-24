@@ -213,3 +213,6 @@ rango direct:  user.rango_enable_direct_clicking()
 
 # Setting page
 rango settings: user.rango_command_without_target("openSettingsPage")
+
+# Pages
+rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
