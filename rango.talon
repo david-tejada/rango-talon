@@ -172,10 +172,6 @@ copy mark address:
 # Modify hints appearance
 hint bigger: user.rango_command_without_target("increaseHintSize")
 hint smaller: user.rango_command_without_target("decreaseHintSize")
-hint {user.rango_hint_styles}: 
-  user.rango_command_without_target("setHintStyle", user.rango_hint_styles)
-hint weight {user.rango_hint_weights}:
-  user.rango_command_without_target("setHintWeight", user.rango_hint_weights)
 
 # Exclude or include single letter hints
 hint exclude singles: user.rango_command_without_target("excludeSingleLetterHints")
@@ -212,3 +208,6 @@ address in title off: user.rango_command_without_target("disableUrlInTitle")
 # Switch modes
 rango explicit:  user.rango_disable_direct_clicking()
 rango direct:  user.rango_enable_direct_clicking()
+
+# Setting page
+rango settings: user.rango_command_without_target("openSettingsPage")
