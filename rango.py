@@ -216,6 +216,10 @@ class UserActions:
             action["arg"] = arg
         send_request_and_wait_for_response(action)
 
+    # Necessary for talon_hud
+    def rango_toggle_hints():
+        actions.user.rango_command_without_target("toggleHints")
+
     def rango_enable_direct_clicking():
         ctx.tags = ["user.rango_direct_clicking"]
 
