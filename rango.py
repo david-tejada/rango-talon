@@ -184,6 +184,9 @@ class Actions:
     ):
         """Executes a Rango command without a target"""
 
+    def rango_toggle_hints():
+        """It toggles the Rango hints globally on or off"""
+
     def rango_enable_direct_clicking():
         """Enables rango direct mode so that the user doesn't have to say 'click' before the hint letters"""
 
