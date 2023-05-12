@@ -11,9 +11,12 @@ tag: browser
 
 mod.tag(
     "rango_direct_clicking",
-    desc="Commands for direct clicking with the extension rango",
+    desc="Tag for enabling direct clicking in Rango",
 )
-ctx.tags = ["user.rango_direct_clicking"]
+mod.tag(
+    "rango_exclude_singles_tag",
+    desc="Tag for enabling using only double letter hints in Rango",
+)
 
 rango_start_with_direct_clicking = mod.setting(
     "rango_start_with_direct_clicking",
@@ -21,16 +24,38 @@ rango_start_with_direct_clicking = mod.setting(
     default=True,
     desc="Rango direct clicking mode setting",
 )
+rango_exclude_singles = mod.setting(
+    "rango_exclude_singles",
+    type=bool,
+    default=False,
+    desc="Setting for excluding single letter hints in Rango",
+)
 
 
 def update_clicking_mode(setting_value):
+    tags = set(ctx.tags)
+
     if setting_value == 1:
-        ctx.tags = ["user.rango_direct_clicking"]
+        tags.add("user.rango_direct_clicking")
     else:
-        ctx.tags = []
+        tags.discard("user.rango_direct_clicking")
+
+    ctx.tags = tags
+
+
+def update_exclude_singles(setting_value):
+    tags = set(ctx.tags)
+
+    if setting_value == 1:
+        tags.add("user.rango_exclude_singles_tag")
+    else:
+        tags.discard("user.rango_exclude_singles_tag")
+
+    ctx.tags = tags
 
 
 settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
+settings.register("user.rango_exclude_singles", update_exclude_singles)
 
 mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
 mod.list(

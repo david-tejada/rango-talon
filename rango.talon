@@ -2,6 +2,7 @@ tag: browser
 -
 settings():
   user.rango_start_with_direct_clicking = 1
+  user.rango_exclude_singles = 0
 
 # Click
 click <user.rango_target>:
