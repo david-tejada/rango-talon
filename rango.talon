@@ -191,7 +191,7 @@ custom hints reset: user.rango_command_without_target("resetCustomSelectors")
 
 # Show and hide hints
 hints refresh: user.rango_command_without_target("refreshHints")
-hints toggle: user.rango_command_without_target("toggleHints")
+hints (toggle | switch): user.rango_command_without_target("toggleHints")
 hints on [{user.rango_hints_toggle_levels}]: 
   user.rango_command_without_target("enableHints", rango_hints_toggle_levels or "global")
 hints off [{user.rango_hints_toggle_levels}]: 
@@ -202,7 +202,7 @@ toggle show:
   user.rango_command_without_target("displayTogglesStatus")
 
 # Toggle keyboard clicking
-keyboard toggle: user.rango_command_without_target("toggleKeyboardClicking")
+keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardClicking")
 
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")
