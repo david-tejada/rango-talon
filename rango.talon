@@ -12,6 +12,9 @@ click <user.rango_target>:
 focus <user.rango_target>:
   user.rango_command_with_target("focusElement", rango_target)
 
+go input:
+  user.rango_command_without_target("focusFirstInput")
+
 # Focus and Enter
 flick <user.rango_target>:
   user.rango_command_with_target("focusElement", rango_target)
