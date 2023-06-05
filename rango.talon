@@ -139,23 +139,13 @@ copy text <user.rango_target>:
 
 # Paste
 paste to <user.rango_target>:
-  user.rango_command_with_target("insertToField", rango_target, clip.text())
+  user.rango_insert_text_to_input(clip.text(), rango_target, 0)
 
 # Insert text to field
 insert <user.text> to <user.rango_target>:
-  user.rango_command_with_target("clickElement", rango_target)
-  sleep(200ms)
-  edit.select_all()
-  edit.delete()
-  insert(text)
+  user.rango_insert_text_to_input(text, rango_target, 0)
 enter <user.text> to <user.rango_target>:
-  user.rango_command_with_target("clickElement", rango_target)
-  sleep(200ms)
-  edit.select_all()
-  edit.delete()
-  insert(text)
-  sleep(200ms)
-  key(enter)
+  user.rango_insert_text_to_input(text, rango_target, 1)
 
 # Cursor position
 pre <user.rango_target>:
@@ -165,7 +155,7 @@ post <user.rango_target>:
 
 # Clear field
 change <user.rango_target>:
-  user.rango_command_with_target("focusAndDeleteContents", rango_target)
+  user.rango_clear_input(rango_target)
 
 # Copy current url information
 copy page {user.rango_page_location_property}:
