@@ -20,6 +20,11 @@ flick <user.rango_target>:
   user.rango_command_with_target("focusElement", rango_target)
   key(enter)
 
+# Focus tab
+(go tab | slot) <user.rango_target>:
+  user.rango_command_with_target("activateTab", rango_target)
+tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
+
 # Open in a new tab
 blank <user.rango_target>:
   user.rango_command_with_target("openInNewTab", rango_target)
