@@ -9,3 +9,7 @@ Download or clone the repo to your user talon folder:
 ```bash
 git clone https://github.com/david-tejada/rango-talon
 ```
+
+## Issues
+
+If you have any issue please open one in the main [Rango](https://github.com/david-tejada/rango) repository.
