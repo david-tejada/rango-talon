@@ -220,7 +220,7 @@ rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTa
 save <user.rango_target> as <user.word>: 
   user.rango_command_with_target("saveHintID", rango_target, word)
 
-show saved hints: 
+show saved marks: 
   user.rango_command_without_target("showSavedIDs")
 
 remove mark <user.word>: 
