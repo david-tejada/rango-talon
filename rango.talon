@@ -223,9 +223,5 @@ save <user.rango_target> as <user.word>:
 show saved hints: 
   user.rango_command_without_target("showSavedIDs")
 
-# Sample API Demonstration
-# run hint script:
-#   user.rango_run_action_on_mark("clickElement", "home")
-#   print('done')
-#   sleep(5)
-#   user.rango_run_action_on_mark("clickElement", "country")
+remove mark <user.word>: 
+  user.rango_command_without_target("removeHintID", word)
