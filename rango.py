@@ -236,7 +236,9 @@ class Actions:
         """Executes a Rango command"""
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, float, None] = None,  arg2: Union[str, None] = None
+        actionType: str,
+        arg: Union[str, float, None] = None,
+        arg2: Union[str, None] = None,
     ):
         """Executes a Rango command without a target"""
 
@@ -282,7 +284,9 @@ class UserActions:
         return send_request_and_wait_for_response(action)
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, float, None] = None, arg2: Union[str, None] = None
+        actionType: str,
+        arg: Union[str, float, None] = None,
+        arg2: Union[str, None] = None,
     ):
         action = {"type": actionType}
         if arg:
@@ -325,6 +329,6 @@ class UserActions:
         ctx.tags = []
 
     def rango_run_action_on_mark(command: str, mark: str):
-        # Even though we are acting upon a mark this isn't a hint so it  
+        # Even though we are acting upon a mark this isn't a hint so it
         # technically doesn't have a target
         actions.user.rango_command_without_target("rangoActionOnSavedID", command, mark)
