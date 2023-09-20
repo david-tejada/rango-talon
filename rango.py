@@ -256,6 +256,9 @@ class Actions:
     def rango_disable_direct_clicking():
         """Disables rango direct mode"""
 
+    def rango_run_action_on_mark(command: str, mark: str):
+        """Runs a Rango command on a mark"""
+
 
 @ctx.action_class("user")
 class UserActions:
@@ -314,3 +317,6 @@ class UserActions:
 
     def rango_disable_direct_clicking():
         ctx.tags = []
+
+    def rango_run_action_on_mark(command: str, mark: str):
+        actions.user.rango_command_without_target("rangoActionOnSavedID", f'{command}%{mark}')

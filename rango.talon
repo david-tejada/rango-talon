@@ -215,3 +215,17 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
+
+#  Save a hint so it can be used for scripting
+save <user.rango_target> as <user.word>: 
+  user.rango_command_with_target("saveHintID", rango_target, word)
+
+show saved hints: 
+  user.rango_command_without_target("showSavedIDs")
+
+# Sample API Demonstration
+# run hint script:
+#   user.rango_run_action_on_mark("clickElement", "home")
+#   print('done')
+#   sleep(5)
+#   user.rango_run_action_on_mark("clickElement", "country")
