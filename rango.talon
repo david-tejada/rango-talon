@@ -200,6 +200,9 @@ hints reset {user.rango_hints_toggle_levels}:
 toggle show:
   user.rango_command_without_target("displayTogglesStatus")
 
+# Toggle tab markers
+markers (toggle | switch): user.rango_command_without_target("toggleTabMarkers")
+
 # Toggle keyboard clicking
 keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardClicking")
 
