@@ -134,6 +134,12 @@ bottom <user.rango_target>:
 center <user.rango_target>:
   user.rango_command_with_target("scrollElementToCenter", rango_target)
 
+# Custom scroll positions
+scroll save <user.word>:
+  user.rango_command_without_target("storeScrollPosition", word)
+scroll to <user.word>:
+  user.rango_command_without_target("scrollToPosition", word)
+
 # Copy target information
 copy [link] <user.rango_target>:
   user.rango_command_with_target("copyLink", rango_target)
