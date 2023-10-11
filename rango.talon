@@ -225,3 +225,6 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
+
+# Browse
+visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
