@@ -228,3 +228,6 @@ rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTa
 
 # Browse
 visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
+tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
+tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
+tab behind: user.rango_command_without_target("cycleTabsByText", -1)
