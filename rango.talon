@@ -42,6 +42,14 @@ tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
 # Focus previous tab
 tab back: user.rango_command_without_target("focusPreviousTab")
 
+# Focus or create tab from your `talonhub/community` websites.csv
+visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
+
+# Focus tab by text
+tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
+tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
+tab behind: user.rango_command_without_target("cycleTabsByText", -1)
+
 # Close tabs
 tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
 tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
@@ -225,9 +233,3 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
-
-# Browse
-visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
-tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
-tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
-tab behind: user.rango_command_without_target("cycleTabsByText", -1)
