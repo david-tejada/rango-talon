@@ -216,6 +216,10 @@ def send_request_and_wait_for_response(action: dict, timeout_seconds: float = 3.
         if name == "responseValue":
             result = response_action["value"]
 
+        if name == "openInNewTab":
+            actions.app.tab_open()
+            actions.browser.go(response_action["url"])
+
     return result
 
 
