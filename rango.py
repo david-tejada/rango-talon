@@ -89,7 +89,7 @@ def rango_hint(m) -> str:
     return "".join(m.letter_list)
 
 
-@mod.capture(rule="<user.letter>")
+@mod.capture(rule="<user.letter> (twice | second)")
 def rango_hint_double(m) -> str:
     return m.letter + m.letter
 
