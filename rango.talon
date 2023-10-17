@@ -234,12 +234,12 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
 
-#  Save a hint so it can be used for scripting
-save <user.rango_target> as <user.word>: 
-  user.rango_command_with_target("saveHintID", rango_target, word)
+#  Hint/element references for scripting
+reference <user.rango_target> as <user.word>: 
+  user.rango_command_with_target("saveReference", rango_target, word)
 
-show saved marks: 
-  user.rango_command_without_target("showSavedIDs")
+reference show: 
+  user.rango_command_without_target("showReferences")
 
-remove mark <user.word>: 
-  user.rango_command_without_target("removeHintID", word)
+reference clear <user.word>: 
+  user.rango_command_without_target("removeReference", word)
