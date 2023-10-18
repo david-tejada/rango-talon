@@ -262,7 +262,7 @@ class Actions:
     def rango_disable_direct_clicking():
         """Disables rango direct mode"""
 
-    def rangoRunActionOnReference(command: str, reference: str):
+    def rango_run_action_on_reference(command: str, reference: str):
         """Runs a Rango command on a mark"""
 
 
