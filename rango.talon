@@ -235,11 +235,9 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
 
 #  Hint/element references for scripting
-reference <user.rango_target> as <user.word>: 
-  user.rango_command_with_target("saveReference", rango_target, word)
-
-reference show: 
-  user.rango_command_without_target("showReferences")
-
-reference clear <user.word>: 
-  user.rango_command_without_target("removeReference", word)
+mark <user.rango_target> as <user.word>: user.rango_command_with_target("saveReference", rango_target, word)
+mark show: user.rango_command_without_target("showReferences")
+mark clear <user.word>: user.rango_command_without_target("removeReference", word)
+click mark <user.word>: user.rango_run_action_on_reference("clickElement", word)
+focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
+hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
