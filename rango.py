@@ -328,7 +328,7 @@ class UserActions:
     def rango_disable_direct_clicking():
         ctx.tags = []
 
-    def rangoRunActionOnReference(command: str, reference: str):
+    def rango_run_action_on_reference(command: str, reference: str):
         actions.user.rango_command_without_target(
             "runActionOnReference", command, reference
         )
