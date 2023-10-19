@@ -84,9 +84,11 @@ ctx.lists["user.rango_page"] = {
 }
 
 
-@mod.capture(rule="<user.letter> | <user.letter> <user.letter>")
+@mod.capture(
+    rule="<user.letter> | <user.letter> <user.letter> | <user.rango_hint_double>"
+)
 def rango_hint(m) -> str:
-    return "".join(m.letter_list)
+    return "".join(m)
 
 
 @mod.capture(rule="<user.letter> (twice | second)")
