@@ -234,14 +234,12 @@ rango settings: user.rango_command_without_target("openSettingsPage")
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
 
-# Save hints for a given website as mark names used for scripting browser actions. 
-# The mark will refer to the same HTML element even if the letters in the hint change
+#  Hint/element references for scripting
 mark <user.rango_target> as <user.word>: user.rango_command_with_target("saveReference", rango_target, word)
 mark show: user.rango_command_without_target("showReferences")
 mark clear <user.word>: user.rango_command_without_target("removeReference", word)
 
-# Marks can be clicked, focused, or hovered by calling 
-# "user.rango_run_action_on_reference" in your scripts
+# Run actions on saved references
 click mark <user.word>: user.rango_run_action_on_reference("clickElement", word)
 focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
 hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
