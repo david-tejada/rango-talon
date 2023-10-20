@@ -236,7 +236,9 @@ class Actions:
         """Executes a Rango command"""
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, float, None] = None
+        actionType: str,
+        arg: Union[str, float, None] = None,
+        arg2: Union[str, None] = None,
     ):
         """Executes a Rango command without a target"""
 
@@ -260,6 +262,9 @@ class Actions:
     def rango_disable_direct_clicking():
         """Disables rango direct mode"""
 
+    def rango_run_action_on_reference(command: str, reference: str):
+        """Runs a Rango command on a mark"""
+
 
 @ctx.action_class("user")
 class UserActions:
@@ -279,11 +284,15 @@ class UserActions:
         return send_request_and_wait_for_response(action)
 
     def rango_command_without_target(
-        actionType: str, arg: Union[str, float, None] = None
+        actionType: str,
+        arg: Union[str, float, None] = None,
+        arg2: Union[str, None] = None,
     ):
         action = {"type": actionType}
         if arg:
             action["arg"] = arg
+        if arg2:
+            action["arg2"] = arg2
         return send_request_and_wait_for_response(action)
 
     def rango_try_to_focus_and_check_is_editable(target: Union[str, list[str]]):
@@ -318,3 +327,8 @@ class UserActions:
 
     def rango_disable_direct_clicking():
         ctx.tags = []
+
+    def rango_run_action_on_reference(command: str, reference: str):
+        actions.user.rango_command_without_target(
+            "runActionOnReference", command, reference
+        )
