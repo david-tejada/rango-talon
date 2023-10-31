@@ -3,6 +3,7 @@ tag: browser
 settings():
   user.rango_start_with_direct_clicking = 1
   user.rango_exclude_singles = 0
+  user.rango_use_number_hints = 0
 
 # Click
 click <user.rango_target>:
@@ -21,8 +22,8 @@ flick <user.rango_target>:
   key(enter)
 
 # Focus tab
-(go tab | slot) <user.rango_target>:
-  user.rango_command_with_target("activateTab", rango_target)
+(go tab | slot) <user.rango_tab_marker>:
+  user.rango_command_with_target("activateTab", rango_tab_marker)
 tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
 
 # Open in a new tab

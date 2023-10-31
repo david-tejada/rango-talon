@@ -17,6 +17,10 @@ mod.tag(
     "rango_exclude_singles_tag",
     desc="Tag for enabling using only double letter hints in Rango",
 )
+mod.tag(
+    "rango_number_hints",
+    desc="Tag for enabling using numbers for hints in Rango",
+)
 
 rango_start_with_direct_clicking = mod.setting(
     "rango_start_with_direct_clicking",
@@ -29,6 +33,12 @@ rango_exclude_singles = mod.setting(
     type=bool,
     default=False,
     desc="Setting for excluding single letter hints in Rango",
+)
+rango_use_number_hints = mod.setting(
+    "rango_use_number_hints",
+    type=bool,
+    default=False,
+    desc="Setting for enabling using numbers for hints in Rango",
 )
 
 
@@ -54,8 +64,23 @@ def update_exclude_singles(setting_value):
     ctx.tags = tags
 
 
+def update_use_number_hints(setting_value):
+    print("update_use_number_hints")
+    print(setting_value)
+    tags = set(ctx.tags)
+
+    if setting_value == 1:
+        tags.add("user.rango_number_hints")
+    else:
+        tags.discard("user.rango_number_hints")
+
+    ctx.tags = tags
+
+
 settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
 settings.register("user.rango_exclude_singles", update_exclude_singles)
+settings.register("user.rango_use_number_hints", update_use_number_hints)
+
 
 mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
 mod.list(
@@ -97,6 +122,11 @@ def rango_hint_double(m) -> str:
 @mod.capture(rule="<user.rango_hint> (and <user.rango_hint>)*")
 def rango_target(m) -> list[str]:
     return m.rango_hint_list
+
+
+@mod.capture(rule="<user.letter> | <user.letter> <user.letter>")
+def rango_tab_marker(m) -> str:
+    return "".join(m)
 
 
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
