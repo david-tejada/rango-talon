@@ -23,7 +23,7 @@ class RangoPoller:
                 image_name = "rango-direct.png" if mode_direct else "rango.png"
 
                 toggle_function = lambda _, _2, self=self: self.toggle_rango()
-                status_icon = self.content.create_status_icon("rango_toggle", os.path.join(dir_path, image_name), None, "Rango toggle", toggle_function )
+                status_icon = self.content.create_status_icon("rango_toggle", os.path.join(dir_path, "images", image_name), None, "Rango toggle", toggle_function )
                 self.content.publish_event("status_icons", status_icon.topic, "replace", status_icon)
         elif self.button_added:
             self.button_added = False
