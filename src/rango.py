@@ -9,78 +9,6 @@ ctx.matches = r"""
 tag: browser
 """
 
-mod.tag(
-    "rango_direct_clicking",
-    desc="Tag for enabling direct clicking in Rango",
-)
-mod.tag(
-    "rango_exclude_singles_tag",
-    desc="Tag for enabling using only double letter hints in Rango",
-)
-mod.tag(
-    "rango_number_hints",
-    desc="Tag for enabling using numbers for hints in Rango",
-)
-
-rango_start_with_direct_clicking = mod.setting(
-    "rango_start_with_direct_clicking",
-    type=bool,
-    default=True,
-    desc="Rango direct clicking mode setting",
-)
-rango_exclude_singles = mod.setting(
-    "rango_exclude_singles",
-    type=bool,
-    default=False,
-    desc="Setting for excluding single letter hints in Rango",
-)
-rango_use_number_hints = mod.setting(
-    "rango_use_number_hints",
-    type=bool,
-    default=False,
-    desc="Setting for enabling using numbers for hints in Rango",
-)
-
-
-def update_clicking_mode(setting_value):
-    tags = set(ctx.tags)
-
-    if setting_value == 1:
-        tags.add("user.rango_direct_clicking")
-    else:
-        tags.discard("user.rango_direct_clicking")
-
-    ctx.tags = tags
-
-
-def update_exclude_singles(setting_value):
-    tags = set(ctx.tags)
-
-    if setting_value == 1:
-        tags.add("user.rango_exclude_singles_tag")
-    else:
-        tags.discard("user.rango_exclude_singles_tag")
-
-    ctx.tags = tags
-
-
-def update_use_number_hints(setting_value):
-    print("update_use_number_hints")
-    print(setting_value)
-    tags = set(ctx.tags)
-
-    if setting_value == 1:
-        tags.add("user.rango_number_hints")
-    else:
-        tags.discard("user.rango_number_hints")
-
-    ctx.tags = tags
-
-
-settings.register("user.rango_start_with_direct_clicking", update_clicking_mode)
-settings.register("user.rango_exclude_singles", update_exclude_singles)
-settings.register("user.rango_use_number_hints", update_use_number_hints)
-
 
 mod.list("rango_hints_toggle_levels", desc="list of Rango hints toggle levels")
 mod.list(
@@ -351,12 +279,6 @@ class UserActions:
     # Necessary for talon_hud
     def rango_toggle_hints():
         actions.user.rango_command_without_target("toggleHints")
-
-    def rango_enable_direct_clicking():
-        ctx.tags = ["user.rango_direct_clicking"]
-
-    def rango_disable_direct_clicking():
-        ctx.tags = []
 
     def rango_run_action_on_reference(command: str, reference: str):
         actions.user.rango_command_without_target(

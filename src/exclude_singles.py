@@ -4,7 +4,7 @@ ctx = Context()
 
 ctx.matches = r"""
 tag: browser
-and tag: user.rango_exclude_singles_tag
+and tag: user.rango_exclude_singles
 """
 
 

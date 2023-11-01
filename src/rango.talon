@@ -1,9 +1,6 @@
 tag: browser
 -
-settings():
-  user.rango_start_with_direct_clicking = 1
-  user.rango_exclude_singles = 0
-  user.rango_use_number_hints = 0
+tag(): user.rango_direct_clicking
 
 # Click
 click <user.rango_target>:
@@ -224,10 +221,6 @@ keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardCli
 # Enable or disable showing the url in the title
 address in title on: user.rango_command_without_target("enableUrlInTitle")
 address in title off: user.rango_command_without_target("disableUrlInTitle")
-
-# Switch modes
-rango explicit:  user.rango_disable_direct_clicking()
-rango direct:  user.rango_enable_direct_clicking()
 
 # Setting page
 rango settings: user.rango_command_without_target("openSettingsPage")
