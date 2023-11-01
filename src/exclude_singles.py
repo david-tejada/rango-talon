@@ -10,4 +10,4 @@ and tag: user.rango_exclude_singles_tag
 
 @ctx.capture("user.rango_hint", rule="<user.letter> <user.letter>")
 def rango_hint(m) -> str:
-    return "".join(m.letter_list)
+    return "".join(m)
