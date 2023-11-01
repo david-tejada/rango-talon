@@ -87,49 +87,48 @@ def handle_response(response: Any, request_action: dict):
     result = None
 
     for action in response_actions:
-        name = action["name"]
+        match action["name"]:
+            case "focusPageAndResend":
+                try:
+                    actions.browser.focus_page()
+                except NotImplementedError:
+                    actions.browser.focus_address()
+                    actions.key("esc:3")
 
-        if name == "focusPageAndResend":
-            try:
-                actions.browser.focus_page()
-            except NotImplementedError:
-                actions.browser.focus_address()
-                actions.key("esc:3")
+                response = send_request_and_wait(request_action)
+                result = handle_response(response, request_action)
 
-            response = send_request_and_wait(request_action)
-            result = handle_response(response, request_action)
+            case "copyToClipboard":
+                actions.clip.set_text(action["textToCopy"])
 
-        if name == "copyToClipboard":
-            actions.clip.set_text(action["textToCopy"])
+            case "typeTargetCharacters":
+                actions.insert(action["target"][0])
 
-        if name == "typeTargetCharacters":
-            actions.insert(action["target"][0])
+            case "focusPage":
+                try:
+                    actions.browser.focus_page()
+                except NotImplementedError:
+                    actions.browser.focus_address()
+                    actions.key("esc:3")
 
-        if name == "focusPage":
-            try:
-                actions.browser.focus_page()
-            except NotImplementedError:
-                actions.browser.focus_address()
-                actions.key("esc:3")
+            case "key":
+                actions.key(action["key"])
 
-        if name == "key":
-            actions.key(action["key"])
+            case "editDelete":
+                actions.edit.delete()
 
-        if name == "editDelete":
-            actions.edit.delete()
+            case "sleep":
+                if "ms" in action:
+                    actions.sleep(f"{action['ms']}ms")
+                else:
+                    actions.sleep("200ms")
 
-        if name == "sleep":
-            if "ms" in action:
-                actions.sleep(f"{action['ms']}ms")
-            else:
-                actions.sleep("200ms")
+            case "responseValue":
+                result = action["value"]
 
-        if name == "responseValue":
-            result = action["value"]
-
-        if name == "openInNewTab":
-            actions.app.tab_open()
-            actions.browser.go(action["url"])
+            case "openInNewTab":
+                actions.app.tab_open()
+                actions.browser.go(action["url"])
 
     return result
 
