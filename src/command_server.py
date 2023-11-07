@@ -102,7 +102,7 @@ def handle_response(response: Any, request_action: dict):
                 actions.clip.set_text(action["textToCopy"])
 
             case "typeTargetCharacters":
-                actions.insert(action["target"][0])
+                actions.insert(request_action["target"][0])
 
             case "focusPage":
                 try:
