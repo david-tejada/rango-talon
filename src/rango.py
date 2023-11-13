@@ -4,14 +4,14 @@ from typing import Union
 mod = Module()
 
 
-@mod.capture(rule="<user.letter> | <user.letter> <user.letter>")
-def rango_hint(m) -> str:
-    return "".join(m.letter_list)
-
-
 @mod.capture(rule="<user.letter> (twice | second)")
 def rango_hint_double(m) -> str:
     return m.letter + m.letter
+
+
+@mod.capture(rule="<user.letter> | <user.letter> <user.letter> | <user.rango_hint_double>")
+def rango_hint(m) -> str:
+    return "".join(m)
 
 
 @mod.capture(rule="<user.rango_hint> (and <user.rango_hint>)*")
