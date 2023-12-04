@@ -63,6 +63,10 @@ class Actions:
             "runActionOnReference", command, reference
         )
 
+    def rango_get_bare_title() -> str:
+        """Returns the title of the currently focused tab without including the decorations"""
+        title = actions.user.rango_command_without_target("getBareTitle")
+
     def rango_force_explicit_clicking():
         """Forces Rango explicit clicking"""
         ctx.tags = ["user.rango_explicit_clicking_forced"]
