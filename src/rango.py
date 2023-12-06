@@ -2,6 +2,7 @@ from talon import Module, Context, actions
 from typing import Union
 
 mod = Module()
+ctx = Context()
 
 
 @mod.capture(rule="<user.letter> (twice | second)")
@@ -62,7 +63,10 @@ class Actions:
             "runActionOnReference", command, reference
         )
 
-    def rango_get_bare_title() -> str:
-        """Returns the title of the currently focused tab without including the decorations"""
-        title = actions.user.rango_command_without_target("getBareTitle")
-        print(title)
+    def rango_force_explicit_clicking():
+        """Forces Rango explicit clicking"""
+        ctx.tags = ["user.rango_explicit_clicking_forced"]
+
+    def rango_force_direct_clicking():
+        """Forces Rango direct clicking"""
+        ctx.tags = ["user.rango_direct_clicking_forced"]
