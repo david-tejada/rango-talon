@@ -237,3 +237,6 @@ mark clear <user.word>: user.rango_command_without_target("removeReference", wor
 click mark <user.word>: user.rango_run_action_on_reference("clickElement", word)
 focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
 hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
+
+rango explicit: user.rango_force_explicit_clicking()
+rango direct: user.rango_force_direct_clicking()

@@ -2,6 +2,7 @@ from talon import Module, Context, actions
 from typing import Union
 
 mod = Module()
+ctx = Context()
 
 
 @mod.capture(rule="<user.letter> (twice | second)")
@@ -61,3 +62,11 @@ class Actions:
         actions.user.rango_command_without_target(
             "runActionOnReference", command, reference
         )
+
+    def rango_force_explicit_clicking():
+        """Forces Rango explicit clicking"""
+        ctx.tags = ["user.rango_explicit_clicking_forced"]
+
+    def rango_force_direct_clicking():
+        """Forces Rango direct clicking"""
+        ctx.tags = ["user.rango_direct_clicking_forced"]
