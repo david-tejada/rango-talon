@@ -26,7 +26,7 @@ ctx.lists["user.rango_page_location_property"] = {
 }
 ctx.lists["user.rango_page"] = {
     "sponsor": "https://github.com/sponsors/david-tejada",
-    "read me": "https://github.com/david-tejada/rango/blob/main/readme.md",
+    "read me": "https://rango.click",
     "issues": "https://github.com/david-tejada/rango/issues",
     "new issue": "https://github.com/david-tejada/rango/issues/new",
     "changelog": "https://github.com/david-tejada/rango/blob/main/CHANGELOG.md",
