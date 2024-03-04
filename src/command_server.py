@@ -58,8 +58,6 @@ def read_json_response_with_timeout(timeout_seconds) -> Any:
         # small sleeps due to clock slip
         sleep_time = max(min(sleep_time * 2, time_left), MINIMUM_SLEEP_TIME_SECONDS)
 
-    return message
-
 
 def send_request_and_wait(action: dict) -> Any:
     message = {"version": 1, "type": "request", "action": action}
