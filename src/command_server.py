@@ -36,18 +36,15 @@ def read_json_response_with_timeout(timeout_seconds) -> Any:
         raw_text = clip.text()
         try:
             message = json.loads(raw_text)
+            if message["type"] == "response":
+                return message
         # We make sure the message is valid JSON. For example, if a click command
         # results in something being copied to the clipboard and we check the clipboard
         # before Rango has time to copy the response to the clipboard.
         except ValueError as error:
-            if initial_raw_text != raw_text:
-                continue
-            else:
+            if initial_raw_text == raw_text:
                 # Sanity check to make sure the initial request was valid JSON
                 raise ValueError("The request message wasn't valid JSON")
-
-        if message["type"] == "response":
-            break
 
         actions.sleep(sleep_time)
 
@@ -60,8 +57,6 @@ def read_json_response_with_timeout(timeout_seconds) -> Any:
         # NB: We use minimum sleep time here to ensure that we don't spin with
         # small sleeps due to clock slip
         sleep_time = max(min(sleep_time * 2, time_left), MINIMUM_SLEEP_TIME_SECONDS)
-
-    return message
 
 
 def send_request_and_wait(action: dict) -> Any:
