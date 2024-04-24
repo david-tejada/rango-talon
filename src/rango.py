@@ -65,6 +65,14 @@ class Actions:
             "runActionOnReference", command, reference
         )
 
+    def rango_run_action_on_text_matched_element(
+        command: str, text: str, prioritize_viewport: Union[bool, None] = False
+    ):
+        """Runs a Rango command on a hintable element found using fuzzy search"""
+        actions.user.rango_command_without_target(
+            "runActionOnTextMatchedElement", command, text, prioritize_viewport
+        )
+
     def rango_get_bare_title() -> str:
         """Returns the title of the currently focused tab without including the decorations"""
         title = actions.user.rango_command_without_target("getBareTitle")

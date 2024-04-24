@@ -23,6 +23,7 @@ class Actions:
         actionType: str,
         arg: Union[str, float, None] = None,
         arg2: Union[str, None] = None,
+        arg3: Union[bool, None] = None,
     ):
         """Executes a Rango command without a target"""
         action = {"type": actionType}
@@ -30,4 +31,6 @@ class Actions:
             action["arg"] = arg
         if arg2:
             action["arg2"] = arg2
+        if arg3:
+            action["arg3"] = arg3
         return actions.user.rango_run_command(action)
