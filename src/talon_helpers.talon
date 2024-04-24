@@ -1,4 +1,4 @@
-tag: user.talon
+code.language: talon
 -
 # Helpers to make scripting using references easier
 click rango mark <user.word>: "user.rango_run_action_on_reference(\"clickElement\", \"{word}\")"
