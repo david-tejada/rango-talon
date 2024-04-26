@@ -239,8 +239,10 @@ focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
 hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
 
 # Run action by matching the text of an element
-click text <user.text>:
+follow <user.text>:
   user.rango_run_action_on_text_matched_element("clickElement", text, true)
+button <user.text>:
+  user.rango_run_action_on_text_matched_element("clickElement", text, false)
 focus text <user.text>:
   user.rango_run_action_on_text_matched_element("focusElement", text, true)
 hover text <user.text>:
