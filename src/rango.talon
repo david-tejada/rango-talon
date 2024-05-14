@@ -73,6 +73,10 @@ dismiss: user.rango_command_without_target("unhoverAll")
 show <user.rango_target>:
   user.rango_command_with_target("showLink", rango_target)
 
+# Hide hint
+hide <user.rango_target>:
+  user.rango_command_with_target("hideHint", rango_target)
+
 # Scroll
 upper: user.rango_command_without_target("scrollUpPage")
 upper <number>: user.rango_command_without_target("scrollUpPage", number)
