@@ -234,6 +234,7 @@ rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTa
 
 #  Hint/element references for scripting
 mark <user.rango_target> as <user.word>: user.rango_command_with_target("saveReference", rango_target, word)
+mark this as <user.word>: user.rango_command_without_target("saveReferenceForActiveElement", word)
 mark show: user.rango_command_without_target("showReferences")
 mark clear <user.word>: user.rango_command_without_target("removeReference", word)
 
