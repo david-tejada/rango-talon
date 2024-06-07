@@ -20,3 +20,8 @@ class BrowserActions:
 
     def go_forward():
         actions.user.rango_command_without_target("historyGoForward")
+
+@ctx.action_class("user")
+class UserActions:
+    def tab_duplicate():
+        actions.user.rango_command_without_target("cloneCurrentTab")
