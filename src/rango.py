@@ -10,7 +10,9 @@ def rango_hint_double(m) -> str:
     return m.letter + m.letter
 
 
-@mod.capture(rule="<user.letter> | <user.letter> <user.letter> | <user.rango_hint_double>")
+@mod.capture(
+    rule="<user.letter> | <user.letter> <user.letter> | <user.rango_hint_double>"
+)
 def rango_hint(m) -> str:
     return "".join(m)
 
@@ -61,6 +63,14 @@ class Actions:
         """Runs a Rango command on a mark"""
         actions.user.rango_command_without_target(
             "runActionOnReference", command, reference
+        )
+
+    def rango_run_action_on_text_matched_element(
+        command: str, text: str, prioritize_viewport: Union[bool, None] = False
+    ):
+        """Runs a Rango command on a hintable element found using fuzzy search"""
+        actions.user.rango_command_without_target(
+            "runActionOnTextMatchedElement", command, text, prioritize_viewport
         )
 
     def rango_get_bare_title() -> str:
