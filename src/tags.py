@@ -2,6 +2,8 @@ from talon import Module, settings
 
 mod = Module()
 
+mod.tag("rango_disabled", desc="Tag for disabling Rango")
+
 mod.tag(
     "rango_direct_clicking",
     desc="Tag for enabling direct clicking in Rango",
