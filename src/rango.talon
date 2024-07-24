@@ -24,6 +24,10 @@ flick <user.rango_target>:
   user.rango_command_with_target("activateTab", rango_tab_marker)
 tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
 
+# Close tab
+tab close <user.rango_tab_marker> (and <user.rango_tab_marker>)*:
+  user.rango_command_with_target("closeTab", rango_tab_marker_list)
+
 # Open in a new tab
 blank <user.rango_target>:
   user.rango_command_with_target("openInNewTab", rango_target)
