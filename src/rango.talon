@@ -26,6 +26,7 @@ tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
 
 # Focus tab with audio
 go sound: user.rango_command_without_target("focusNextTabWithSound")
+go muted: user.rango_command_without_target("focusNextMutedTab")
 go last sound: user.rango_command_without_target("focusTabLastSounded")
 
 # Close tab
