@@ -25,6 +25,7 @@ flick <user.rango_target>:
 tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
 
 # Focus tab with audio
+go sound: user.rango_command_without_target("focusNextTabWithSound")
 go last sound: user.rango_command_without_target("focusTabLastSounded")
 
 # Close tab
