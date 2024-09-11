@@ -30,6 +30,16 @@ go playing: user.rango_command_without_target("focusNextAudibleTab")
 go muted: user.rango_command_without_target("focusNextMutedTab")
 go last sound: user.rango_command_without_target("focusTabLastSounded")
 
+# Mute tabs
+mute this: user.rango_command_without_target("muteCurrentTab")
+unmute this: user.rango_command_without_target("unmuteCurrentTab")
+mute next: user.rango_command_without_target("muteNextTabWithSound")
+unmute next: user.rango_command_without_target("unmuteNextMutedTab")
+mute <user.rango_tab_markers>: user.rango_command_with_target("muteTab", rango_tab_markers)
+unmute <user.rango_tab_markers>: user.rango_command_with_target("unmuteTab", rango_tab_markers)
+mute all: user.rango_command_without_target("muteAllTabsWithSound")
+unmute all: user.rango_command_without_target("unmuteAllMutedTabs")
+
 # Close tab
 tab close <user.rango_tab_markers>:
   user.rango_command_with_target("closeTab", rango_tab_markers)
