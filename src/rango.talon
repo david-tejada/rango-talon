@@ -20,8 +20,8 @@ flick <user.rango_target>:
   key(enter)
 
 # Focus tab
-(go tab | slot) <user.rango_tab_marker>:
-  user.rango_command_with_target("activateTab", rango_tab_marker)
+(go tab | slot) <user.rango_tab_markers>:
+  user.rango_command_with_target("activateTab", rango_tab_markers)
 tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
 
 # Focus tab with audio
@@ -31,8 +31,8 @@ go muted: user.rango_command_without_target("focusNextMutedTab")
 go last sound: user.rango_command_without_target("focusTabLastSounded")
 
 # Close tab
-tab close <user.rango_tab_marker> (and <user.rango_tab_marker>)*:
-  user.rango_command_with_target("closeTab", rango_tab_marker_list)
+tab close <user.rango_tab_markers>:
+  user.rango_command_with_target("closeTab", rango_tab_markers)
 
 # Open in a new tab
 blank <user.rango_target>:

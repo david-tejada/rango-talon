@@ -27,6 +27,11 @@ def rango_tab_marker(m) -> str:
     return "".join(m)
 
 
+@mod.capture(rule="<user.rango_tab_marker> (and <user.rango_tab_marker>)*")
+def rango_tab_markers(m) -> list[str]:
+    return m.rango_tab_marker_list
+
+
 @mod.action_class
 class Actions:
     def rango_toggle_hints():
