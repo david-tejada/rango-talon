@@ -1,6 +1,5 @@
 from talon import Context, actions
-from ..overrides import safari_version # only relative imports work
-
+from ..overrides import safari_version  # only relative imports work
 
 ctx = Context()
 ctx.matches = r"""
@@ -8,9 +7,11 @@ tag: browser
 app: safari
 """
 
+_SAFARI_VERSION = safari_version.get()
+_HOTKEY = "ctrl-shift-keypad_3" if _SAFARI_VERSION.startswith("18.") else "ctrl-shift-3"
+
+
 @ctx.action_class("user")
 class UserActions:
     def rango_type_hotkey():
-        version = safari_version.get()
-        key = "ctrl-shift-keypad_3" if version.startswith('18.') else "ctrl-shift-3"
-        actions.key(key)
+        actions.key(_HOTKEY)
