@@ -1,5 +1,5 @@
 from talon import Context, actions
-from ..overrides import safari_version
+from ..overrides import safari_version # only relative imports work
 
 
 ctx = Context()
