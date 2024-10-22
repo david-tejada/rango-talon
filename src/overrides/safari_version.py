@@ -2,23 +2,15 @@ import os
 import subprocess
 import plistlib
 
-
-_safari_version = ""
 _SAFARI_BUNDLE = "com.apple.Safari"
 
 
-def get() -> str:
-    global _safari_version
-    if _safari_version != "":
-        return _safari_version
-
+def get_safari_version() -> str:
     try:
-        _safari_version = _get_app_version_by_bundle_id(_SAFARI_BUNDLE)
+        return _get_app_version_by_bundle_id(_SAFARI_BUNDLE)
     except Exception as e:
-        _safari_version = "unknown"
         print("Exception retrieving safari version:", e.__class__, e)
-    finally:
-        return _safari_version
+        return "unknown"
 
 
 def _get_app_version_by_bundle_id(id: str) -> str:
