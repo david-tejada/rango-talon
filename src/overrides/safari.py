@@ -1,5 +1,5 @@
 from talon import Context, actions
-from .safari_version import get_safari_version  # only relative imports work
+from .safari_version import get_safari_version
 
 ctx = Context()
 ctx.matches = r"""
