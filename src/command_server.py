@@ -1,7 +1,8 @@
-from talon import Module, clip, actions
 import json
 import time
-from typing import Union, Any
+from typing import Any, Union
+
+from talon import Module, actions, clip
 
 mod = Module()
 
@@ -97,6 +98,9 @@ def handle_response(response: Any, request_action: dict):
 
     for action in response_actions:
         match action["name"]:
+            case "printError":
+                print("Rango Error:", action["message"])
+
             case "focusPageAndResend":
                 try:
                     actions.browser.focus_page()
