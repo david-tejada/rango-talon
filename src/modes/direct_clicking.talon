@@ -8,4 +8,4 @@ and not tag: user.rango_disabled
 and tag: user.rango_direct_clicking_forced
 -
 
-^<user.rango_target>$: user.rango_command_with_target("directClickElement", rango_target)
+^<user.rango_direct_clicking_target>$: user.rango_direct_click_element(rango_direct_clicking_target)

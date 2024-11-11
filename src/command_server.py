@@ -4,6 +4,8 @@ from typing import Any, Union
 
 from talon import Module, actions, clip
 
+from .versions import COMMAND_VERSION
+
 mod = Module()
 
 MINIMUM_SLEEP_TIME_SECONDS = 0.0005
@@ -26,7 +28,11 @@ def set_transient_clipboard_text(text: str):
 # This doesn't wait for the extension to respond to avoid creating an infinite
 # loop if the extension is not responsive
 def send_request_timed_out():
-    message = {"version": 1, "type": "request", "action": {"type": "requestTimedOut"}}
+    message = {
+        "version": COMMAND_VERSION,
+        "type": "request",
+        "action": {"name": "requestTimedOut"},
+    }
     json_message = json.dumps(message)
     set_transient_clipboard_text(json_message)
     actions.user.rango_type_hotkey()
@@ -74,9 +80,8 @@ def read_json_response_with_timeout(timeout_seconds) -> Any:
         sleep_time = max(min(sleep_time * 2, time_left), MINIMUM_SLEEP_TIME_SECONDS)
 
 
-def send_request_and_wait(action: dict) -> Any:
-    message = {"version": 1, "type": "request", "action": action}
-    json_message = json.dumps(message)
+def send_request_and_wait(command: dict) -> Any:
+    json_message = json.dumps(command)
     with clip.revert():
         set_transient_clipboard_text(json_message)
         actions.user.rango_type_hotkey()
@@ -115,7 +120,7 @@ def handle_response(response: Any, request_action: dict):
                 actions.clip.set_text(action["textToCopy"])
 
             case "typeTargetCharacters":
-                actions.insert(request_action["target"][0])
+                actions.insert(request_action["target"]["mark"]["value"])
 
             case "focusPage":
                 try:
@@ -154,5 +159,6 @@ class Actions:
 
     def rango_run_command(action: dict):
         """Sends a request to the Rango extension, waits for the response and handles it"""
-        response = send_request_and_wait(action)
+        command = {"version": COMMAND_VERSION, "type": "request", "action": action}
+        response = send_request_and_wait(command)
         return handle_response(response, action)

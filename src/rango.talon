@@ -4,275 +4,216 @@ and not tag: user.rango_disabled
 tag(): user.rango_direct_clicking
 
 # Click
-click <user.rango_target>:
-  user.rango_command_with_target("clickElement", rango_target)
+click <user.rango_target>: user.rango_click_element(rango_target)
 
 # Focus
-focus <user.rango_target>:
-  user.rango_command_with_target("focusElement", rango_target)
+focus <user.rango_target>: user.rango_focus_element(rango_target)
 
-go input:
-  user.rango_command_without_target("focusFirstInput")
+go input: user.rango_focus_first_input()
 
 # Focus and Enter
 flick <user.rango_target>:
-  user.rango_command_with_target("focusElement", rango_target)
+  user.rango_focus_element(rango_target)
   key(enter)
 
 # Focus tab
-(go tab | slot) <user.rango_tab_markers>:
-  user.rango_command_with_target("activateTab", rango_tab_markers)
-tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
+(go tab | slot) <user.rango_tab_target>: user.rango_activate_tab(rango_tab_target)
+tab (marker | hint) refresh: user.rango_refresh_tab_hints()
 
 # Focus tab with audio
-go sound: user.rango_command_without_target("focusNextTabWithSound")
-go playing: user.rango_command_without_target("focusNextAudibleTab")
-go muted: user.rango_command_without_target("focusNextMutedTab")
-go last sound: user.rango_command_without_target("focusTabLastSounded")
+go sound: user.rango_focus_next_tab_with_sound()
+go playing: user.rango_focus_next_audible_tab()
+go muted: user.rango_focus_next_muted_tab()
+go last sound: user.rango_focus_tab_last_sounded()
 
 # Mute tabs
-mute this: user.rango_command_without_target("muteCurrentTab")
-unmute this: user.rango_command_without_target("unmuteCurrentTab")
-mute next: user.rango_command_without_target("muteNextTabWithSound")
-unmute next: user.rango_command_without_target("unmuteNextMutedTab")
-mute <user.rango_tab_markers>: user.rango_command_with_target("muteTab", rango_tab_markers)
-unmute <user.rango_tab_markers>: user.rango_command_with_target("unmuteTab", rango_tab_markers)
-mute all: user.rango_command_without_target("muteAllTabsWithSound")
-unmute all: user.rango_command_without_target("unmuteAllMutedTabs")
+mute this: user.rango_mute_current_tab()
+unmute this: user.rango_unmute_current_tab()
+mute next: user.rango_mute_next_tab_with_sound()
+unmute next: user.rango_unmute_next_muted_tab()
+mute <user.rango_tab_target>: user.rango_mute_tab(rango_tab_target)
+unmute <user.rango_tab_target>: user.rango_unmute_tab(rango_tab_target)
+mute all: user.rango_mute_all_tabs_with_sound()
+unmute all: user.rango_unmute_all_muted_tabs()
 
 # Close tab
-tab close <user.rango_tab_markers>:
-  user.rango_command_with_target("closeTab", rango_tab_markers)
+tab close <user.rango_tab_target>: user.rango_close_tab(rango_tab_target)
 
 # Open in a new tab
-blank <user.rango_target>:
-  user.rango_command_with_target("openInNewTab", rango_target)
-stash <user.rango_target>:
-  user.rango_command_with_target("openInBackgroundTab", rango_target)
+blank <user.rango_target>: user.rango_open_in_new_tab(rango_target)
+stash <user.rango_target>: user.rango_open_in_background_tab(rango_target)
 
 # Navigation
-go root: user.rango_command_without_target("navigateToPageRoot")
-page next: user.rango_command_without_target("navigateToNextPage")
-page last: user.rango_command_without_target("navigateToPreviousPage")
+go root: user.rango_navigate_to_page_root()
+page next: user.rango_navigate_to_next_page()
+page last: user.rango_navigate_to_previous_page()
 
 # Move current tab to a new window
-tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
+tab split: user.rango_move_tab_to_new_window()
 
 # Focus previous tab
-tab back: user.rango_command_without_target("focusPreviousTab")
+tab back: user.rango_focus_previous_tab()
 
 # Focus or create tab from your `talonhub/community` websites.csv
-visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
+visit {user.website}: user.rango_focus_or_create_tab_by_url(website)
 
 # Focus tab by text
-tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
-tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
-tab behind: user.rango_command_without_target("cycleTabsByText", -1)
+tab hunt <user.text>: user.rango_focus_tab_by_text(text)
+tab ahead: user.rango_cycle_tabs_by_text(1)
+tab behind: user.rango_cycle_tabs_by_text(-1)
 
 # Close tabs
-tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
-tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
-tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
-tab close first [<number_small>]:
-  user.rango_command_without_target("closeTabsLeftEndInWindow", number_small or 1)
-tab close final [<number_small>]:
-  user.rango_command_without_target("closeTabsRightEndInWindow", number_small or 1)
-tab close previous [<number_small>]:
-  user.rango_command_without_target("closePreviousTabsInWindow", number_small or 1)
-tab close next [<number_small>]:
-  user.rango_command_without_target("closeNextTabsInWindow", number_small or 1)
+tab close other: user.rango_close_other_tabs()
+tab close left: user.rango_close_tabs_to_left()
+tab close right: user.rango_close_tabs_to_right()
+tab close first [<number_small>]: user.rango_close_tabs_left_end(number_small or 1)
+tab close final [<number_small>]: user.rango_close_tabs_right_end(number_small or 1)
+tab close previous [<number_small>]: user.rango_close_previous_tabs(number_small or 1)
+tab close next [<number_small>]: user.rango_close_next_tabs(number_small or 1)
 
 # Clone tab
-tab clone: user.rango_command_without_target("cloneCurrentTab")
+tab clone: user.rango_clone_current_tab()
 
 # Hover
-hover <user.rango_target>:
-  user.rango_command_with_target("hoverElement", rango_target)
-dismiss: user.rango_command_without_target("unhoverAll")
+hover <user.rango_target>: user.rango_hover_element(rango_target)
+dismiss: user.rango_unhover_all()
 
 # Show link address
-show <user.rango_target>:
-  user.rango_command_with_target("showLink", rango_target)
+show <user.rango_target>: user.rango_show_link(rango_target)
 
 # Hide hint
-hide <user.rango_target>:
-  user.rango_command_with_target("hideHint", rango_target)
+hide <user.rango_target>: user.rango_hide_hint(rango_target)
 
 # Scroll
-upper: user.rango_command_without_target("scrollUpPage")
-upper <number>: user.rango_command_without_target("scrollUpPage", number)
-upper all: user.rango_command_without_target("scrollUpPage", 9999)
-tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
+upper: user.rango_scroll_page("up")
+upper <number>: user.rango_scroll_page("up", number)
+upper all: user.rango_scroll_page("up", 9999)
+tiny up: user.rango_scroll_page("up", 0.2)
 
-downer: user.rango_command_without_target("scrollDownPage")
-downer <number>: user.rango_command_without_target("scrollDownPage", number)
-downer all: user.rango_command_without_target("scrollDownPage", 9999)
-tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
+downer: user.rango_scroll_page("down")
+downer <number>: user.rango_scroll_page("down", number)
+downer all: user.rango_scroll_page("down", 9999)
+tiny down: user.rango_scroll_page("down", 0.2)
 
-scroll left: user.rango_command_without_target("scrollLeftPage")
-scroll left all: user.rango_command_without_target("scrollLeftPage", 9999)
-tiny left: user.rango_command_without_target("scrollLeftPage", 0.2)
+scroll left: user.rango_scroll_page("left")
+scroll left all: user.rango_scroll_page("left", 9999)
+tiny left: user.rango_scroll_page("left", 0.2)
 
-scroll right: user.rango_command_without_target("scrollRightPage")
-scroll right all: user.rango_command_without_target("scrollRightPage", 9999)
-tiny right: user.rango_command_without_target("scrollRightPage", 0.2)
+scroll right: user.rango_scroll_page("right")
+scroll right all: user.rango_scroll_page("right", 9999)
+tiny right: user.rango_scroll_page("right", 0.2)
 
 # Scroll the left or right asides
-upper left: user.rango_command_without_target("scrollUpLeftAside")
-upper left all: user.rango_command_without_target("scrollUpLeftAside", 9999)
+upper left: user.rango_scroll_sidebar("Left", "Up")
+upper left all: user.rango_scroll_sidebar("Left", "Up", 9999)
 
-downer left: user.rango_command_without_target("scrollDownLeftAside")
-downer left all: user.rango_command_without_target("scrollDownLeftAside", 9999)
+downer left: user.rango_scroll_sidebar("Left", "Down")
+downer left all: user.rango_scroll_sidebar("Left", "Down", 9999)
 
-upper right: user.rango_command_without_target("scrollUpRightAside")
-upper right all: user.rango_command_without_target("scrollUpRightAside", 9999)
+upper right: user.rango_scroll_sidebar("Right", "Up")
+upper right all: user.rango_scroll_sidebar("Right", "Up", 9999)
 
-downer right: user.rango_command_without_target("scrollDownRightAside")
-downer right all: user.rango_command_without_target("scrollDownRightAside", 9999)
+downer right: user.rango_scroll_sidebar("Right", "Down")
+downer right all: user.rango_scroll_sidebar("Right", "Down", 9999)
 
-# Scroll the scrolling container that contains the target
-upper <user.rango_target>:
-  user.rango_command_with_target("scrollUpAtElement", rango_target)
-tiny up <user.rango_target>:
-  user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
+# Scroll at element
+upper <user.rango_target>: user.rango_scroll_at_element("up", rango_target)
+tiny up <user.rango_target>: user.rango_scroll_at_element("up", rango_target, 0.2)
 
-downer <user.rango_target>:
-  user.rango_command_with_target("scrollDownAtElement", rango_target)
-tiny down <user.rango_target>:
-  user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
+downer <user.rango_target>: user.rango_scroll_at_element("down", rango_target)
+tiny down <user.rango_target>: user.rango_scroll_at_element("down", rango_target, 0.2)
 
-scroll left <user.rango_target>:
-  user.rango_command_with_target("scrollLeftAtElement", rango_target)
-tiny left <user.rango_target>:
-  user.rango_command_with_target("scrollLeftAtElement", rango_target, 0.1)
+scroll left <user.rango_target>: user.rango_scroll_at_element("left", rango_target)
+tiny left <user.rango_target>: user.rango_scroll_at_element("left", rango_target, 0.1)
 
-scroll right <user.rango_target>:
-  user.rango_command_with_target("scrollRightAtElement", rango_target)
-tiny right <user.rango_target>:
-  user.rango_command_with_target("scrollRightAtElement", rango_target, 0.1)
+scroll right <user.rango_target>: user.rango_scroll_at_element("right", rango_target)
+tiny right <user.rango_target>: user.rango_scroll_at_element("right", rango_target, 0.1)
 
 # Repeat previous scroll
-up again: user.rango_command_without_target("scrollUpAtElement")
-down again: user.rango_command_without_target("scrollDownAtElement")
-left again: user.rango_command_without_target("scrollLeftAtElement")
-right again: user.rango_command_without_target("scrollRightAtElement")
+up again: user.rango_scroll_at_element_again("up")
+down again: user.rango_scroll_at_element_again("down")
+left again: user.rango_scroll_at_element_again("left")
+right again: user.rango_scroll_at_element_again("right")
 
 # Snap scroll
-crown <user.rango_target>:
-  user.rango_command_with_target("scrollElementToTop", rango_target)
-bottom <user.rango_target>:
-  user.rango_command_with_target("scrollElementToBottom", rango_target)
-center <user.rango_target>:
-  user.rango_command_with_target("scrollElementToCenter", rango_target)
-
-# Custom scroll positions
-scroll save <user.word>:
-  user.rango_command_without_target("storeScrollPosition", word)
-scroll to <user.word>:
-  user.rango_command_without_target("scrollToPosition", word)
+crown <user.rango_target>: user.rango_scroll_element_to_position("top", rango_target)
+bottom <user.rango_target>: user.rango_scroll_element_to_position("bottom", rango_target)
+center <user.rango_target>: user.rango_scroll_element_to_position("center", rango_target)
 
 # Copy target information
-copy [link] <user.rango_target>:
-  user.rango_command_with_target("copyLink", rango_target)
-copy mark <user.rango_target>:
-  user.rango_command_with_target("copyMarkdownLink", rango_target)
-copy text <user.rango_target>:
-  user.rango_command_with_target("copyElementTextContent", rango_target)
+copy [link] <user.rango_target>: user.rango_copy_link(rango_target)
+copy mark <user.rango_target>: user.rango_copy_markdown_link(rango_target)
+copy text <user.rango_target>: user.rango_copy_element_text(rango_target)
 
 # Paste
 paste to <user.rango_target>:
-  user.rango_insert_text_to_input(clip.text(), rango_target, 0)
+  user.rango_insert_text_to_input(clip.text(), rango_target)
 
 # Insert text to field
 insert <user.text> to <user.rango_target>:
-  user.rango_insert_text_to_input(text, rango_target, 0)
+  user.rango_insert_text_to_input(text, rango_target)
 enter <user.text> to <user.rango_target>:
-  user.rango_insert_text_to_input(text, rango_target, 1)
+  user.rango_insert_text_to_input(text, rango_target, true)
 
 # Cursor position
-pre <user.rango_target>:
-  user.rango_command_with_target("setSelectionBefore", rango_target)
-post <user.rango_target>:
-  user.rango_command_with_target("setSelectionAfter", rango_target)
+pre <user.rango_target>: user.rango_set_selection_before(rango_target)
+post <user.rango_target>: user.rango_set_selection_after(rango_target)
 
 # Clear field
 change <user.rango_target>:
   user.rango_clear_input(rango_target)
 
 # Copy current url information
-copy page {user.rango_page_location_property}:
-  user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
-copy mark address:
-  user.rango_command_without_target("copyCurrentTabMarkdownUrl")
+copy page {user.rango_page_location_property}: user.rango_copy_location_property(rango_page_location_property)
+copy mark address: user.rango_copy_current_tab_markdown_url()
 
 # Modify hints appearance
-hint bigger: user.rango_command_without_target("increaseHintSize")
-hint smaller: user.rango_command_without_target("decreaseHintSize")
-
-# Exclude or include single letter hints
-hint exclude singles: user.rango_command_without_target("excludeSingleLetterHints")
-hint include singles: user.rango_command_without_target("includeSingleLetterHints")
+hint bigger: user.rango_increase_hint_size()
+hint smaller: user.rango_decrease_hint_size()
 
 # Extra hints
-hint extra: user.rango_command_without_target("displayExtraHints")
-hint more: user.rango_command_without_target("displayExcludedHints")
-hint less: user.rango_command_without_target("displayLessHints")
-include <user.rango_target>: user.rango_command_with_target("includeExtraSelectors", rango_target)
-exclude <user.rango_target>: user.rango_command_with_target("excludeExtraSelectors", rango_target)
-exclude all: user.rango_command_without_target("excludeAllHints")
-some more: user.rango_command_without_target("includeOrExcludeMoreSelectors")
-some less: user.rango_command_without_target("includeOrExcludeLessSelectors")
-custom hints save: user.rango_command_without_target("confirmSelectorsCustomization")
-custom hints reset: user.rango_command_without_target("resetCustomSelectors")
+hint extra: user.rango_display_extra_hints()
+hint more: user.rango_display_excluded_hints()
+hint less: user.rango_display_less_hints()
+include <user.rango_target>: user.rango_include_extra_selectors(rango_target)
+exclude <user.rango_target>: user.rango_exclude_extra_selectors(rango_target)
+exclude all: user.rango_exclude_all_hints()
+some more: user.rango_include_or_exclude_more_selectors()
+some less: user.rango_include_or_exclude_less_selectors()
+custom hints save: user.rango_confirm_selectors_customization()
+custom hints reset: user.rango_reset_custom_selectors()
 
 # Show and hide hints
-hints refresh: user.rango_command_without_target("refreshHints")
-hints (toggle | switch): user.rango_command_without_target("toggleHints")
-hints on [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target("enableHints", rango_hints_toggle_levels or "global")
-hints off [{user.rango_hints_toggle_levels}]: 
-  user.rango_command_without_target("disableHints", rango_hints_toggle_levels or "global")
-hints reset {user.rango_hints_toggle_levels}: 
-  user.rango_command_without_target("resetToggleLevel", rango_hints_toggle_levels)
-toggle show:
-  user.rango_command_without_target("displayTogglesStatus")
+hints refresh: user.rango_refresh_hints()
+hints (toggle | switch): user.rango_toggle_hints()
+hints on [{user.rango_hints_toggle_levels}]: user.rango_enable_hints(rango_hints_toggle_levels or "global")
+hints off [{user.rango_hints_toggle_levels}]: user.rango_disable_hints(rango_hints_toggle_levels or "global")
+hints reset {user.rango_hints_toggle_levels}: user.rango_reset_toggle_level(rango_hints_toggle_levels)
+toggle show: user.rango_display_toggles_status()
 
-# Toggle tab markers
-markers (toggle | switch): user.rango_command_without_target("toggleTabMarkers")
+# Toggle tab hints
+(markers | tab hint) (toggle | switch): user.rango_toggle_tab_hints()
 
 # Toggle keyboard clicking
-keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardClicking")
-
-# Enable or disable showing the url in the title
-address in title on: user.rango_command_without_target("enableUrlInTitle")
-address in title off: user.rango_command_without_target("disableUrlInTitle")
+keyboard (toggle | switch): user.rango_toggle_keyboard_clicking()
 
 # Setting page
-rango settings: user.rango_command_without_target("openSettingsPage")
+rango settings: user.rango_open_settings_page()
 
 # Pages
-rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
+rango open {user.rango_page}: user.rango_open_page_in_new_tab(rango_page)
 
 #  Hint/element references for scripting
-mark <user.rango_target> as <user.word>: user.rango_command_with_target("saveReference", rango_target, word)
-mark this as <user.word>: user.rango_command_without_target("saveReferenceForActiveElement", word)
-mark show: user.rango_command_without_target("showReferences")
-mark clear <user.word>: user.rango_command_without_target("removeReference", word)
-
-# Run actions on saved references
-click mark <user.word>: user.rango_run_action_on_reference("clickElement", word)
-focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
-hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
+mark <user.rango_target> as <user.word>: user.rango_save_reference(rango_target, word)
+mark this as <user.word>: user.rango_save_reference_for_active_element(word)
+mark show: user.rango_show_references()
+mark clear <user.word>: user.rango_remove_reference(word)
 
 # Run action by matching the text of an element
 follow <user.text>:
   user.rango_run_action_on_text_matched_element("clickElement", text, true)
 button <user.text>:
   user.rango_run_action_on_text_matched_element("clickElement", text, false)
-focus text <user.text>:
-  user.rango_run_action_on_text_matched_element("focusElement", text, true)
-hover text <user.text>:
-  user.rango_run_action_on_text_matched_element("hoverElement", text, true)
 
 rango explicit: user.rango_force_explicit_clicking()
 rango direct: user.rango_force_direct_clicking()
