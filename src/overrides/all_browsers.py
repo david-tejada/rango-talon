@@ -1,5 +1,7 @@
 from talon import Context, actions
 
+from ..command import run_simple_command
+
 ctx = Context()
 ctx.matches = r"""
 tag: browser
@@ -16,13 +18,13 @@ app: firefox
 @ctx.action_class("browser")
 class BrowserActions:
     def go_back():
-        actions.user.rango_run_command({"name": "historyGoBack"})
+        run_simple_command("historyGoBack")
 
     def go_forward():
-        actions.user.rango_run_command({"name": "historyGoForward"})
+        run_simple_command("historyGoForward")
 
 
 @ctx.action_class("user")
 class UserActions:
     def tab_duplicate():
-        actions.user.rango_run_command({"name": "cloneCurrentTab"})
+        run_simple_command("cloneCurrentTab")

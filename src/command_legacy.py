@@ -27,7 +27,10 @@ class Actions:
     ):
         """Executes a Rango command with target"""
         target = _target_to_array(target)
-        action = {"type": actionType, "target": target, "arg": arg}
+        action = {"type": actionType, "target": target}
+
+        if arg:
+            action["arg"] = arg
 
         return send_request_and_wait(
             {"version": 1, "type": "request", "action": action}
@@ -40,8 +43,13 @@ class Actions:
         arg3: Union[bool, None] = None,
     ):
         """Executes a Rango command without a target"""
-        action = {"type": actionType, "arg": arg, "arg2": arg2, "arg3": arg3}
-
+        action = {"type": actionType}
+        if arg:
+            action["arg"] = arg
+        if arg2:
+            action["arg2"] = arg2
+        if arg3:
+            action["arg3"] = arg3
         return send_request_and_wait(
             {"version": 1, "type": "request", "action": action}
         )
