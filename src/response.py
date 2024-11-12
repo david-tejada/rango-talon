@@ -7,6 +7,7 @@ from .command_server import send_request_and_wait
 
 
 def handle_response(response: Any, request_action: dict):
+    """Handles a response from the browser extension"""
     response_actions = response.get("actions")
 
     result = None

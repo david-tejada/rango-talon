@@ -12,6 +12,7 @@ MINIMUM_SLEEP_TIME_SECONDS = 0.0005
 
 
 def send_request_and_wait(command: dict) -> Any:
+    """Sends a command to the browser extension and waits for a response"""
     json_message = json.dumps(command)
     with clip.revert():
         _set_transient_clipboard_text(json_message)
@@ -65,6 +66,7 @@ def _read_json_response_with_timeout(timeout_seconds) -> Any:
 # This doesn't wait for the extension to respond to avoid creating an infinite
 # loop if the extension is not responsive
 def _send_request_timed_out():
+    """Sends a request timed out message to the browser extension"""
     message = {
         "version": COMMAND_VERSION,
         "type": "request",
@@ -77,6 +79,7 @@ def _send_request_timed_out():
 
 
 def _set_transient_clipboard_text(text: str):
+    """Sets the clipboard to the given text, making it transient"""
     # The try except is only necessary because mime type assignment is only
     # supported in beta. To be removed once it's in public.
     try:
