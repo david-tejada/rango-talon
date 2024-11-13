@@ -48,7 +48,7 @@ class Actions:
             action["arg"] = arg
         if arg2:
             action["arg2"] = arg2
-        if arg3:
+        if arg3 is not None:
             action["arg3"] = arg3
         return send_request_and_wait(
             {"version": 1, "type": "request", "action": action}
