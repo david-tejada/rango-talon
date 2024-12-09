@@ -18,7 +18,7 @@ flick <user.rango_target>:
 
 # Focus tab
 (go tab | slot) <user.rango_tab_target>: user.rango_activate_tab(rango_tab_target)
-tab (marker | hint) refresh: user.rango_refresh_tab_hints()
+[tab] marker refresh: user.rango_refresh_tab_markers()
 
 # Focus tab with audio
 go sound: user.rango_focus_next_tab_with_sound()
@@ -192,7 +192,7 @@ hints reset {user.rango_hints_toggle_levels}: user.rango_reset_toggle_level(rang
 toggle show: user.rango_display_toggles_status()
 
 # Toggle tab hints
-(markers | tab hint) (toggle | switch): user.rango_toggle_tab_hints()
+[tab] marker (toggle | switch): user.rango_toggle_tab_markers()
 
 # Toggle keyboard clicking
 keyboard (toggle | switch): user.rango_toggle_keyboard_clicking()

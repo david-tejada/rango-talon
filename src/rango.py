@@ -33,7 +33,7 @@ class Actions:
         """Switches to a tab using its hint"""
         run_targeted_command("activateTab", tab_target)
 
-    def rango_refresh_tab_hints():
+    def rango_refresh_tab_markers():
         """Refreshes the tab hints"""
         run_simple_command("refreshTabMarkers")
 
@@ -341,8 +341,8 @@ class Actions:
         """Displays the status of all toggles"""
         run_simple_command("displayTogglesStatus")
 
-    # Toggle tab hints
-    def rango_toggle_tab_hints():
+    # Toggle tab markers
+    def rango_toggle_tab_markers():
         """Toggles tab hints"""
         run_simple_command("toggleTabMarkers")
 

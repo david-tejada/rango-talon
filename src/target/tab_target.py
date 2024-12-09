@@ -4,15 +4,15 @@ mod = Module()
 
 
 @mod.capture(rule="<user.letter> | <user.letter> <user.letter>")
-def rango_tab_hint(m) -> str:
+def rango_tab_marker(m) -> str:
     return "".join(m)
 
 
-@mod.capture(rule="<user.rango_tab_hint>")
+@mod.capture(rule="<user.rango_tab_marker>")
 def rango_primitive_tab_target(m) -> dict:
     return {
         "type": "primitive",
-        "mark": {"type": "tabHint", "value": m.rango_tab_hint},
+        "mark": {"type": "tabMarker", "value": m.rango_tab_marker},
     }
 
 
