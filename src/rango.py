@@ -192,17 +192,17 @@ class Actions:
         run_targeted_command("hideHint", target)
 
     # Scroll
-    def rango_scroll_page(direction: str, factor: float = 1):
+    def rango_scroll_page(direction: str, factor: float = 0.66):
         """Scrolls the page in the given direction by the specified factor"""
         command = f"scroll{direction.capitalize()}Page"
         run_simple_command(command, factor=factor)
 
-    def rango_scroll_sidebar(side: str, direction: str, factor: float = 1):
+    def rango_scroll_sidebar(side: str, direction: str, factor: float = 0.66):
         """Scrolls a sidebar up or down"""
         command = f"scroll{direction}{side}Aside"
         run_simple_command(command, factor=factor)
 
-    def rango_scroll_at_element(direction: str, target: dict, factor: float = 1):
+    def rango_scroll_at_element(direction: str, target: dict, factor: float = 0.66):
         """Scrolls at an element in the given direction"""
         command = f"scroll{direction.capitalize()}AtElement"
         run_targeted_command(command, target, factor=factor)
