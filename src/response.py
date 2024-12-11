@@ -46,6 +46,12 @@ def handle_response(response: Any, request_action: dict):
             case "editDelete":
                 actions.edit.delete()
 
+            case "editLineStart":
+                actions.edit.line_start()
+
+            case "editLineEnd":
+                actions.edit.line_end()
+
             case "sleep":
                 if "ms" in action:
                     actions.sleep(f"{action['ms']}ms")
