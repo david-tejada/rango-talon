@@ -27,8 +27,8 @@ def rango_list_hint_target(m) -> dict:
 def rango_range_hint_target(m) -> dict:
     return {
         "type": "range",
-        "start": m.rango_primitive_hint_target_1,
-        "end": m.rango_primitive_hint_target_2,
+        "anchor": m.rango_primitive_hint_target_1,
+        "active": m.rango_primitive_hint_target_2,
     }
 
 
@@ -78,8 +78,8 @@ def rango_list_target(m) -> dict:
 def rango_range_target(m) -> dict:
     return {
         "type": "range",
-        "start": m.rango_primitive_target_1,
-        "end": m.rango_primitive_target_2,
+        "anchor": m.rango_primitive_target_1,
+        "active": m.rango_primitive_target_2,
     }
 
 

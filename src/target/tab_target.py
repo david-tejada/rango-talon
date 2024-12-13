@@ -32,8 +32,8 @@ def rango_list_tab_target(m) -> dict:
 def rango_range_tab_target(m) -> dict:
     return {
         "type": "range",
-        "start": m.rango_primitive_tab_target_1,
-        "end": m.rango_primitive_tab_target_2,
+        "anchor": m.rango_primitive_tab_target_1,
+        "active": m.rango_primitive_tab_target_2,
     }
 
 
