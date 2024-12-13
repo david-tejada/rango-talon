@@ -21,7 +21,20 @@ def rango_list_hint_target(m) -> dict:
     }
 
 
-@mod.capture(rule="<user.rango_primitive_hint_target> | <user.rango_list_hint_target>")
+@mod.capture(
+    rule="<user.rango_primitive_hint_target> until <user.rango_primitive_hint_target>"
+)
+def rango_range_hint_target(m) -> dict:
+    return {
+        "type": "range",
+        "start": m.rango_primitive_hint_target_1,
+        "end": m.rango_primitive_hint_target_2,
+    }
+
+
+@mod.capture(
+    rule="<user.rango_primitive_hint_target> | <user.rango_list_hint_target> | <user.rango_range_hint_target>"
+)
 def rango_direct_clicking_target(m) -> dict:
     return m[0]
 
@@ -61,6 +74,17 @@ def rango_list_target(m) -> dict:
     }
 
 
-@mod.capture(rule="<user.rango_primitive_target> | <user.rango_list_target>")
+@mod.capture(rule="<user.rango_primitive_target> until <user.rango_primitive_target>")
+def rango_range_target(m) -> dict:
+    return {
+        "type": "range",
+        "start": m.rango_primitive_target_1,
+        "end": m.rango_primitive_target_2,
+    }
+
+
+@mod.capture(
+    rule="<user.rango_primitive_target> | <user.rango_list_target> | <user.rango_range_target>"
+)
 def rango_target(m) -> dict:
     return m[0]

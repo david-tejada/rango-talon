@@ -26,6 +26,19 @@ def rango_list_tab_target(m) -> dict:
     }
 
 
-@mod.capture(rule="<user.rango_primitive_tab_target> | <user.rango_list_tab_target>")
+@mod.capture(
+    rule="<user.rango_primitive_tab_target> until <user.rango_primitive_tab_target>"
+)
+def rango_range_tab_target(m) -> dict:
+    return {
+        "type": "range",
+        "start": m.rango_primitive_tab_target_1,
+        "end": m.rango_primitive_tab_target_2,
+    }
+
+
+@mod.capture(
+    rule="<user.rango_primitive_tab_target> | <user.rango_list_tab_target> | <user.rango_range_tab_target>"
+)
 def rango_tab_target(m) -> dict:
     return m[0]
