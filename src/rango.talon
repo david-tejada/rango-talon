@@ -140,6 +140,10 @@ crown <user.rango_target>: user.rango_scroll_element_to_position("top", rango_ta
 bottom <user.rango_target>: user.rango_scroll_element_to_position("bottom", rango_target)
 center <user.rango_target>: user.rango_scroll_element_to_position("center", rango_target)
 
+# Custom scroll positions
+scroll save <user.word>: user.rango_store_scroll_position(word)
+scroll to <user.word>: user.rango_scroll_to_position(word)
+
 # Copy target information
 copy [link] <user.rango_target>: user.rango_copy_link(rango_target)
 copy mark <user.rango_target>: user.rango_copy_markdown_link(rango_target)

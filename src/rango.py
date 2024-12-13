@@ -217,6 +217,15 @@ class Actions:
         command = f"scrollElementTo{position.capitalize()}"
         run_targeted_command(command, target)
 
+    # Scroll positions
+    def rango_store_scroll_position(positionName: str):
+        """Stores the current scroll position with the given name"""
+        run_simple_command("storeScrollPosition", positionName=positionName)
+
+    def rango_scroll_to_position(positionName: str):
+        """Scrolls to a previously stored position"""
+        run_simple_command("scrollToPosition", positionName=positionName)
+
     # Copy
     def rango_copy_link(target: dict):
         """Copies a link address"""
