@@ -212,7 +212,7 @@ class Actions:
         command = f"scroll{direction.capitalize()}AtElement"
         run_simple_command(command)
 
-    def rango_scroll_element_to_position(position: str, target: dict):
+    def rango_snap_scroll(position: str, target: dict):
         """Scrolls an element to the specified position (top/bottom/center)"""
         command = f"scrollElementTo{position.capitalize()}"
         run_targeted_command(command, target)

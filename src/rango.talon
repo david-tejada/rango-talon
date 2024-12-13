@@ -136,9 +136,9 @@ left again: user.rango_scroll_at_element_again("left")
 right again: user.rango_scroll_at_element_again("right")
 
 # Snap scroll
-crown <user.rango_target>: user.rango_scroll_element_to_position("top", rango_target)
-bottom <user.rango_target>: user.rango_scroll_element_to_position("bottom", rango_target)
-center <user.rango_target>: user.rango_scroll_element_to_position("center", rango_target)
+crown <user.rango_target>: user.rango_snap_scroll("top", rango_target)
+bottom <user.rango_target>: user.rango_snap_scroll("bottom", rango_target)
+center <user.rango_target>: user.rango_snap_scroll("center", rango_target)
 
 # Custom scroll positions
 scroll save <user.word>: user.rango_store_scroll_position(word)
