@@ -192,30 +192,19 @@ class Actions:
         run_targeted_command("hideHint", target)
 
     # Scroll
-    def rango_scroll_page(direction: str, factor: float = 0.66):
-        """Scrolls the page in the given direction by the specified factor"""
-        command = f"scroll{direction.capitalize()}Page"
-        run_simple_command(command, factor=factor)
+    def rango_scroll(region: str, direction: str, factor: float = 0.66):
+        """Scrolls the specified region of the page"""
+        run_simple_command("scroll", region=region, direction=direction, factor=factor)
 
-    def rango_scroll_sidebar(side: str, direction: str, factor: float = 0.66):
-        """Scrolls a sidebar up or down"""
-        command = f"scroll{direction}{side}Aside"
-        run_simple_command(command, factor=factor)
-
-    def rango_scroll_at_element(direction: str, target: dict, factor: float = 0.66):
+    def rango_scroll_at_element(target: dict, direction: str, factor: float = 0.66):
         """Scrolls at an element in the given direction"""
-        command = f"scroll{direction.capitalize()}AtElement"
-        run_targeted_command(command, target, factor=factor)
+        run_targeted_command(
+            "scrollAtElement", target, direction=direction, factor=factor
+        )
 
-    def rango_scroll_at_element_again(direction: str):
-        """Repeats the previous scroll at element command"""
-        command = f"scroll{direction.capitalize()}AtElement"
-        run_simple_command(command)
-
-    def rango_snap_scroll(position: str, target: dict):
+    def rango_snap_scroll(target: dict, position: str):
         """Scrolls an element to the specified position (top/bottom/center)"""
-        command = f"scrollElementTo{position.capitalize()}"
-        run_targeted_command(command, target)
+        run_targeted_command("snapScroll", target, position=position)
 
     # Scroll positions
     def rango_store_scroll_position(positionName: str):

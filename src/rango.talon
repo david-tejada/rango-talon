@@ -85,60 +85,60 @@ show <user.rango_target>: user.rango_show_link(rango_target)
 hide <user.rango_target>: user.rango_hide_hint(rango_target)
 
 # Scroll
-upper: user.rango_scroll_page("up")
-upper <number>: user.rango_scroll_page("up", number)
-upper all: user.rango_scroll_page("up", 9999)
-tiny up: user.rango_scroll_page("up", 0.2)
+upper: user.rango_scroll("main", "up")
+upper <number>: user.rango_scroll("main", "up", number)
+upper all: user.rango_scroll("main", "up", 9999)
+tiny up: user.rango_scroll("main", "up", 0.2)
 
-downer: user.rango_scroll_page("down")
-downer <number>: user.rango_scroll_page("down", number)
-downer all: user.rango_scroll_page("down", 9999)
-tiny down: user.rango_scroll_page("down", 0.2)
+downer: user.rango_scroll("main", "down")
+downer <number>: user.rango_scroll("main", "down", number)
+downer all: user.rango_scroll("main", "down", 9999)
+tiny down: user.rango_scroll("main", "down", 0.2)
 
-scroll left: user.rango_scroll_page("left")
-scroll left all: user.rango_scroll_page("left", 9999)
-tiny left: user.rango_scroll_page("left", 0.2)
+scroll left: user.rango_scroll("main", "left")
+scroll left all: user.rango_scroll("main", "left", 9999)
+tiny left: user.rango_scroll("main", "left", 0.2)
 
-scroll right: user.rango_scroll_page("right")
-scroll right all: user.rango_scroll_page("right", 9999)
-tiny right: user.rango_scroll_page("right", 0.2)
+scroll right: user.rango_scroll("main", "right")
+scroll right all: user.rango_scroll("main", "right", 9999)
+tiny right: user.rango_scroll("main", "right", 0.2)
 
-# Scroll the left or right asides
-upper left: user.rango_scroll_sidebar("Left", "Up")
-upper left all: user.rango_scroll_sidebar("Left", "Up", 9999)
+# Scroll the left or right sidebars
+upper left: user.rango_scroll("leftSidebar", "up")
+upper left all: user.rango_scroll("leftSidebar", "up", 9999)
 
-downer left: user.rango_scroll_sidebar("Left", "Down")
-downer left all: user.rango_scroll_sidebar("Left", "Down", 9999)
+downer left: user.rango_scroll("leftSidebar", "down")
+downer left all: user.rango_scroll("leftSidebar", "down", 9999)
 
-upper right: user.rango_scroll_sidebar("Right", "Up")
-upper right all: user.rango_scroll_sidebar("Right", "Up", 9999)
+upper right: user.rango_scroll("rightSidebar", "up")
+upper right all: user.rango_scroll("rightSidebar", "up", 9999)
 
-downer right: user.rango_scroll_sidebar("Right", "Down")
-downer right all: user.rango_scroll_sidebar("Right", "Down", 9999)
+downer right: user.rango_scroll("rightSidebar", "down")
+downer right all: user.rango_scroll("rightSidebar", "down", 9999)
 
 # Scroll at element
-upper <user.rango_target>: user.rango_scroll_at_element("up", rango_target)
-tiny up <user.rango_target>: user.rango_scroll_at_element("up", rango_target, 0.2)
+upper <user.rango_target>: user.rango_scroll_at_element(rango_target, "up")
+tiny up <user.rango_target>: user.rango_scroll_at_element(rango_target, "up", 0.2)
 
-downer <user.rango_target>: user.rango_scroll_at_element("down", rango_target)
-tiny down <user.rango_target>: user.rango_scroll_at_element("down", rango_target, 0.2)
+downer <user.rango_target>: user.rango_scroll_at_element(rango_target, "down")
+tiny down <user.rango_target>: user.rango_scroll_at_element(rango_target, "down", 0.2)
 
-scroll left <user.rango_target>: user.rango_scroll_at_element("left", rango_target)
-tiny left <user.rango_target>: user.rango_scroll_at_element("left", rango_target, 0.1)
+scroll left <user.rango_target>: user.rango_scroll_at_element(rango_target, "left")
+tiny left <user.rango_target>: user.rango_scroll_at_element(rango_target, "left", 0.1)
 
-scroll right <user.rango_target>: user.rango_scroll_at_element("right", rango_target)
-tiny right <user.rango_target>: user.rango_scroll_at_element("right", rango_target, 0.1)
+scroll right <user.rango_target>: user.rango_scroll_at_element(rango_target, "right")
+tiny right <user.rango_target>: user.rango_scroll_at_element(rango_target, "right", 0.1)
 
 # Repeat previous scroll
-up again: user.rango_scroll_at_element_again("up")
-down again: user.rango_scroll_at_element_again("down")
-left again: user.rango_scroll_at_element_again("left")
-right again: user.rango_scroll_at_element_again("right")
+up again: user.rango_scroll("repeatLast", "up")
+down again: user.rango_scroll("repeatLast", "down")
+left again: user.rango_scroll("repeatLast", "left")
+right again: user.rango_scroll("repeatLast", "right")
 
 # Snap scroll
-crown <user.rango_target>: user.rango_snap_scroll("top", rango_target)
-bottom <user.rango_target>: user.rango_snap_scroll("bottom", rango_target)
-center <user.rango_target>: user.rango_snap_scroll("center", rango_target)
+crown <user.rango_target>: user.rango_snap_scroll(rango_target, "top")
+bottom <user.rango_target>: user.rango_snap_scroll(rango_target, "bottom")
+center <user.rango_target>: user.rango_snap_scroll(rango_target, "center")
 
 # Custom scroll positions
 scroll save <user.word>: user.rango_store_scroll_position(word)
