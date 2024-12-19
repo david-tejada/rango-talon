@@ -10,6 +10,23 @@ ctx = Context()
 
 @mod.action_class
 class Actions:
+    # Side panel
+    def rango_open_side_panel():
+        """Opens the side panel"""
+        run_simple_command("openSidePanel")
+
+    def rango_open_side_panel_tabs():
+        """Opens the side panel tabs"""
+        run_simple_command("openSidePanelTabs")
+
+    def rango_open_side_panel_cursorless():
+        """Opens the side panel cursorless"""
+        run_simple_command("openSidePanelCursorless")
+
+    def rango_scroll_tabs(direction: str):
+        """Scrolls the tabs in the side panel"""
+        run_simple_command("scrollTabs", direction=direction)
+
     # Click
     def rango_click_element(target: dict):
         """Clicks an element"""

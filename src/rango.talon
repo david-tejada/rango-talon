@@ -221,3 +221,11 @@ button <user.text>:
 
 rango explicit: user.rango_force_explicit_clicking()
 rango direct: user.rango_force_direct_clicking()
+
+rango side panel: user.rango_open_side_panel()
+panel tabs: user.rango_open_side_panel_tabs()
+panel cursorless: user.rango_open_side_panel_cursorless()
+
+upper tabs: user.rango_scroll_tabs("up")
+downer tabs: user.rango_scroll_tabs("down")
+
