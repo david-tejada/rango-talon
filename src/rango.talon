@@ -229,3 +229,4 @@ panel cursorless: user.rango_open_side_panel_cursorless()
 upper tabs: user.rango_scroll_tabs("up")
 downer tabs: user.rango_scroll_tabs("down")
 
+panel tabs: key(ctrl-shift-6)
