@@ -5,6 +5,9 @@ tag(): user.rango_direct_clicking
 
 # Click
 click <user.rango_target>: user.rango_click_element(rango_target)
+mouse <user.rango_target>: user.rango_mouse_click_element(rango_target, 0)
+menu <user.rango_target>: user.rango_mouse_click_element(rango_target, 1)
+move <user.rango_target>: user.rango_mouse_move_to_element(rango_target)
 
 # Focus
 focus <user.rango_target>: user.rango_focus_element(rango_target)
