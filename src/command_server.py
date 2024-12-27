@@ -38,6 +38,11 @@ def _read_json_response_with_timeout(timeout_seconds) -> Any:
     initial_raw_text = clip.text()
     while True:
         raw_text = clip.text()
+        if raw_text is None:
+            # Skip this iteration if clipboard is empty/None
+            actions.sleep(sleep_time)
+            continue
+
         try:
             message = json.loads(raw_text)
             if message["type"] == "response":

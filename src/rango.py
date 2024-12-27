@@ -3,6 +3,7 @@ from typing import Union
 from talon import Context, Module, actions, ctrl
 
 from .command import run_simple_command, run_targeted_command
+from .get_click_coordinates import get_click_coordinates
 
 mod = Module()
 ctx = Context()
@@ -17,29 +18,16 @@ class Actions:
 
     def rango_mouse_click_element(target: dict, button: int):
         """Clicks an element using mouse"""
-        result = run_targeted_command("drawPattern", target)
-        print("result", result)
-        pattern_location = actions.user.locate_pattern()
-        print("Pattern location", pattern_location)
-        actions.sleep("100ms")
+        x, y = get_click_coordinates(target)
 
-        actions.mouse_move(
-            pattern_location.x + result["left"] + 5,
-            pattern_location.y + result["top"] + 5,
-        )
+        actions.mouse_move(x, y)
+        actions.sleep("50ms")
         ctrl.mouse_click(button=button)
 
     def rango_mouse_move_to_element(target: dict):
-        """Touches an element using mouse"""
-        result = run_targeted_command("drawPattern", target)
-        print("result", result)
-        pattern_location = actions.user.locate_pattern()
-        print("Pattern location", pattern_location)
-        actions.sleep("100ms")
-        actions.mouse_move(
-            pattern_location.x + result["left"] + 5,
-            pattern_location.y + result["top"] + 5,
-        )
+        """Moves the cursor to an element"""
+        x, y = get_click_coordinates(target)
+        actions.mouse_move(x, y)
 
     def rango_direct_click_element(target: dict):
         """Clicks an element using direct clicking"""

@@ -14,8 +14,8 @@ def handle_response(response: Any, request_action: dict):
 
     for action in response_actions:
         match action["name"]:
-            case "printError":
-                print("Rango Error:", action["message"])
+            case "throwError":
+                raise Exception(action["message"])
 
             case "focusPageAndResend":
                 try:

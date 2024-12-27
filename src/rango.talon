@@ -5,19 +5,16 @@ tag(): user.rango_direct_clicking
 
 # Click
 click <user.rango_target>: user.rango_click_element(rango_target)
-mouse <user.rango_target>: user.rango_mouse_click_element(rango_target, 0)
+
+# Mouse click and move
+flick <user.rango_target>: user.rango_mouse_click_element(rango_target, 0)
 menu <user.rango_target>: user.rango_mouse_click_element(rango_target, 1)
-move <user.rango_target>: user.rango_mouse_move_to_element(rango_target)
+move to <user.rango_target>: user.rango_mouse_move_to_element(rango_target)
 
 # Focus
 focus <user.rango_target>: user.rango_focus_element(rango_target)
 
 go input: user.rango_focus_first_input()
-
-# Focus and Enter
-flick <user.rango_target>:
-  user.rango_focus_element(rango_target)
-  key(enter)
 
 # Focus tab
 (go tab | slot) <user.rango_tab_target>: user.rango_activate_tab(rango_tab_target)
@@ -89,12 +86,12 @@ hide <user.rango_target>: user.rango_hide_hint(rango_target)
 
 # Scroll
 upper: user.rango_scroll("main", "up")
-upper <number_small>: user.rango_scroll("main", "up", number)
+upper <number_small>: user.rango_scroll("main", "up", number_small)
 upper all: user.rango_scroll("main", "up", 9999)
 tiny up: user.rango_scroll("main", "up", 0.2)
 
 downer: user.rango_scroll("main", "down")
-downer <number_small>: user.rango_scroll("main", "down", number)
+downer <number_small>: user.rango_scroll("main", "down", number_small)
 downer all: user.rango_scroll("main", "down", 9999)
 tiny down: user.rango_scroll("main", "down", 0.2)
 
