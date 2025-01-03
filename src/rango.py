@@ -263,7 +263,7 @@ class Actions:
         run_targeted_command("setSelectionAfter", target)
 
     # Clear field
-    def rango_clear_input(target: Union[str, list[str]]):
+    def rango_clear_input(target: dict):
         """Removes the contents of an input"""
         if actions.user.rango_try_to_focus_and_check_is_editable(target):
             actions.edit.select_all()
