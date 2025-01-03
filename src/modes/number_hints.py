@@ -11,6 +11,12 @@ def rango_hint(m) -> str:
     return "".join(m)
 
 
-@ctx.capture("user.rango_target", rule="<user.rango_hint> (plus <user.rango_hint>)*")
-def rango_target(m) -> list[str]:
-    return m.rango_hint_list
+@ctx.capture(
+    "user.rango_list_hint_target",
+    rule="<user.rango_primitive_hint_target> (plus <user.rango_primitive_hint_target>)+",
+)
+def rango_list_hint_target(m) -> dict:
+    return {
+        "type": "list",
+        "items": m.rango_primitive_hint_target_list,
+    }
