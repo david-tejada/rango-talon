@@ -1,6 +1,6 @@
 from typing import Union
 
-from talon import Context, Module, actions, ctrl
+from talon import Context, Module, actions, app, ctrl
 
 from .command import run_simple_command, run_targeted_command
 from .get_click_coordinates import get_click_coordinates
@@ -31,7 +31,13 @@ class Actions:
 
     def rango_direct_click_element(target: dict):
         """Clicks an element using direct clicking"""
-        run_targeted_command("directClickElement", target)
+        try:
+            run_targeted_command("directClickElement", target)
+        except TimeoutError as e:
+            app.notify(
+                "Rango direct clicking failed. Make sure the Rango browser extension is installed and enabled."
+            )
+            raise e
 
     # Focus
     def rango_focus_element(target: dict):

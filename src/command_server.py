@@ -61,7 +61,7 @@ def _read_json_response_with_timeout(timeout_seconds) -> Any:
 
         if time_left < 0:
             _send_request_timed_out()
-            raise Exception("Timed out waiting for response")
+            raise TimeoutError("Timed out waiting for response")
 
         # NB: We use minimum sleep time here to ensure that we don't spin with
         # small sleeps due to clock slip
