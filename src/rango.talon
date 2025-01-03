@@ -168,7 +168,8 @@ change <user.rango_target>:
   user.rango_clear_input(rango_target)
 
 # Copy current url information
-copy page {user.rango_page_location_property}: user.rango_copy_location_property(rango_page_location_property)
+copy page {user.rango_page_location_property}:
+  user.rango_copy_location_property(rango_page_location_property)
 copy mark address: user.rango_copy_current_tab_markdown_url()
 
 # Modify hints appearance
@@ -190,9 +191,12 @@ custom hints reset: user.rango_reset_custom_selectors()
 # Show and hide hints
 hints refresh: user.rango_refresh_hints()
 hints (toggle | switch): user.rango_toggle_hints()
-hints on [{user.rango_hints_toggle_levels}]: user.rango_enable_hints(rango_hints_toggle_levels or "global")
-hints off [{user.rango_hints_toggle_levels}]: user.rango_disable_hints(rango_hints_toggle_levels or "global")
-hints reset {user.rango_hints_toggle_levels}: user.rango_reset_toggle_level(rango_hints_toggle_levels)
+hints on [{user.rango_hints_toggle_levels}]:
+  user.rango_enable_hints(rango_hints_toggle_levels or "global")
+hints off [{user.rango_hints_toggle_levels}]:
+  user.rango_disable_hints(rango_hints_toggle_levels or "global")
+hints reset {user.rango_hints_toggle_levels}:
+  user.rango_reset_toggle_level(rango_hints_toggle_levels)
 toggle show: user.rango_display_toggles_status()
 
 # Toggle tab hints
