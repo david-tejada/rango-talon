@@ -54,7 +54,7 @@ def rango_primitive_text_target(m) -> dict:
         "mark": {
             "type": "fuzzyText",
             "value": m.text,
-            "prioritizeViewport": True,
+            "viewportOnly": True,
         },
     }
 

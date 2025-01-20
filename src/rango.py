@@ -414,7 +414,7 @@ class Actions:
         run_targeted_command(actionName, target)
 
     def rango_run_action_on_text_matched_element(
-        actionName: str, text: str, prioritize_viewport: Union[bool, None] = False
+        actionName: str, text: str, viewport_only: Union[bool, None] = False
     ):
         """Runs a Rango command on a hintable element found using fuzzy search"""
         target = {
@@ -422,7 +422,7 @@ class Actions:
             "mark": {
                 "type": "fuzzyText",
                 "value": text,
-                "prioritizeViewport": prioritize_viewport,
+                "viewportOnly": viewport_only,
             },
         }
         run_targeted_command(actionName, target)
