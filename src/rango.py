@@ -420,7 +420,7 @@ class Actions:
         target = {
             "type": "primitive",
             "mark": {
-                "type": "fuzzyText",
+                "type": "textSearch",
                 "value": text,
                 "viewportOnly": viewport_only,
             },

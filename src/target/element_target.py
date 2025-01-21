@@ -52,7 +52,7 @@ def rango_primitive_text_target(m) -> dict:
     return {
         "type": "primitive",
         "mark": {
-            "type": "fuzzyText",
+            "type": "textSearch",
             "value": m.text,
             "viewportOnly": True,
         },
