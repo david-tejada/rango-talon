@@ -39,6 +39,10 @@ class Actions:
             )
             raise e
 
+    def rango_focus_and_activate_element(target: dict):
+        """Focuses and clicks an element"""
+        run_targeted_command("focusAndActivateElement", target)
+
     # Focus
     def rango_focus_element(target: dict):
         """Focuses an element"""

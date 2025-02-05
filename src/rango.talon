@@ -7,12 +7,15 @@ tag(): user.rango_direct_clicking
 click <user.rango_target>: user.rango_click_element(rango_target)
 
 # Mouse click and move
-flick <user.rango_target>: user.rango_mouse_click_element(rango_target, 0)
+mouse click <user.rango_target>: user.rango_mouse_click_element(rango_target, 0)
 menu <user.rango_target>: user.rango_mouse_click_element(rango_target, 1)
 move to <user.rango_target>: user.rango_mouse_move_to_element(rango_target)
 
 # Focus
 focus <user.rango_target>: user.rango_focus_element(rango_target)
+
+# Focus click element
+flick <user.rango_target>: user.rango_focus_and_activate_element(rango_target)
 
 go input: user.rango_focus_first_input()
 
