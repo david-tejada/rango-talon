@@ -140,8 +140,11 @@ right again: user.rango_scroll("repeatLast", "right")
 
 # Snap scroll
 crown <user.rango_target>: user.rango_snap_scroll(rango_target, "top")
-bottom <user.rango_target>: user.rango_snap_scroll(rango_target, "bottom")
 center <user.rango_target>: user.rango_snap_scroll(rango_target, "center")
+bottom <user.rango_target>: user.rango_snap_scroll(rango_target, "bottom")
+crown <user.text>$: user.rango_snap_scroll_text(text, "top")
+center <user.text>$: user.rango_snap_scroll_text(text, "center")
+bottom <user.text>$: user.rango_snap_scroll_text(text, "bottom")
 
 # Custom scroll positions
 scroll save <user.word>: user.rango_store_scroll_position(word)

@@ -230,6 +230,17 @@ class Actions:
         """Scrolls an element to the specified position (top/bottom/center)"""
         run_targeted_command("snapScroll", target, position=position)
 
+    def rango_snap_scroll_text(text: str, position: str):
+        """Scrolls to the specified text (top/bottom/center)"""
+        mark = {
+            "type": "textSearch",
+            "value": text,
+            "viewportOnly": True,
+        }
+        run_targeted_command(
+            "snapScroll", {"type": "primitive", "mark": mark}, position=position
+        )
+
     # Scroll positions
     def rango_store_scroll_position(positionName: str):
         """Stores the current scroll position with the given name"""
