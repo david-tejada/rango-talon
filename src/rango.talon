@@ -153,7 +153,7 @@ scroll to <user.word>: user.rango_scroll_to_position(word)
 # Copy target information
 copy [link] <user.rango_target>: user.rango_copy_link(rango_target)
 copy mark <user.rango_target>: user.rango_copy_markdown_link(rango_target)
-copy text <user.rango_target>: user.rango_copy_element_text(rango_target)
+copy content <user.rango_target>: user.rango_copy_element_text(rango_target)
 
 # Paste
 paste to <user.rango_target>:
