@@ -211,11 +211,10 @@ toggle show: user.rango_display_toggles_status()
 # Toggle keyboard clicking
 keyboard (toggle | switch): user.rango_toggle_keyboard_clicking()
 
-# Setting page
-rango settings: user.rango_open_settings_page()
-
 # Pages
 rango open {user.rango_page}: user.rango_open_page_in_new_tab(rango_page)
+rango settings: user.rango_open_settings_page()
+rango what's new: user.rango_open_whats_new_page()
 
 #  Hint/element references for scripting
 mark <user.rango_target> as <user.text>: user.rango_save_reference(rango_target, text)

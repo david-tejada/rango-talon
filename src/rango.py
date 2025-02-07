@@ -389,6 +389,10 @@ class Actions:
         """Opens the settings page"""
         run_simple_command("openSettingsPage")
 
+    def rango_open_whats_new_page():
+        """Opens the what's new page"""
+        run_simple_command("openWhatsNewPage")
+
     # Pages
     def rango_open_page_in_new_tab(url: str):
         """Opens a specific page in a new tab"""
