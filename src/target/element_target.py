@@ -39,11 +39,11 @@ def rango_direct_clicking_target(m) -> dict:
     return m[0]
 
 
-@mod.capture(rule="mark <user.word>")
+@mod.capture(rule="mark <user.text>")
 def rango_primitive_reference_target(m) -> dict:
     return {
         "type": "primitive",
-        "mark": {"type": "elementReference", "value": m.word},
+        "mark": {"type": "elementReference", "value": m.text},
     }
 
 

@@ -218,10 +218,10 @@ rango settings: user.rango_open_settings_page()
 rango open {user.rango_page}: user.rango_open_page_in_new_tab(rango_page)
 
 #  Hint/element references for scripting
-mark <user.rango_target> as <user.word>: user.rango_save_reference(rango_target, word)
-mark this as <user.word>: user.rango_save_reference_for_active_element(word)
+mark <user.rango_target> as <user.text>: user.rango_save_reference(rango_target, text)
+mark this as <user.text>: user.rango_save_reference_for_active_element(text)
 mark show: user.rango_show_references()
-mark clear <user.word>: user.rango_remove_reference(word)
+mark clear <user.text>: user.rango_remove_reference(text)
 
 # Run action by matching the text of an element
 follow <user.text>:
