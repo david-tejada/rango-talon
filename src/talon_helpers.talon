@@ -3,9 +3,9 @@ code.language: talon
 # Helpers to make scripting easier
 
 # Using references
-click rango mark <user.word>: "user.rango_run_action_on_reference(\"clickElement\", \"{word}\")"
-focus rango mark <user.word>: "user.rango_run_action_on_reference(\"focusElement\", \"{word}\")"
-hover rango mark <user.word>: "user.rango_run_action_on_reference(\"hoverElement\", \"{word}\")"
+click rango mark <user.text>: "user.rango_run_action_on_reference(\"clickElement\", \"{text}\")"
+focus rango mark <user.text>: "user.rango_run_action_on_reference(\"focusElement\", \"{text}\")"
+hover rango mark <user.text>: "user.rango_run_action_on_reference(\"hoverElement\", \"{text}\")"
 
 # Using fuzzy search with the text of the element
 click rango text <user.text>: "user.rango_run_action_on_text_matched_element(\"clickElement\", \"{text}\")"
