@@ -4,7 +4,6 @@ required_captures = [
     "number_small",
     "user.number_string",
     "user.letter",
-    "user.word",
     "user.text",
 ]
 
