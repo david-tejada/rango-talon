@@ -147,8 +147,8 @@ center <user.text>$: user.rango_snap_scroll_text(text, "center")
 bottom <user.text>$: user.rango_snap_scroll_text(text, "bottom")
 
 # Custom scroll positions
-scroll save <user.word>: user.rango_store_scroll_position(word)
-scroll to <user.word>: user.rango_scroll_to_position(word)
+scroll save <user.text>: user.rango_store_scroll_position(text)
+scroll to <user.text>: user.rango_scroll_to_position(text)
 
 # Copy target information
 copy [link] <user.rango_target>: user.rango_copy_link(rango_target)
