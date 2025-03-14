@@ -445,3 +445,11 @@ class Actions:
             },
         }
         run_targeted_command(actionName, target)
+
+    def rango_force_explicit_clicking():
+        """Forces Rango explicit clicking"""
+        ctx.tags = ["user.rango_explicit_clicking_forced"]
+
+    def rango_force_direct_clicking():
+        """Forces Rango direct clicking"""
+        ctx.tags = ["user.rango_direct_clicking_forced"]
