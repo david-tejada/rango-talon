@@ -111,6 +111,23 @@ class Actions:
         """Unmutes all muted tabs"""
         run_simple_command("unmuteAllMutedTabs")
 
+    # Pin tabs
+    def rango_pin_current_tab():
+        """Pins the current tab"""
+        run_simple_command("pinCurrentTab")
+
+    def rango_unpin_current_tab():
+        """Unpins the current tab"""
+        run_simple_command("unpinCurrentTab")
+
+    def rango_pin_tab(tab_target: dict):
+        """Pins a tab using its hint"""
+        run_targeted_command("pinTab", tab_target)
+
+    def rango_unpin_tab(tab_target: dict):
+        """Unpins a tab using its hint"""
+        run_targeted_command("unpinTab", tab_target)
+
     # Close tab
     def rango_close_tab(tab_target: dict):
         """Closes a tab using its hint"""
