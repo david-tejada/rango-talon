@@ -40,10 +40,10 @@ mute all: user.rango_mute_all_tabs_with_sound()
 unmute all: user.rango_unmute_all_muted_tabs()
 
 # Pin tabs
-pin this: user.rango_pin_current_tab()
-unpin this: user.rango_unpin_current_tab()
-pin <user.rango_tab_target>: user.rango_pin_tab(rango_tab_target)
-unpin <user.rango_tab_target>: user.rango_unpin_tab(rango_tab_target)
+pin tab this: user.rango_pin_current_tab()
+unpin tab this: user.rango_unpin_current_tab()
+pin tab <user.rango_tab_target>: user.rango_pin_tab(rango_tab_target)
+unpin tab <user.rango_tab_target>: user.rango_unpin_tab(rango_tab_target)
 
 # Close tab
 tab close <user.rango_tab_target>: user.rango_close_tab(rango_tab_target)
