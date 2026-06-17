@@ -65,7 +65,7 @@ def get_click_coordinates(target: dict):
     if len(matches) > 1:
         for match in matches:
             new_matches = draw_and_locate_pattern(
-                target, PATTERN_D, threshold=0.95, rect=match
+                target, COLORS_D, threshold=0.95, rect=match
             )
             if new_matches:
                 return match.x, match.y
